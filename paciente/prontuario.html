@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Prontuário - MediSync</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body class="main-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
+          </div>
+          <div class="nav-menu">
+            <a href="dash-paciente.html" class="nav-link">Dashboard</a>
+            <a
+              href="prontuario.html"
+              class="nav-link"
+              style="background: var(--cinza-neutro)"
+              >Meu Prontuário</a
+            >
+            <a href="../perfil.html" class="nav-link">Perfil</a>
+            <button onclick="logout()" class="btn btn-danger">Sair</button>
+          </div>
+          <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            ☰
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Header -->
+        <div class="dashboard-header">
+          <div>
+            <h1>Meu Prontuário Médico</h1>
+            <p>
+              Histórico completo de consultas, exames, cirurgias e internações
+            </p>
+          </div>
+          <div class="d-flex" style="gap: var(--spacing-sm)">
+            <button class="btn btn-secondary" onclick="window.print()">
+              🖨️ Imprimir
+            </button>
+            <button class="btn btn-primary" onclick="exportPDF()">
+              📄 Exportar PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3 class="card-title">Filtros</h3>
+          </div>
+          <div class="grid grid-4">
+            <button class="btn btn-secondary" onclick="filterByType('all')">
+              Todos
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="filterByType('consultas')"
+            >
+              Consultas
+            </button>
+            <button class="btn btn-secondary" onclick="filterByType('exames')">
+              Exames
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="filterByType('cirurgias')"
+            >
+              Cirurgias
+            </button>
+          </div>
+        </div>
+
+        <!-- Timeline do Prontuário -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Linha do Tempo Médica</h3>
+          </div>
+
+          <div id="timeline" style="padding: var(--spacing-md)">
+            <!-- Item Timeline - Consulta Recente -->
+            <div
+              class="timeline-item consultas"
+              style="
+                border-left: 4px solid var(--verde-agua);
+                padding-left: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  left: -8px;
+                  top: 0;
+                  width: 12px;
+                  height: 12px;
+                  background: var(--verde-agua);
+                  border-radius: 50%;
+                "
+              ></div>
+              <div class="card" style="margin-left: var(--spacing-md)">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: start;
+                    margin-bottom: var(--spacing-sm);
+                  "
+                >
+                  <h4 style="color: var(--verde-agua)">
+                    💊 Consulta Cardiológica
+                  </h4>
+                  <span class="text-muted">01/11/2024</span>
+                </div>
+                <p><strong>Dr. Maria Santos</strong> - Cardiologista</p>
+                <p><strong>Local:</strong> Clínica CardioSaúde</p>
+                <p>
+                  <strong>Motivo:</strong> Consulta de rotina - acompanhamento
+                  hipertensão
+                </p>
+                <p>
+                  <strong>Diagnóstico:</strong> Hipertensão arterial sistêmica
+                  controlada
+                </p>
+                <p>
+                  <strong>Prescrição:</strong> Manter Losartana 50mg 1x/dia,
+                  retorno em 6 meses
+                </p>
+                <p>
+                  <strong>Observações:</strong> Paciente assintomático, PA
+                  controlada (120x80mmHg)
+                </p>
+              </div>
+            </div>
+
+            <!-- Item Timeline - Exame -->
+            <div
+              class="timeline-item exames"
+              style="
+                border-left: 4px solid var(--azul-medio);
+                padding-left: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  left: -8px;
+                  top: 0;
+                  width: 12px;
+                  height: 12px;
+                  background: var(--azul-medio);
+                  border-radius: 50%;
+                "
+              ></div>
+              <div class="card" style="margin-left: var(--spacing-md)">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: start;
+                    margin-bottom: var(--spacing-sm);
+                  "
+                >
+                  <h4 style="color: var(--azul-medio)">
+                    🧪 Hemograma Completo
+                  </h4>
+                  <span class="text-muted">02/11/2024</span>
+                </div>
+                <p><strong>Laboratório:</strong> Lab Diagnóstico</p>
+                <p><strong>Solicitado por:</strong> Dr. Maria Santos</p>
+                <p>
+                  <strong>Status:</strong>
+                  <span class="text-success">✓ Resultado disponível</span>
+                </p>
+                <p>
+                  <strong>Resultado:</strong> Todos os parâmetros dentro da
+                  normalidade
+                </p>
+                <button class="btn btn-secondary">
+                  Ver Resultado Completo
+                </button>
+              </div>
+            </div>
+
+            <!-- Item Timeline - Consulta Oftalmológica -->
+            <div
+              class="timeline-item consultas"
+              style="
+                border-left: 4px solid var(--verde-agua);
+                padding-left: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  left: -8px;
+                  top: 0;
+                  width: 12px;
+                  height: 12px;
+                  background: var(--verde-agua);
+                  border-radius: 50%;
+                "
+              ></div>
+              <div class="card" style="margin-left: var(--spacing-md)">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: start;
+                    margin-bottom: var(--spacing-sm);
+                  "
+                >
+                  <h4 style="color: var(--verde-agua)">
+                    👁️ Consulta Oftalmológica
+                  </h4>
+                  <span class="text-muted">28/10/2024</span>
+                </div>
+                <p><strong>Dr. Pedro Lima</strong> - Oftalmologista</p>
+                <p><strong>Local:</strong> Hospital São José</p>
+                <p><strong>Motivo:</strong> Exame de vista de rotina</p>
+                <p><strong>Diagnóstico:</strong> Miopia leve bilateral</p>
+                <p>
+                  <strong>Prescrição:</strong> Óculos para longe (-1,25 OD /
+                  -1,50 OE)
+                </p>
+                <p>
+                  <strong>Orientações:</strong> Usar óculos sempre que
+                  necessário, retorno em 1 ano
+                </p>
+              </div>
+            </div>
+
+            <!-- Item Timeline - Exame Eletrocardiograma -->
+            <div
+              class="timeline-item exames"
+              style="
+                border-left: 4px solid var(--azul-medio);
+                padding-left: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  left: -8px;
+                  top: 0;
+                  width: 12px;
+                  height: 12px;
+                  background: var(--azul-medio);
+                  border-radius: 50%;
+                "
+              ></div>
+              <div class="card" style="margin-left: var(--spacing-md)">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: start;
+                    margin-bottom: var(--spacing-sm);
+                  "
+                >
+                  <h4 style="color: var(--azul-medio)">
+                    📈 Eletrocardiograma (ECG)
+                  </h4>
+                  <span class="text-muted">25/10/2024</span>
+                </div>
+                <p><strong>Local:</strong> Clínica CardioSaúde</p>
+                <p><strong>Solicitado por:</strong> Dr. Maria Santos</p>
+                <p>
+                  <strong>Status:</strong>
+                  <span class="text-success">✓ Resultado disponível</span>
+                </p>
+                <p>
+                  <strong>Resultado:</strong> ECG normal, ritmo sinusal regular
+                </p>
+                <button class="btn btn-secondary">Ver Laudo Completo</button>
+              </div>
+            </div>
+
+            <!-- Item Timeline - Cirurgia -->
+            <div
+              class="timeline-item cirurgias"
+              style="
+                border-left: 4px solid var(--rosa-vivo);
+                padding-left: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  left: -8px;
+                  top: 0;
+                  width: 12px;
+                  height: 12px;
+                  background: var(--rosa-vivo);
+                  border-radius: 50%;
+                "
+              ></div>
+              <div class="card" style="margin-left: var(--spacing-md)">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: start;
+                    margin-bottom: var(--spacing-sm);
+                  "
+                >
+                  <h4 style="color: var(--rosa-vivo)">🏥 Apendicectomia</h4>
+                  <span class="text-muted">15/03/2023</span>
+                </div>
+                <p><strong>Cirurgião:</strong> Dr. Roberto Fernandes</p>
+                <p><strong>Local:</strong> Hospital Santa Maria</p>
+                <p><strong>Tipo:</strong> Cirurgia de emergência</p>
+                <p>
+                  <strong>Descrição:</strong> Apendicectomia laparoscópica por
+                  apendicite aguda
+                </p>
+                <p><strong>Tempo de internação:</strong> 2 dias</p>
+                <p><strong>Recuperação:</strong> Completa, sem complicações</p>
+                <button class="btn btn-secondary">
+                  Ver Relatório Cirúrgico
+                </button>
+              </div>
+            </div>
+
+            <!-- Item Timeline - Consulta Clínico Geral -->
+            <div
+              class="timeline-item consultas"
+              style="
+                border-left: 4px solid var(--verde-agua);
+                padding-left: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  left: -8px;
+                  top: 0;
+                  width: 12px;
+                  height: 12px;
+                  background: var(--verde-agua);
+                  border-radius: 50%;
+                "
+              ></div>
+              <div class="card" style="margin-left: var(--spacing-md)">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: start;
+                    margin-bottom: var(--spacing-sm);
+                  "
+                >
+                  <h4 style="color: var(--verde-agua)">
+                    🩺 Consulta Clínico Geral
+                  </h4>
+                  <span class="text-muted">10/01/2023</span>
+                </div>
+                <p><strong>Dr. Carlos Oliveira</strong> - Clínico Geral</p>
+                <p><strong>Local:</strong> UBS Central</p>
+                <p><strong>Motivo:</strong> Check-up anual</p>
+                <p><strong>Diagnóstico:</strong> Paciente hígido</p>
+                <p>
+                  <strong>Orientações:</strong> Manter atividade física, dieta
+                  balanceada
+                </p>
+                <p>
+                  <strong>Exames solicitados:</strong> Hemograma, glicemia,
+                  colesterol
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumo Médico -->
+        <div class="grid grid-2 mt-4">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Histórico de Alergias</h3>
+            </div>
+            <div class="alert alert-danger">
+              <strong>⚠️ Penicilina</strong><br />
+              Reação: Urticária e edema<br />
+              Registrado em: 15/05/2020
+            </div>
+            <div
+              class="alert"
+              style="
+                background: rgba(255, 94, 99, 0.1);
+                border-left: 4px solid var(--rosa-vivo);
+              "
+            >
+              <strong>⚠️ Dipirona</strong><br />
+              Reação: Hipotensão severa<br />
+              Registrado em: 22/08/2019
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Condições Crônicas</h3>
+            </div>
+            <div class="alert alert-success">
+              <strong>Hipertensão Arterial</strong><br />
+              Controlada com medicação<br />
+              Diagnosticada em: 2022
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 MediSync. Seus dados médicos seguros e organizados.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+      function logout() {
+        localStorage.clear();
+        window.location.href = "../index.html";
+      }
+
+      function filterByType(type) {
+        const items = document.querySelectorAll(".timeline-item");
+        items.forEach((item) => {
+          if (type === "all" || item.classList.contains(type)) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      }
+
+      function exportPDF() {
+        alert(
+          "Funcionalidade de exportação em PDF será implementada em breve!"
+        );
+      }
+    </script>
+  </body>
+</html>

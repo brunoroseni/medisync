@@ -1,0 +1,25 @@
+:root {
+  --azul-escuro: #1c5e9c;
+  --azul-medio: #2e9bd7;
+  --verde-agua: #3ebca5;
+  --verde-claro: #66d1c4;
+  --cinza-neutro: #f2f2f2;
+  --rosa-vivo: #ff5e63;
+
+  --branco: #ffffff;
+  --preto: #000000;
+
+  --font-primary: "Inter", sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-base: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Médico - MediSync</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body class="main-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
+          </div>
+          <div class="nav-menu">
+            <a
+              href="dash-medico.html"
+              class="nav-link"
+              style="background: var(--cinza-neutro)"
+              >Dashboard</a
+            >
+            <a href="consulta.html" class="nav-link">Consultas</a>
+            <a href="cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
+            <a href="../instituicao/usuarios.html" class="nav-link">Usuários</a>
+            <button onclick="logout()" class="btn btn-danger">Sair</button>
+          </div>
+          <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            ☰
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+          <div>
+            <h1>Olá, <span id="userName">Dr. Maria Santos</span>!</h1>
+            <p>
+              <span id="userCRM">CRM/SP 123456</span> | Cardiologista | Clínica
+              CardioSaúde
+            </p>
+          </div>
+          <div class="d-flex" style="gap: var(--spacing-sm)">
+            <button
+              class="btn btn-primary"
+              onclick="window.location.href='consulta.html'"
+            >
+              Nova Consulta
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="window.location.href='cad-paciente.html'"
+            >
+              Cadastrar Paciente
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">24</div>
+            <div class="stat-label">Consultas Hoje</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">156</div>
+            <div class="stat-label">Pacientes Ativos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Consultas Pendentes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Exames Solicitados</div>
+          </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="grid grid-2">
+          <!-- Agenda do Dia -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Agenda de Hoje - 05/11/2024</h3>
+            </div>
+            <div style="max-height: 400px; overflow-y: auto">
+              <div
+                style="
+                  border-left: 4px solid var(--verde-agua);
+                  padding-left: var(--spacing-md);
+                  margin-bottom: var(--spacing-md);
+                "
+              >
+                <strong>08:00 - João Silva</strong><br />
+                <span class="text-muted">Consulta de retorno - Hipertensão</span
+                ><br />
+                <small>Última consulta: 01/08/2024</small>
+              </div>
+              <div
+                style="
+                  border-left: 4px solid var(--azul-medio);
+                  padding-left: var(--spacing-md);
+                  margin-bottom: var(--spacing-md);
+                "
+              >
+                <strong>08:30 - Maria Oliveira</strong><br />
+                <span class="text-muted">Primeira consulta - Dor no peito</span
+                ><br />
+                <small>Encaminhada por: Dr. Carlos (Clínico Geral)</small>
+              </div>
+              <div
+                style="
+                  border-left: 4px solid var(--rosa-vivo);
+                  padding-left: var(--spacing-md);
+                  margin-bottom: var(--spacing-md);
+                "
+              >
+                <strong>09:00 - Pedro Santos</strong><br />
+                <span class="text-muted">Urgência - Palpitações</span><br />
+                <small>Chegou há 15 minutos</small>
+              </div>
+              <div
+                style="
+                  border-left: 4px solid var(--verde-claro);
+                  padding-left: var(--spacing-md);
+                  margin-bottom: var(--spacing-md);
+                "
+              >
+                <strong>09:30 - Ana Costa</strong><br />
+                <span class="text-muted"
+                  >Consulta de rotina - Check-up cardiológico</span
+                ><br />
+                <small>Paciente regular</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pacientes Recentes -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pacientes Atendidos Recentemente</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Paciente</th>
+                    <th>Data</th>
+                    <th>Diagnóstico</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>João Silva</td>
+                    <td>01/11/2024</td>
+                    <td>HAS Controlada</td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm">
+                        Ver Prontuário
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Maria Santos</td>
+                    <td>30/10/2024</td>
+                    <td>Arritmia Sinusal</td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm">
+                        Ver Prontuário
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Carlos Lima</td>
+                    <td>28/10/2024</td>
+                    <td>Angina Estável</td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm">
+                        Ver Prontuário
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Exames Pendentes -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Exames Pendentes de Avaliação</h3>
+            </div>
+            <div>
+              <div class="alert alert-danger">
+                <strong>🔴 Urgente - Eletrocardiograma</strong><br />
+                Paciente: Pedro Santos<br />
+                Solicitado em: 03/11/2024<br />
+                <button class="btn btn-primary btn-sm mt-2">
+                  Avaliar Resultado
+                </button>
+              </div>
+              <div
+                class="alert"
+                style="
+                  background: rgba(255, 165, 0, 0.1);
+                  border-left: 4px solid orange;
+                "
+              >
+                <strong>🟡 Ecocardiograma</strong><br />
+                Paciente: Ana Costa<br />
+                Solicitado em: 02/11/2024<br />
+                <button class="btn btn-secondary btn-sm mt-2">
+                  Avaliar Resultado
+                </button>
+              </div>
+              <div class="alert alert-success">
+                <strong>🟢 Teste Ergométrico</strong><br />
+                Paciente: Carlos Lima<br />
+                Solicitado em: 01/11/2024<br />
+                <button class="btn btn-secondary btn-sm mt-2">
+                  Avaliar Resultado
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estatísticas da Semana -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Resumo da Semana</h3>
+            </div>
+            <div class="grid grid-2" style="gap: var(--spacing-md)">
+              <div class="text-center">
+                <div
+                  class="stat-number"
+                  style="color: var(--azul-medio); font-size: 2rem"
+                >
+                  32
+                </div>
+                <div class="text-muted">Consultas Realizadas</div>
+              </div>
+              <div class="text-center">
+                <div
+                  class="stat-number"
+                  style="color: var(--verde-agua); font-size: 2rem"
+                >
+                  18
+                </div>
+                <div class="text-muted">Novos Pacientes</div>
+              </div>
+              <div class="text-center">
+                <div
+                  class="stat-number"
+                  style="color: var(--rosa-vivo); font-size: 2rem"
+                >
+                  5
+                </div>
+                <div class="text-muted">Urgências</div>
+              </div>
+              <div class="text-center">
+                <div
+                  class="stat-number"
+                  style="color: var(--azul-escuro); font-size: 2rem"
+                >
+                  24
+                </div>
+                <div class="text-muted">Exames Solicitados</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lembretes e Avisos -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h3 class="card-title">Lembretes e Avisos</h3>
+          </div>
+          <div class="grid grid-3">
+            <div class="alert alert-success">
+              <strong>📅 Congressos</strong><br />
+              Congresso Brasileiro de Cardiologia<br />
+              📍 São Paulo - 15 a 18/11/2024
+            </div>
+            <div
+              class="alert"
+              style="
+                background: rgba(46, 155, 215, 0.1);
+                border-left: 4px solid var(--azul-medio);
+              "
+            >
+              <strong>🔄 Atualizações</strong><br />
+              Nova versão do sistema disponível<br />
+              Melhorias na interface de exames
+            </div>
+            <div
+              class="alert"
+              style="
+                background: rgba(255, 165, 0, 0.1);
+                border-left: 4px solid orange;
+              "
+            >
+              <strong>⚠️ Manutenção</strong><br />
+              Sistema em manutenção<br />
+              Domingo 10/11 das 02h às 06h
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h3 class="card-title">Ações Rápidas</h3>
+          </div>
+          <div class="grid grid-4">
+            <button
+              class="btn btn-primary"
+              onclick="window.location.href='consulta.html'"
+            >
+              Nova Consulta
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="window.location.href='cad-paciente.html'"
+            >
+              Cadastrar Paciente
+            </button>
+            <button class="btn btn-secondary" onclick="searchPatient()">
+              Buscar Paciente
+            </button>
+            <button class="btn btn-secondary" onclick="viewSchedule()">
+              Ver Agenda Completa
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 MediSync. Sistema médico profissional.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+      // Carregar dados do usuário
+      document.addEventListener("DOMContentLoaded", function () {
+        const userName = localStorage.getItem("userName") || "Dr. Médico";
+        const userCRM = localStorage.getItem("userCRM") || "CRM/SP 000000";
+        document.getElementById("userName").textContent = userName;
+        document.getElementById("userCRM").textContent = userCRM;
+      });
+
+      function logout() {
+        localStorage.clear();
+        window.location.href = "../index.html";
+      }
+
+      function searchPatient() {
+        const search = prompt("Digite o nome ou CPF do paciente:");
+        if (search) {
+          alert("Buscando paciente: " + search);
+          // Aqui seria implementada a busca real
+        }
+      }
+
+      function viewSchedule() {
+        alert("Agenda completa será implementada em breve!");
+      }
+    </script>
+  </body>
+</html>
