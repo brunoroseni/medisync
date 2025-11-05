@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediSync - Prontuário Médico Digital</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="main-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
+          </div>
+          <div class="nav-menu">
+            <a href="#features" class="nav-link">Recursos</a>
+            <a href="#pricing" class="nav-link">Preços</a>
+            <a href="#contact" class="nav-link">Contato</a>
+            <a href="paciente/login.html" class="btn btn-secondary"
+              >Acesso Paciente</a
+            >
+            <a href="medico/login.html" class="btn btn-primary"
+              >Acesso Médico</a
+            >
+          </div>
+          <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            ☰
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Centralize o Prontuário Médico dos seus Pacientes</h1>
+        <p>
+          Sistema completo que unifica consultas, exames, diagnósticos e laudos
+          médicos. Acessível por qualquer clínica, laboratório ou hospital.
+        </p>
+        <div class="d-flex justify-center" style="gap: var(--spacing-md)">
+          <a href="cadastro.html" class="btn btn-primary">Começar Grátis</a>
+          <a href="#features" class="btn btn-secondary">Saiba Mais</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="main-content">
+      <div class="container">
+        <h2 class="text-center mb-5">Por que escolher o MediSync?</h2>
+
+        <div class="grid grid-3">
+          <div class="card text-center">
+            <h3>🔒 Segurança Total</h3>
+            <p>
+              Dados protegidos com criptografia de ponta e conformidade com
+              LGPD. Acesso controlado por perfis de usuário.
+            </p>
+          </div>
+
+          <div class="card text-center">
+            <h3>🌐 Acesso Universal</h3>
+            <p>
+              Prontuário acessível de qualquer lugar por clínicas, hospitais e
+              laboratórios credenciados.
+            </p>
+          </div>
+
+          <div class="card text-center">
+            <h3>📊 Histórico Completo</h3>
+            <p>
+              Consultas, exames, cirurgias, internações e laudos em um só lugar.
+              Linha do tempo médica completa.
+            </p>
+          </div>
+
+          <div class="card text-center">
+            <h3>⚡ Rapidez no Atendimento</h3>
+            <p>
+              Acesso instantâneo ao histórico médico acelera diagnósticos e
+              melhora a qualidade do atendimento.
+            </p>
+          </div>
+
+          <div class="card text-center">
+            <h3>🤝 Integração Simples</h3>
+            <p>
+              API robusta para integração com sistemas existentes. Migração de
+              dados facilitada.
+            </p>
+          </div>
+
+          <div class="card text-center">
+            <h3>📱 Multi-Plataforma</h3>
+            <p>
+              Acesso via web, tablet e smartphone. Interface responsiva e
+              intuitiva para todos os dispositivos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="main-content" style="background: var(--cinza-neutro)">
+      <div class="container">
+        <h2 class="text-center mb-5">Benefícios para cada tipo de usuário</h2>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>👨‍⚕️ Para Médicos e Clínicas</h3>
+            <ul style="padding-left: var(--spacing-lg)">
+              <li>• Acesso completo ao histórico do paciente</li>
+              <li>• Redução de retrabalho e erros médicos</li>
+              <li>• Melhoria na qualidade dos diagnósticos</li>
+              <li>• Dashboard com métricas de atendimento</li>
+              <li>• Gestão de agenda e consultas</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>👤 Para Pacientes</h3>
+            <ul style="padding-left: var(--spacing-lg)">
+              <li>• Prontuário sempre disponível</li>
+              <li>• Controle total sobre seus dados médicos</li>
+              <li>• Histórico médico organizado</li>
+              <li>• Acesso a exames e laudos</li>
+              <li>• Compartilhamento seguro com médicos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="main-content">
+      <div class="container">
+        <h2 class="text-center mb-5">Planos que se adaptam ao seu negócio</h2>
+
+        <div class="grid grid-3">
+          <div class="card text-center">
+            <h3>Básico</h3>
+            <div class="stat-number" style="color: var(--azul-medio)">
+              R$ 49
+            </div>
+            <p>por mês</p>
+            <ul style="text-align: left; padding-left: var(--spacing-lg)">
+              <li>• Até 100 pacientes</li>
+              <li>• 2 usuários médicos</li>
+              <li>• Suporte por email</li>
+              <li>• 5GB de armazenamento</li>
+            </ul>
+            <a href="cadastro.html" class="btn btn-secondary w-100"
+              >Escolher Plano</a
+            >
+          </div>
+
+          <div
+            class="card text-center"
+            style="border: 3px solid var(--verde-agua)"
+          >
+            <h3>Profissional</h3>
+            <div class="stat-number" style="color: var(--verde-agua)">
+              R$ 149
+            </div>
+            <p>por mês</p>
+            <ul style="text-align: left; padding-left: var(--spacing-lg)">
+              <li>• Até 500 pacientes</li>
+              <li>• 10 usuários médicos</li>
+              <li>• Suporte prioritário</li>
+              <li>• 50GB de armazenamento</li>
+              <li>• API para integrações</li>
+            </ul>
+            <a href="cadastro.html" class="btn btn-primary w-100"
+              >Escolher Plano</a
+            >
+          </div>
+
+          <div class="card text-center">
+            <h3>Enterprise</h3>
+            <div class="stat-number" style="color: var(--azul-escuro)">
+              R$ 399
+            </div>
+            <p>por mês</p>
+            <ul style="text-align: left; padding-left: var(--spacing-lg)">
+              <li>• Pacientes ilimitados</li>
+              <li>• Usuários ilimitados</li>
+              <li>• Suporte 24/7</li>
+              <li>• Armazenamento ilimitado</li>
+              <li>• Customizações</li>
+            </ul>
+            <a href="cadastro.html" class="btn btn-secondary w-100"
+              >Escolher Plano</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 MediSync. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ para melhorar o atendimento médico no Brasil</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

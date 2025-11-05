@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil - MediSync</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="main-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
+          </div>
+          <div class="nav-menu">
+            <a href="paciente/dash-paciente.html" class="nav-link">Dashboard</a>
+            <a href="paciente/prontuario.html" class="nav-link">Prontuário</a>
+            <a
+              href="perfil.html"
+              class="nav-link"
+              style="background: var(--cinza-neutro)"
+              >Perfil</a
+            >
+            <button onclick="logout()" class="btn btn-danger">Sair</button>
+          </div>
+          <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            ☰
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Header -->
+        <div class="dashboard-header">
+          <div>
+            <h1>Meu Perfil</h1>
+            <p>Gerencie suas informações pessoais e preferências</p>
+          </div>
+          <button class="btn btn-primary" onclick="editProfile()">
+            ✏️ Editar Perfil
+          </button>
+        </div>
+
+        <div class="grid grid-2">
+          <!-- Informações Pessoais -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações Pessoais</h3>
+            </div>
+
+            <form id="profileForm">
+              <div class="form-group">
+                <label class="form-label">Nome Completo</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  value="João Silva"
+                  readonly
+                  id="nome"
+                />
+              </div>
+
+              <div class="grid grid-2" style="gap: var(--spacing-sm)">
+                <div class="form-group">
+                  <label class="form-label">CPF</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    value="123.456.789-00"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Data de Nascimento</label>
+                  <input
+                    type="date"
+                    class="form-input"
+                    value="1985-03-15"
+                    readonly
+                    id="nascimento"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-2" style="gap: var(--spacing-sm)">
+                <div class="form-group">
+                  <label class="form-label">Sexo</label>
+                  <select class="form-select" disabled id="sexo">
+                    <option value="M" selected>Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="O">Outro</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Estado Civil</label>
+                  <select class="form-select" disabled id="estadoCivil">
+                    <option value="solteiro">Solteiro</option>
+                    <option value="casado" selected>Casado</option>
+                    <option value="divorciado">Divorciado</option>
+                    <option value="viuvo">Viúvo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  value="joao.silva@email.com"
+                  readonly
+                  id="email"
+                />
+              </div>
+
+              <div class="grid grid-2" style="gap: var(--spacing-sm)">
+                <div class="form-group">
+                  <label class="form-label">Telefone</label>
+                  <input
+                    type="tel"
+                    class="form-input"
+                    value="(11) 99999-9999"
+                    readonly
+                    id="telefone"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Telefone Emergência</label>
+                  <input
+                    type="tel"
+                    class="form-input"
+                    value="(11) 98888-8888"
+                    readonly
+                    id="emergencia"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group d-none" id="editButtons">
+                <button type="submit" class="btn btn-success">
+                  Salvar Alterações
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  onclick="cancelEdit()"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Endereço -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Endereço</h3>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">CEP</label>
+              <input
+                type="text"
+                class="form-input"
+                value="01234-567"
+                readonly
+                id="cep"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Endereço</label>
+              <input
+                type="text"
+                class="form-input"
+                value="Rua das Flores, 123"
+                readonly
+                id="endereco"
+              />
+            </div>
+
+            <div class="grid grid-2" style="gap: var(--spacing-sm)">
+              <div class="form-group">
+                <label class="form-label">Bairro</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  value="Centro"
+                  readonly
+                  id="bairro"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Complemento</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  value="Apto 45"
+                  readonly
+                  id="complemento"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-2" style="gap: var(--spacing-sm)">
+              <div class="form-group">
+                <label class="form-label">Cidade</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  value="São Paulo"
+                  readonly
+                  id="cidade"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Estado</label>
+                <select class="form-select" disabled id="estado">
+                  <option value="SP" selected>SP</option>
+                  <option value="RJ">RJ</option>
+                  <option value="MG">MG</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Informações Médicas -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações Médicas</h3>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Tipo Sanguíneo</label>
+              <select class="form-select" disabled id="tipoSangue">
+                <option value="A+" selected>A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+
+            <div class="grid grid-2" style="gap: var(--spacing-sm)">
+              <div class="form-group">
+                <label class="form-label">Peso (kg)</label>
+                <input
+                  type="number"
+                  class="form-input"
+                  value="75"
+                  readonly
+                  id="peso"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Altura (cm)</label>
+                <input
+                  type="number"
+                  class="form-input"
+                  value="175"
+                  readonly
+                  id="altura"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Alergias Conhecidas</label>
+              <textarea class="form-input" rows="3" readonly id="alergias">
+Penicilina, Dipirona</textarea
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Observações Médicas</label>
+              <textarea class="form-input" rows="3" readonly id="observacoes">
+Hipertenso controlado com medicação</textarea
+              >
+            </div>
+          </div>
+
+          <!-- Contato de Emergência -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Contato de Emergência</h3>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Nome</label>
+              <input
+                type="text"
+                class="form-input"
+                value="Maria Silva"
+                readonly
+                id="nomeEmergencia"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Parentesco</label>
+              <input
+                type="text"
+                class="form-input"
+                value="Esposa"
+                readonly
+                id="parentesco"
+              />
+            </div>
+
+            <div class="grid grid-2" style="gap: var(--spacing-sm)">
+              <div class="form-group">
+                <label class="form-label">Telefone Principal</label>
+                <input
+                  type="tel"
+                  class="form-input"
+                  value="(11) 98888-8888"
+                  readonly
+                  id="telEmergencia1"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Telefone Alternativo</label>
+                <input
+                  type="tel"
+                  class="form-input"
+                  value="(11) 3333-3333"
+                  readonly
+                  id="telEmergencia2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preferências e Configurações -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h3 class="card-title">Preferências</h3>
+          </div>
+
+          <div class="grid grid-2">
+            <div>
+              <h4>Notificações</h4>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: var(--spacing-sm);
+                  margin-bottom: var(--spacing-sm);
+                "
+              >
+                <input type="checkbox" checked />
+                <span>Lembrete de consultas por email</span>
+              </label>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: var(--spacing-sm);
+                  margin-bottom: var(--spacing-sm);
+                "
+              >
+                <input type="checkbox" checked />
+                <span>Resultados de exames por email</span>
+              </label>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: var(--spacing-sm);
+                "
+              >
+                <input type="checkbox" />
+                <span>Notificações por SMS</span>
+              </label>
+            </div>
+
+            <div>
+              <h4>Privacidade</h4>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: var(--spacing-sm);
+                  margin-bottom: var(--spacing-sm);
+                "
+              >
+                <input type="checkbox" checked />
+                <span>Permitir acesso para pesquisa médica anônima</span>
+              </label>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: var(--spacing-sm);
+                "
+              >
+                <input type="checkbox" />
+                <span>Compartilhar dados para melhorias do sistema</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ações da Conta -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h3 class="card-title">Ações da Conta</h3>
+          </div>
+
+          <div class="d-flex justify-between align-center">
+            <div>
+              <h4>Alterar Senha</h4>
+              <p class="text-muted">Mantenha sua conta segura</p>
+            </div>
+            <button class="btn btn-secondary">Alterar Senha</button>
+          </div>
+
+          <hr style="margin: var(--spacing-md) 0" />
+
+          <div class="d-flex justify-between align-center">
+            <div>
+              <h4>Baixar Dados</h4>
+              <p class="text-muted">Faça download de todos os seus dados</p>
+            </div>
+            <button class="btn btn-secondary">Baixar Dados</button>
+          </div>
+
+          <hr style="margin: var(--spacing-md) 0" />
+
+          <div class="d-flex justify-between align-center">
+            <div>
+              <h4 class="text-danger">Excluir Conta</h4>
+              <p class="text-muted">Esta ação não pode ser desfeita</p>
+            </div>
+            <button class="btn btn-danger">Excluir Conta</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 MediSync. Seus dados médicos seguros e organizados.</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+      let isEditing = false;
+
+      function logout() {
+        localStorage.clear();
+        window.location.href = "index.html";
+      }
+
+      function editProfile() {
+        if (!isEditing) {
+          // Habilitar edição
+          const inputs = document.querySelectorAll(
+            "#profileForm input, #profileForm select, #profileForm textarea"
+          );
+          inputs.forEach((input) => {
+            input.removeAttribute("readonly");
+            input.removeAttribute("disabled");
+          });
+
+          document.getElementById("editButtons").classList.remove("d-none");
+          document.querySelector(".dashboard-header button").textContent =
+            "❌ Cancelar";
+          isEditing = true;
+        } else {
+          cancelEdit();
+        }
+      }
+
+      function cancelEdit() {
+        // Desabilitar edição
+        const inputs = document.querySelectorAll(
+          "#profileForm input, #profileForm select, #profileForm textarea"
+        );
+        inputs.forEach((input) => {
+          input.setAttribute("readonly", "true");
+          if (input.tagName === "SELECT") {
+            input.setAttribute("disabled", "true");
+          }
+        });
+
+        document.getElementById("editButtons").classList.add("d-none");
+        document.querySelector(".dashboard-header button").textContent =
+          "✏️ Editar Perfil";
+        isEditing = false;
+      }
+
+      document
+        .getElementById("profileForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Perfil atualizado com sucesso!");
+          cancelEdit();
+        });
+    </script>
+  </body>
+</html>
