@@ -1,314 +1,513 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MediSync é a plataforma de prontuário eletrônico que centraliza informações clínicas com segurança e integrações inteligentes."
+    />
+    <link rel="icon" type="image/png" href="assets/img/logo-medisync.PNG" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>MediSync | Prontuário Eletrônico Inteligente</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="MediSync é a plataforma de prontuário eletrônico que centraliza informações clínicas com segurança e integrações inteligentes." />
-  <link rel="icon" type="image/png" href="assets/img/logo-medisync.PNG" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <title>MediSync | Prontuário Eletrônico Inteligente</title>
-</head>
+  <body>
+    <a class="skip-link" href="#conteudo-principal"
+      >Ir para o conteúdo principal</a
+    >
 
-<body>
-  <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
+    <header class="header">
+      <div class="container">
+        <div class="nav">
+          <a class="logo" href="index.html">
+            <img
+              class="logo__img"
+              src="assets/img/logo-medisync.PNG"
+              alt="Logo MediSync"
+            />
+          </a>
 
-  <header class="header">
-    <div class="container">
-      <div class="nav">
-        <a class="logo" href="index.html">
-          <img class="logo__img" src="assets/img/logo-medisync.PNG" alt="Logo MediSync" />
-        </a>
+          <nav class="nav__links" aria-label="Menu principal">
+            <ul class="nav-menu" id="menu-principal">
+              <li>
+                <a class="nav-link nav-link--active" href="#inicio">Início</a>
+              </li>
+              <li><a class="nav-link" href="#features">Recursos</a></li>
+              <li><a class="nav-link" href="#beneficios">Benefícios</a></li>
+              <li><a class="nav-link" href="#pricing">Planos</a></li>
+            </ul>
+          </nav>
 
-        <nav class="nav__links" aria-label="Menu principal">
-          <ul class="nav-menu" id="menu-principal">
-            <li><a class="nav-link nav-link--active" href="#inicio">Início</a></li>
-            <li><a class="nav-link" href="#features">Recursos</a></li>
-            <li><a class="nav-link" href="#beneficios">Benefícios</a></li>
-            <li><a class="nav-link" href="#pricing">Planos</a></li>
-          </ul>
-        </nav>
-
-        <div class="d-flex align-center gap-sm">
-          <a class="btn btn-outline d-md-none" href="medico/login.html">Área do Profissional</a>
-          <a class="btn btn-primary" href="cadastro.html">Fale com vendas</a>
-          <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
-            <span class="sr-only">Alternar menu</span>
-            <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
-          </button>
+          <div class="d-flex align-center gap-sm">
+            <a class="btn btn-outline d-md-none" href="medico/login.html"
+              >Área do Médico</a
+            >
+            <a class="btn btn-primary" href="paciente/login.html"
+              >Área do Paciente</a
+            >
+            <button
+              class="mobile-menu-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="menu-principal"
+            >
+              <span class="sr-only">Alternar menu</span>
+              <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main id="conteudo-principal">
-    <section class="hero" id="inicio">
-      <div class="container">
-        <div class="hero__inner">
-          <div class="hero__content">
-            <span class="badge badge--light">Prontuário eletrônico unificado</span>
-            <h1>Centralize o cuidado e entregue experiências clínicas memoráveis</h1>
-            <p>
-              O MediSync conecta médicos, clínicas, laboratórios e pacientes em um fluxo digital seguro e colaborativo.
-              Reduza o retrabalho, tenha dados confiáveis e aprimore a jornada assistencial.
-            </p>
-            <div class="hero__actions">
-              <a class="btn btn-primary" href="cadastro.html">Começar avaliação gratuita</a>
-              <a class="btn btn-outline" href="#pricing">Comparar planos</a>
-            </div>
-            <div class="hero__support-text">
-              <span class="badge badge--success">Promoção Startup</span>
-              <span>20% de desconto no primeiro ano</span>
-            </div>
-          </div>
-
-          <div class="hero__media">
-            <div class="hero__card">
-              <div class="hero__metric">
-                <span>Tempo médio de cadastro</span>
-                <strong>4 min</strong>
+    <main id="conteudo-principal">
+      <section class="hero" id="inicio">
+        <div class="container">
+          <div class="hero__inner">
+            <div class="hero__content">
+              <span class="badge badge--light"
+                >Prontuário eletrônico unificado</span
+              >
+              <h1>
+                Centralize o cuidado e entregue experiências clínicas memoráveis
+              </h1>
+              <p>
+                O MediSync conecta médicos, clínicas, laboratórios e pacientes
+                em um fluxo digital seguro e colaborativo. Reduza o retrabalho,
+                tenha dados confiáveis e aprimore a jornada assistencial.
+              </p>
+              <div class="hero__actions">
+                <a class="btn btn-primary" href="paciente/login.html"
+                  >Área do Paciente</a
+                >
+                <a class="btn btn-outline" href="#acesso-ambientes"
+                  >Ver todos os acessos</a
+                >
               </div>
-              <div class="hero__metric">
-                <span>Prontuários consolidados</span>
-                <strong>+18 mil</strong>
+
+              <!-- Seção de Acesso aos Ambientes -->
+              <div
+                id="acesso-ambientes"
+                class="hero__environments"
+                style="
+                  margin-top: 32px;
+                  padding: 24px;
+                  background: rgba(255, 255, 255, 0.05);
+                  border-radius: 12px;
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                "
+              >
+                <h3 style="color: white; margin-bottom: 16px; font-size: 18px">
+                  🏥 Acesse seu ambiente:
+                </h3>
+                <div class="grid grid-4" style="gap: 12px">
+                  <a
+                    class="btn btn-secondary btn-sm"
+                    href="paciente/login.html"
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      padding: 16px 12px;
+                      background: rgba(255, 255, 255, 0.9);
+                      color: var(--azul-escuro);
+                    "
+                  >
+                    <span
+                      class="material-symbols-rounded"
+                      style="font-size: 24px; margin-bottom: 4px"
+                      >person</span
+                    >
+                    <strong>Paciente</strong>
+                    <small>Prontuário digital</small>
+                  </a>
+                  <a
+                    class="btn btn-secondary btn-sm"
+                    href="medico/login.html"
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      padding: 16px 12px;
+                      background: rgba(255, 255, 255, 0.9);
+                      color: var(--azul-escuro);
+                    "
+                  >
+                    <span
+                      class="material-symbols-rounded"
+                      style="font-size: 24px; margin-bottom: 4px"
+                      >medical_services</span
+                    >
+                    <strong>Médico</strong>
+                    <small>Consultas & receitas</small>
+                  </a>
+                  <a
+                    class="btn btn-secondary btn-sm"
+                    href="instituicao/login.html"
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      padding: 16px 12px;
+                      background: rgba(255, 255, 255, 0.9);
+                      color: var(--azul-escuro);
+                    "
+                  >
+                    <span
+                      class="material-symbols-rounded"
+                      style="font-size: 24px; margin-bottom: 4px"
+                      >domain</span
+                    >
+                    <strong>Instituição</strong>
+                    <small>Gestão hospitalar</small>
+                  </a>
+                  <a
+                    class="btn btn-secondary btn-sm"
+                    href="saas/login.html"
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      padding: 16px 12px;
+                      background: rgba(255, 255, 255, 0.9);
+                      color: var(--azul-escuro);
+                    "
+                  >
+                    <span
+                      class="material-symbols-rounded"
+                      style="font-size: 24px; margin-bottom: 4px"
+                      >settings</span
+                    >
+                    <strong>SaaS Admin</strong>
+                    <small>Console técnico</small>
+                  </a>
+                </div>
               </div>
-              <div class="hero__metric">
-                <span>Satisfação das clínicas</span>
-                <strong>97%</strong>
+              <div class="hero__support-text">
+                <span class="badge badge--success">Promoção Startup</span>
+                <span>20% de desconto no primeiro ano</span>
+              </div>
+            </div>
+
+            <div class="hero__media">
+              <div class="hero__card">
+                <div class="hero__metric">
+                  <span>Tempo médio de cadastro</span>
+                  <strong>4 min</strong>
+                </div>
+                <div class="hero__metric">
+                  <span>Prontuários consolidados</span>
+                  <strong>+18 mil</strong>
+                </div>
+                <div class="hero__metric">
+                  <span>Satisfação das clínicas</span>
+                  <strong>97%</strong>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="features" class="section">
-      <div class="container">
-        <div class="section__header">
-          <span class="section__eyebrow">Recursos chave</span>
-          <h2 class="section__title">Por que escolher o MediSync?</h2>
-          <p class="section__subtitle">
-            Uma plataforma pensada para equipes assistenciais, administradores e pacientes, com foco total em segurança,
-            usabilidade e integração.
-          </p>
-        </div>
-
-        <div class="grid grid-3">
-          <article class="card card--compact">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">encrypted</span>
-            </div>
-            <h3>Segurança e conformidade</h3>
-            <p>
-              Criptografia ponta a ponta, autenticação multifator e trilhas de auditoria. Tudo alinhado à LGPD e às
-              melhores práticas globais.
+      <section id="features" class="section">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__eyebrow">Recursos chave</span>
+            <h2 class="section__title">Por que escolher o MediSync?</h2>
+            <p class="section__subtitle">
+              Uma plataforma pensada para equipes assistenciais, administradores
+              e pacientes, com foco total em segurança, usabilidade e
+              integração.
             </p>
-          </article>
-          <article class="card card--compact">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">public</span>
-            </div>
-            <h3>Acesso universal</h3>
-            <p>
-              Equipes médicas, laboratórios e redes de clínicas conectados em tempo real, com permissões configuráveis
-              em cada etapa.
-            </p>
-          </article>
-          <article class="card card--compact">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">timeline</span>
-            </div>
-            <h3>Linha do tempo inteligente</h3>
-            <p>
-              Históricos completos de consultas, exames, internações e evoluções clínicas em uma visão única e
-              intuitiva.
-            </p>
-          </article>
-          <article class="card card--compact">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">bolt</span>
-            </div>
-            <h3>Fluxos automatizados</h3>
-            <p>
-              Protocolos de atendimento, notificações e alertas configuráveis reduzem o tempo de espera e evitam
-              retrabalho.
-            </p>
-          </article>
-          <article class="card card--compact">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">hub</span>
-            </div>
-            <h3>Integrações prontas</h3>
-            <p>
-              API REST, conectores HL7 e importação guiada para migrar dados sem fricção de sistemas legados.
-            </p>
-          </article>
-          <article class="card card--compact">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">devices</span>
-            </div>
-            <h3>Experiência multi-dispositivo</h3>
-            <p>
-              Interface responsiva para desktop, tablet e mobile com suporte offline em situações críticas.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="beneficios" class="section section--alt">
-      <div class="container">
-        <div class="section__header">
-          <span class="section__eyebrow">Valor para todos</span>
-          <h2 class="section__title">Benefícios sob medida para cada perfil</h2>
-          <p class="section__subtitle">
-            Dê autonomia às equipes clínicas, escale a gestão administrativa e entregue transparência total aos
-            pacientes.
-          </p>
-        </div>
-
-        <div class="grid grid-2">
-          <article class="card card--muted">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">stethoscope</span>
-            </div>
-            <h3>Médicos e clínicas</h3>
-            <ul class="card__list">
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Acesso completo ao histórico do paciente em segundos</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Protocolos clínicos automatizados e alertas de risco</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Dashboard com métricas assistenciais em tempo real</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Gestão integrada de agenda, teleatendimento e prescrições</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Assinatura eletrônica e templates customizados</span>
-              </li>
-            </ul>
-          </article>
-
-          <article class="card card--muted">
-            <div class="card__icon" aria-hidden="true">
-              <span class="material-symbols-rounded">account_circle</span>
-            </div>
-            <h3>Pacientes</h3>
-            <ul class="card__list">
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Prontuário 100% disponível e organizado por linha do tempo</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Controle granular de compartilhamento de dados</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Exames, laudos e prescrições reunidos em um só lugar</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Acesso facilitado por aplicativo web ou mobile</span>
-              </li>
-              <li>
-                <span class="card__list-icon"><span class="material-symbols-rounded">check</span></span>
-                <span>Comunicação segura com profissionais responsáveis</span>
-              </li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="section">
-      <div class="container">
-        <div class="section__header">
-          <span class="section__eyebrow">Planos flexíveis</span>
-          <h2 class="section__title">Escolha o pacote ideal para sua operação</h2>
-          <p class="section__subtitle">Todos os planos incluem suporte dedicado, atualizações contínuas e backups
-            diários.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <article class="card pricing-card">
-            <h3>Básico</h3>
-            <strong class="pricing-card__price">R$ 49</strong>
-            <p class="pricing-card__hint">/mês</p>
-            <ul class="pricing-card__features">
-              <li>Até 100 prontuários ativos</li>
-              <li>2 usuários profissionais</li>
-              <li>Suporte via email em horário comercial</li>
-              <li>5GB de armazenamento seguro</li>
-            </ul>
-            <a class="btn btn-outline" href="cadastro.html">Contratar plano</a>
-          </article>
-
-          <article class="card card--featured pricing-card" style="--card-badge-label: 'Mais popular';">
-            <h3>Profissional</h3>
-            <strong class="pricing-card__price">R$ 149</strong>
-            <p class="pricing-card__hint">/mês</p>
-            <ul class="pricing-card__features">
-              <li>Até 500 prontuários ativos</li>
-              <li>10 usuários profissionais</li>
-              <li>Suporte prioritário multicanal</li>
-              <li>50GB de armazenamento + backups externos</li>
-              <li>API e integrações com ERPs</li>
-            </ul>
-            <a class="btn btn-primary" href="cadastro.html">Escolher Profissional</a>
-          </article>
-
-          <article class="card pricing-card">
-            <h3>Enterprise</h3>
-            <strong class="pricing-card__price">R$ 399</strong>
-            <p class="pricing-card__hint">/mês</p>
-            <ul class="pricing-card__features">
-              <li>Prontuários e usuários ilimitados</li>
-              <li>Suporte 24/7 com SLA dedicado</li>
-              <li>Armazenamento e retenção personalizados</li>
-              <li>Single Sign-On, auditorias e BI avançado</li>
-              <li>Onboarding assistido e treinamentos</li>
-            </ul>
-            <a class="btn btn-outline" href="cadastro.html">Falar com especialista</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--compact">
-      <div class="container">
-        <div class="cta-banner">
-          <div>
-            <h2 class="cta-banner__title">Pronto para elevar a experiência da sua rede de saúde?</h2>
-            <p>Implante o MediSync em poucos dias e acompanhe indicadores assistenciais em tempo real.</p>
           </div>
-          <div class="cta-banner__actions">
-            <a class="btn btn-primary" href="cadastro.html">Quero implementar</a>
-            <a class="btn btn-secondary" href="mailto:contato@medisync.com">Falar com consultor</a>
+
+          <div class="grid grid-3">
+            <article class="card card--compact">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">encrypted</span>
+              </div>
+              <h3>Segurança e conformidade</h3>
+              <p>
+                Criptografia ponta a ponta, autenticação multifator e trilhas de
+                auditoria. Tudo alinhado à LGPD e às melhores práticas globais.
+              </p>
+            </article>
+            <article class="card card--compact">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">public</span>
+              </div>
+              <h3>Acesso universal</h3>
+              <p>
+                Equipes médicas, laboratórios e redes de clínicas conectados em
+                tempo real, com permissões configuráveis em cada etapa.
+              </p>
+            </article>
+            <article class="card card--compact">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">timeline</span>
+              </div>
+              <h3>Linha do tempo inteligente</h3>
+              <p>
+                Históricos completos de consultas, exames, internações e
+                evoluções clínicas em uma visão única e intuitiva.
+              </p>
+            </article>
+            <article class="card card--compact">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">bolt</span>
+              </div>
+              <h3>Fluxos automatizados</h3>
+              <p>
+                Protocolos de atendimento, notificações e alertas configuráveis
+                reduzem o tempo de espera e evitam retrabalho.
+              </p>
+            </article>
+            <article class="card card--compact">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">hub</span>
+              </div>
+              <h3>Integrações prontas</h3>
+              <p>
+                API REST, conectores HL7 e importação guiada para migrar dados
+                sem fricção de sistemas legados.
+              </p>
+            </article>
+            <article class="card card--compact">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">devices</span>
+              </div>
+              <h3>Experiência multi-dispositivo</h3>
+              <p>
+                Interface responsiva para desktop, tablet e mobile com suporte
+                offline em situações críticas.
+              </p>
+            </article>
           </div>
         </div>
+      </section>
+
+      <section id="beneficios" class="section section--alt">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__eyebrow">Valor para todos</span>
+            <h2 class="section__title">
+              Benefícios sob medida para cada perfil
+            </h2>
+            <p class="section__subtitle">
+              Dê autonomia às equipes clínicas, escale a gestão administrativa e
+              entregue transparência total aos pacientes.
+            </p>
+          </div>
+
+          <div class="grid grid-2">
+            <article class="card card--muted">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">stethoscope</span>
+              </div>
+              <h3>Médicos e clínicas</h3>
+              <ul class="card__list">
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span
+                    >Acesso completo ao histórico do paciente em segundos</span
+                  >
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span
+                    >Protocolos clínicos automatizados e alertas de risco</span
+                  >
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span
+                    >Dashboard com métricas assistenciais em tempo real</span
+                  >
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span
+                    >Gestão integrada de agenda, teleatendimento e
+                    prescrições</span
+                  >
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span>Assinatura eletrônica e templates customizados</span>
+                </li>
+              </ul>
+            </article>
+
+            <article class="card card--muted">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-symbols-rounded">account_circle</span>
+              </div>
+              <h3>Pacientes</h3>
+              <ul class="card__list">
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span
+                    >Prontuário 100% disponível e organizado por linha do
+                    tempo</span
+                  >
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span>Controle granular de compartilhamento de dados</span>
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span
+                    >Exames, laudos e prescrições reunidos em um só lugar</span
+                  >
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span>Acesso facilitado por aplicativo web ou mobile</span>
+                </li>
+                <li>
+                  <span class="card__list-icon"
+                    ><span class="material-symbols-rounded">check</span></span
+                  >
+                  <span>Comunicação segura com profissionais responsáveis</span>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__eyebrow">Planos flexíveis</span>
+            <h2 class="section__title">
+              Escolha o pacote ideal para sua operação
+            </h2>
+            <p class="section__subtitle">
+              Todos os planos incluem suporte dedicado, atualizações contínuas e
+              backups diários.
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="card pricing-card">
+              <h3>Básico</h3>
+              <strong class="pricing-card__price">R$ 49</strong>
+              <p class="pricing-card__hint">/mês</p>
+              <ul class="pricing-card__features">
+                <li>Até 100 prontuários ativos</li>
+                <li>2 usuários profissionais</li>
+                <li>Suporte via email em horário comercial</li>
+                <li>5GB de armazenamento seguro</li>
+              </ul>
+              <a
+                class="btn btn-outline"
+                href="mailto:comercial@medisync.com?subject=Interesse no Plano Básico"
+                >Solicitar demonstração</a
+              >
+            </article>
+
+            <article
+              class="card card--featured pricing-card"
+              style="--card-badge-label: 'Mais popular'"
+            >
+              <h3>Profissional</h3>
+              <strong class="pricing-card__price">R$ 149</strong>
+              <p class="pricing-card__hint">/mês</p>
+              <ul class="pricing-card__features">
+                <li>Até 500 prontuários ativos</li>
+                <li>10 usuários profissionais</li>
+                <li>Suporte prioritário multicanal</li>
+                <li>50GB de armazenamento + backups externos</li>
+                <li>API e integrações com ERPs</li>
+              </ul>
+              <a
+                class="btn btn-primary"
+                href="mailto:comercial@medisync.com?subject=Interesse no Plano Profissional"
+                >Contratar Profissional</a
+              >
+            </article>
+
+            <article class="card pricing-card">
+              <h3>Enterprise</h3>
+              <strong class="pricing-card__price">R$ 399</strong>
+              <p class="pricing-card__hint">/mês</p>
+              <ul class="pricing-card__features">
+                <li>Prontuários e usuários ilimitados</li>
+                <li>Suporte 24/7 com SLA dedicado</li>
+                <li>Armazenamento e retenção personalizados</li>
+                <li>Single Sign-On, auditorias e BI avançado</li>
+                <li>Onboarding assistido e treinamentos</li>
+              </ul>
+              <a
+                class="btn btn-outline"
+                href="mailto:enterprise@medisync.com?subject=Interesse no Plano Enterprise"
+                >Falar com especialista</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--compact">
+        <div class="container">
+          <div class="cta-banner">
+            <div>
+              <h2 class="cta-banner__title">
+                Pronto para elevar a experiência da sua rede de saúde?
+              </h2>
+              <p>
+                Implante o MediSync em poucos dias e acompanhe indicadores
+                assistenciais em tempo real.
+              </p>
+            </div>
+            <div class="cta-banner__actions">
+              <a
+                class="btn btn-primary"
+                href="mailto:comercial@medisync.com?subject=Implementação MediSync"
+                >Solicitar implementação</a
+              >
+              <a class="btn btn-secondary" href="mailto:contato@medisync.com"
+                >Falar com consultor</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 MediSync. Todos os direitos reservados.</p>
+        <p>
+          Desenvolvido com
+          <span class="material-symbols-rounded" aria-hidden="true"
+            >favorite</span
+          >
+          por <a href="http://www.linkedin.com/in/brunoroseni">Bruno Roseni</a>
+        </p>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2024 MediSync. Todos os direitos reservados.</p>
-      <p>Desenvolvido com <span class="material-symbols-rounded" aria-hidden="true">favorite</span> por <a
-          href="http://www.linkedin.com/in/brunoroseni">Bruno Roseni</a></p>
-    </div>
-  </footer>
-
-  <script src="assets/js/main.js"></script>
-</body>
-
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
