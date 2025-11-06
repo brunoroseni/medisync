@@ -1,0 +1,7 @@
+Contexto atual - 05/11/2025
+
+- A plataforma MediSync possui três perfis principais de acesso: paciente, profissional de saúde (médico) e instituição contratante (clínica, hospital ou laboratório).
+- O painel recentemente criado deve representar a visão da instituição que contratou o serviço e não um "admin" técnico ou do tenant.
+- A navegação e copy futuras precisam refletir essa persona (gestores da instituição contratante) ao invés de um administrador interno do MediSync.
+- Arquivos relevantes para esse fluxo no momento: instituicao/login.html, instituicao/dash-admin.html, instituicao/usuarios.html e instituicao/configuracoes.html.
+- Próxima etapa sugerida: revisar textos/rotas para reforçar a ideia de "painel da instituição" e alinhar funcionalidades às necessidades do cliente contratante.

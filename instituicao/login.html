@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Administração - MediSync</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                    <img src="../assets/img/logo-medisync.PNG" alt="MediSync Logo"
+                        style="height: 40px; margin-right: 8px;" />
+                    <h2 style="color: var(--azul-escuro); margin: 0;">MediSync</h2>
+                </div>
+                <h3>Console de Administração</h3>
+                <p>Autentique-se para gerenciar tenants, usuários e faturamento</p>
+            </div>
+
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label class="form-label">Email corporativo</label>
+                    <input type="email" class="form-input" required placeholder="admin@medisync.com" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-input" required placeholder="Digite sua senha" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Tenant</label>
+                    <select class="form-select" required>
+                        <option value="">Selecione um tenant</option>
+                        <option value="cardiosaude">CardioSaúde Holding</option>
+                        <option value="rede-viva">Rede Viva Saúde</option>
+                        <option value="lab-integrado">Laboratórios Integrados</option>
+                        <option value="demo">Trial Demo MediSync</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Código MFA</label>
+                    <input type="text" class="form-input" placeholder="123 456" maxlength="6" inputmode="numeric" />
+                </div>
+
+                <div class="form-group d-flex justify-between align-center">
+                    <label style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                        <input type="checkbox" />
+                        <span>Confiar neste dispositivo</span>
+                    </label>
+                    <a href="#" style="color: var(--azul-medio);">Suporte</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mb-3">
+                    Acessar painel administrativo
+                </button>
+
+                <div class="text-center">
+                    <p>
+                        <a href="../medico/login.html" style="color: var(--verde-agua);">← Sou médico ou
+                            profissional</a>
+                    </p>
+                    <p>
+                        <a href="../paciente/login.html" style="color: var(--verde-agua);">← Sou paciente</a>
+                    </p>
+                    <p>
+                        <a href="../index.html" style="color: var(--verde-agua);">← Voltar ao início</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.getElementById("adminLoginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            // Simula login administrativo no contexto institucional
+            localStorage.setItem("userType", "admin");
+            localStorage.setItem("adminName", "Super Admin MediSync");
+            localStorage.setItem("tenantName", "CardioSaúde Holding");
+            window.location.href = "dash-admin.html";
+        });
+    </script>
+</body>
+
+</html>

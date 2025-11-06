@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo - MediSync</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="main-layout">
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="../assets/img/logo-medisync.PNG" alt="MediSync Logo"
+                        style="height: 40px; vertical-align: middle; margin-right: 8px;" />
+                    <h2 style="color: var(--azul-escuro); margin: 0;">MediSync</h2>
+                </div>
+                <div class="nav-menu" id="menu-admin">
+                    <a href="dash-admin.html" class="nav-link" style="background: var(--cinza-neutro)">Visão Geral</a>
+                    <a href="#aprovacoes" class="nav-link">Aprovações</a>
+                    <a href="#tenant" class="nav-link">Tenant</a>
+                    <a href="#financeiro" class="nav-link">Financeiro</a>
+                    <a href="#compliance" class="nav-link">Auditoria</a>
+                    <button onclick="logout()" class="btn btn-danger">Sair</button>
+                </div>
+                <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-admin">
+                    <span class="sr-only">Alternar menu</span>
+                    <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="dashboard-header" style="margin-bottom: var(--spacing-xl);">
+                <div>
+                    <h1>Painel Administrativo</h1>
+                    <p>Gerencie tenants, autorizações profissionais, faturamento e governança do MediSync</p>
+                </div>
+                <div class="d-flex" style="gap: var(--spacing-sm);">
+                    <button class="btn btn-primary">
+                        <span class="material-symbols-rounded" aria-hidden="true">add</span>
+                        Novo tenant
+                    </button>
+                    <button class="btn btn-secondary">
+                        <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                        Exportar dados
+                    </button>
+                </div>
+            </section>
+
+            <section class="stats-grid" aria-label="Indicadores principais">
+                <article class="stat-card">
+                    <div class="stat-number">28</div>
+                    <div class="stat-label">Tenants ativos</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-number">112</div>
+                    <div class="stat-label">Usuários aguardando aprovação</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-number">R$ 86k</div>
+                    <div class="stat-label">MRR consolidado</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-number">99,8%</div>
+                    <div class="stat-label">SLA de uptime (30 dias)</div>
+                </article>
+            </section>
+
+            <section id="aprovacoes" class="card" style="margin-top: var(--spacing-xl);">
+                <div class="card-header">
+                    <h3 class="card-title icon-inline">
+                        <span class="material-symbols-rounded" aria-hidden="true">verified_user</span>
+                        Aprovação de credenciais profissionais
+                    </h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Profissional</th>
+                                <th>Documento</th>
+                                <th>Tenant</th>
+                                <th>Data solicitação</th>
+                                <th>Status da checagem</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Dr. Eduardo Farias</strong>
+                                    <br /><small>eduardo.farias@rede-viva.com</small>
+                                </td>
+                                <td>CRM/SP 987654</td>
+                                <td>Rede Viva Saúde</td>
+                                <td>04/11/2025</td>
+                                <td><span class="text-muted">Em validação externa</span></td>
+                                <td class="d-flex" style="gap: var(--spacing-xs);">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+                                        Aprovar
+                                    </button>
+                                    <button class="btn btn-outline btn-sm">
+                                        <span class="material-symbols-rounded" aria-hidden="true">info</span>
+                                        Detalhes
+                                    </button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                                        Reprovar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Enf. Juliana Prado</strong>
+                                    <br /><small>juliana.prado@cardiosaude.com</small>
+                                </td>
+                                <td>COREN/SP 445566</td>
+                                <td>CardioSaúde Holding</td>
+                                <td>03/11/2025</td>
+                                <td><span class="text-muted">Documento pendente</span></td>
+                                <td class="d-flex" style="gap: var(--spacing-xs);">
+                                    <button class="btn btn-secondary btn-sm">Solicitar doc.</button>
+                                    <button class="btn btn-outline btn-sm">Detalhes</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Fisioter. Lucas Menezes</strong>
+                                    <br /><small>lucas.menezes@demo.com</small>
+                                </td>
+                                <td>CREFITO 334455</td>
+                                <td>Trial Demo MediSync</td>
+                                <td>02/11/2025</td>
+                                <td><span class="text-success">Check completo</span></td>
+                                <td class="d-flex" style="gap: var(--spacing-xs);">
+                                    <button class="btn btn-secondary btn-sm">Gerar acesso</button>
+                                    <button class="btn btn-outline btn-sm">Detalhes</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="tenant" class="grid grid-2" style="margin-top: var(--spacing-xl); gap: var(--spacing-xl);">
+                <article class="card">
+                    <div class="card-header">
+                        <h3 class="card-title icon-inline">
+                            <span class="material-symbols-rounded" aria-hidden="true">settings_account_box</span>
+                            Dados do tenant
+                        </h3>
+                    </div>
+                    <form class="grid grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Nome fantasia</label>
+                            <input type="text" class="form-input" value="CardioSaúde Holding" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CNPJ</label>
+                            <input type="text" class="form-input" value="12.345.678/0001-55" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Responsável legal</label>
+                            <input type="text" class="form-input" value="Fernanda Azevedo" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email contato</label>
+                            <input type="email" class="form-input" value="fernanda.azevedo@cardiosaude.com" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Telefone comercial</label>
+                            <input type="tel" class="form-input" value="(11) 4002-8922" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Plano contratado</label>
+                            <select class="form-select">
+                                <option>Profissional</option>
+                                <option>Enterprise</option>
+                                <option>Básico</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label class="form-label">Funcionalidades habilitadas</label>
+                            <div class="grid grid-2" style="gap: var(--spacing-sm);">
+                                <label class="icon-inline">
+                                    <input type="checkbox" checked />
+                                    Telemedicina
+                                </label>
+                                <label class="icon-inline">
+                                    <input type="checkbox" checked />
+                                    Prescrição digital
+                                </label>
+                                <label class="icon-inline">
+                                    <input type="checkbox" checked />
+                                    Módulo financeiro
+                                </label>
+                                <label class="icon-inline">
+                                    <input type="checkbox" />
+                                    API externa
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-end" style="grid-column: span 2; gap: var(--spacing-sm);">
+                            <button class="btn btn-secondary" type="button">Reverter</button>
+                            <button class="btn btn-primary" type="button">Salvar alterações</button>
+                        </div>
+                    </form>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                        <h3 class="card-title icon-inline">
+                            <span class="material-symbols-rounded" aria-hidden="true">manage_history</span>
+                            Fluxo de onboarding
+                        </h3>
+                    </div>
+                    <ol class="list-dashed">
+                        <li>Contrato assinado (05/10/2025)</li>
+                        <li>Importação de usuários (concluída)</li>
+                        <li>Treinamento das equipes (agendado 10/11)</li>
+                        <li>Integração com ERP Financeiro (em andamento)</li>
+                        <li>Go live previsto em 20/11</li>
+                    </ol>
+                    <div class="card" style="margin-top: var(--spacing-md); background: rgba(46, 155, 215, 0.08);">
+                        <h4 class="icon-inline" style="margin-top: 0;">
+                            <span class="material-symbols-rounded" aria-hidden="true">notifications_active</span>
+                            Próximos passos
+                        </h4>
+                        <ul class="card__list" style="margin-top: var(--spacing-sm);">
+                            <li>
+                                <span class="card__list-icon"><span
+                                        class="material-symbols-rounded">calendar_today</span></span>
+                                <span>Validar integrações com laboratório parceiro</span>
+                            </li>
+                            <li>
+                                <span class="card__list-icon"><span
+                                        class="material-symbols-rounded">support_agent</span></span>
+                                <span>Designar gerente de sucesso para acompanhamento</span>
+                            </li>
+                            <li>
+                                <span class="card__list-icon"><span class="material-symbols-rounded">lock</span></span>
+                                <span>Checar política de retenção de dados</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+
+            <section id="financeiro" class="card" style="margin-top: var(--spacing-xl);">
+                <div class="card-header">
+                    <h3 class="card-title icon-inline">
+                        <span class="material-symbols-rounded" aria-hidden="true">account_balance</span>
+                        Gestão financeira e billing
+                    </h3>
+                </div>
+                <div class="grid grid-3" style="gap: var(--spacing-lg);">
+                    <article>
+                        <h4 class="icon-inline">
+                            <span class="material-symbols-rounded" aria-hidden="true">receipt_long</span>
+                            Próxima fatura
+                        </h4>
+                        <p class="m-0">
+                            Valor estimado: <strong>R$ 8.450,00</strong><br />
+                            Vencimento: 15/11/2025
+                        </p>
+                        <button class="btn btn-outline btn-sm" style="margin-top: var(--spacing-sm);">
+                            <span class="material-symbols-rounded" aria-hidden="true">visibility</span>
+                            Visualizar NF-e
+                        </button>
+                    </article>
+                    <article>
+                        <h4 class="icon-inline">
+                            <span class="material-symbols-rounded" aria-hidden="true">analytics</span>
+                            Uso de recursos
+                        </h4>
+                        <ul class="card__list">
+                            <li>
+                                <span class="card__list-icon"><span class="material-symbols-rounded">group</span></span>
+                                <span>Usuários ativos: <strong>286</strong> / 300</span>
+                            </li>
+                            <li>
+                                <span class="card__list-icon"><span
+                                        class="material-symbols-rounded">database</span></span>
+                                <span>Armazenamento: 820 GB / 1 TB</span>
+                            </li>
+                            <li>
+                                <span class="card__list-icon"><span
+                                        class="material-symbols-rounded">cloud_sync</span></span>
+                                <span>Backups externos: últimos 30 dias</span>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <h4 class="icon-inline">
+                            <span class="material-symbols-rounded" aria-hidden="true">credit_card</span>
+                            Métodos de pagamento
+                        </h4>
+                        <p class="m-0">Cartão corporativo Mastercard •••• 4487<br />Atualizado em 02/11/2025</p>
+                        <div class="d-flex" style="gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                            <button class="btn btn-secondary btn-sm">Atualizar cartão</button>
+                            <button class="btn btn-outline btn-sm">Configurar boleto</button>
+                        </div>
+                    </article>
+                </div>
+                <div class="table-responsive" style="margin-top: var(--spacing-lg);">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Competência</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Emitida em</th>
+                                <th>Liquidação</th>
+                                <th>Arquivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Outubro/2025</td>
+                                <td>R$ 8.210,00</td>
+                                <td><span class="text-success">Pago</span></td>
+                                <td>01/10/2025</td>
+                                <td>05/10/2025</td>
+                                <td><button class="btn btn-secondary btn-sm">Download</button></td>
+                            </tr>
+                            <tr>
+                                <td>Setembro/2025</td>
+                                <td>R$ 7.980,00</td>
+                                <td><span class="text-success">Pago</span></td>
+                                <td>01/09/2025</td>
+                                <td>04/09/2025</td>
+                                <td><button class="btn btn-secondary btn-sm">Download</button></td>
+                            </tr>
+                            <tr>
+                                <td>Agosto/2025</td>
+                                <td>R$ 7.945,00</td>
+                                <td><span class="text-success">Pago</span></td>
+                                <td>01/08/2025</td>
+                                <td>03/08/2025</td>
+                                <td><button class="btn btn-secondary btn-sm">Download</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="compliance" class="grid grid-2" style="margin-top: var(--spacing-xl); gap: var(--spacing-xl);">
+                <article class="card">
+                    <div class="card-header">
+                        <h3 class="card-title icon-inline">
+                            <span class="material-symbols-rounded" aria-hidden="true">rule</span>
+                            Auditoria e conformidade
+                        </h3>
+                    </div>
+                    <ul class="card__list">
+                        <li>
+                            <span class="card__list-icon"><span class="material-symbols-rounded">gavel</span></span>
+                            <span>LGPD - Relatório de impacto atualizado em 01/11/2025</span>
+                        </li>
+                        <li>
+                            <span class="card__list-icon"><span
+                                    class="material-symbols-rounded">shield_lock</span></span>
+                            <span>Política de retenção de dados revisada - aguardando aprovação</span>
+                        </li>
+                        <li>
+                            <span class="card__list-icon"><span
+                                    class="material-symbols-rounded">track_changes</span></span>
+                            <span>Trilha de auditoria exportada em 03/11/2025</span>
+                        </li>
+                        <li>
+                            <span class="card__list-icon"><span
+                                    class="material-symbols-rounded">manage_accounts</span></span>
+                            <span>Revalidação de acessos privilegiados vence em 12 dias</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Abrir relatório
+                        completo</button>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                        <h3 class="card-title icon-inline">
+                            <span class="material-symbols-rounded" aria-hidden="true">forum</span>
+                            Comunicação com tenants
+                        </h3>
+                    </div>
+                    <div style="max-height: 280px; overflow-y: auto;">
+                        <div class="card"
+                            style="background: rgba(62, 188, 165, 0.1); margin-bottom: var(--spacing-sm);">
+                            <p class="m-0"><strong>CardioSaúde Holding</strong></p>
+                            <p class="m-0 text-muted">"Precisamos liberar o módulo de telemetria clínica até o go-live"
+                            </p>
+                            <small>Recebido há 2h</small>
+                        </div>
+                        <div class="card"
+                            style="background: rgba(46, 155, 215, 0.1); margin-bottom: var(--spacing-sm);">
+                            <p class="m-0"><strong>Rede Viva Saúde</strong></p>
+                            <p class="m-0 text-muted">"Favor revisar checklist de integração com laboratório"</p>
+                            <small>Recebido ontem</small>
+                        </div>
+                        <div class="card"
+                            style="background: rgba(255, 165, 0, 0.12); margin-bottom: var(--spacing-sm);">
+                            <p class="m-0"><strong>Laboratórios Integrados</strong></p>
+                            <p class="m-0 text-muted">"Configurar split de faturamento para filiais"</p>
+                            <small>Recebido há 3 dias</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" style="margin-top: var(--spacing-sm);">
+                        <span class="material-symbols-rounded" aria-hidden="true">mail</span>
+                        Enviar atualização
+                    </button>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MediSync. Console administrativo demonstrativo.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
