@@ -6,6 +6,7 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -17,6 +18,12 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   width: 100%;
+  font-family: var(--font-primary);
+  color: var(--azul-escuro);
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 .container {
@@ -73,15 +80,38 @@ button {
   font-family: inherit;
   cursor: pointer;
   border: none;
-  border-radius: var(--radius-sm);
-  background-color: var(--azul-medio);
-  color: var(--branco);
-  padding: var(--spacing-sm) var(--spacing-md);
-  transition: background-color 0.3s ease;
+  background: transparent;
+  color: inherit;
+  padding: 0;
 }
 
-button:hover {
-  background-color: var(--verde-claro);
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+ul,
+ol {
+  margin-left: var(--spacing-lg);
+  padding-left: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  transition: top 0.2s ease;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: var(--spacing-sm);
 }
 
 /* Responsive utilities */

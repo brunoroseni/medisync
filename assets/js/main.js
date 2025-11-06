@@ -20,6 +20,9 @@ function initializeMediSync() {
 
   // Verificar autenticação
   checkAuthentication();
+
+  // Ajustar tabelas para visualização mobile
+  makeTablesResponsive();
 }
 
 // ==========================================
@@ -30,41 +33,66 @@ function setupMobileNavigation() {
   const mobileToggle = document.querySelector(".mobile-menu-toggle");
   const navMenu = document.querySelector(".nav-menu");
 
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener("click", function (e) {
-      e.stopPropagation();
-      navMenu.classList.toggle("active");
-    });
-
-    // Fechar menu ao clicar em um link
-    const navLinks = navMenu.querySelectorAll(".nav-link, .btn");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("active");
-      });
-    });
-
-    // Fechar menu ao clicar fora dele
-    document.addEventListener("click", function (e) {
-      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-        navMenu.classList.remove("active");
-      }
-    });
-
-    // Fechar menu ao pressionar ESC
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        navMenu.classList.remove("active");
-      }
-    });
+  if (!mobileToggle || !navMenu) {
+    return;
   }
-}
 
-function toggleMobileMenu() {
-  const navMenu = document.querySelector(".nav-menu");
-  if (navMenu) {
-    navMenu.classList.toggle("active");
+  const menuId = mobileToggle.getAttribute("aria-controls") || "primary-navigation";
+  if (!navMenu.id) {
+    navMenu.id = menuId;
   }
+  mobileToggle.setAttribute("aria-controls", navMenu.id);
+  mobileToggle.setAttribute("aria-expanded", "false");
+
+  const toggleMenu = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const isOpen = navMenu.classList.toggle("active");
+    mobileToggle.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("menu-open", isOpen);
+  };
+
+  const closeMenu = () => {
+    if (!navMenu.classList.contains("active")) return;
+    navMenu.classList.remove("active");
+    mobileToggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("menu-open");
+  };
+
+  mobileToggle.addEventListener("click", toggleMenu);
+
+  mobileToggle.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      toggleMenu(event);
+    }
+  });
+
+  const focusableItems = navMenu.querySelectorAll("a, button");
+  focusableItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      closeMenu();
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!navMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+      mobileToggle.focus();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      closeMenu();
+    }
+  });
 }
 
 // ==========================================
@@ -390,7 +418,6 @@ window.addEventListener("resize", function () {
 
 // Tornar funções disponíveis globalmente
 window.MediSync = {
-  toggleMobileMenu,
   logout,
   validateCPF,
   validateEmail,
@@ -399,6 +426,7 @@ window.MediSync = {
   showNotification,
   confirmAction,
   buscarCEP,
+  makeTablesResponsive,
 };
 
 console.log("🏥 MediSync JavaScript carregado com sucesso!");
