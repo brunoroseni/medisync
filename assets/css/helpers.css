@@ -9,6 +9,33 @@
   text-align: left;
 }
 
+/* Responsive utilities */
+.no-wrap {
+  white-space: nowrap;
+}
+
+.word-break {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.max-w-100 {
+  max-width: 100%;
+}
+
 /* Spacing Utilities */
 .mt-md {
   margin-top: var(--spacing-md);
@@ -18,6 +45,10 @@
 }
 .p-md {
   padding: var(--spacing-md);
+}
+
+.mb-4 {
+  margin-bottom: var(--spacing-lg);
 }
 
 .m-0 {

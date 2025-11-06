@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: linear-gradient(
     135deg,
@@ -7,12 +15,16 @@ body {
     var(--branco) 100%
   );
   min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .text-center {

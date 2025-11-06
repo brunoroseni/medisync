@@ -1,0 +1,197 @@
+/* Melhorias de responsividade para MediSync */
+
+/* Reset adicional para evitar overflow */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Controle de overflow global */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Melhorias para navegação mobile */
+@media (max-width: 768px) {
+  /* Header fixes */
+  .header {
+    position: relative;
+    z-index: 1000;
+  }
+
+  .nav {
+    position: relative;
+  }
+
+  /* Mobile menu improvements */
+  .mobile-menu-toggle {
+    display: block !important;
+    position: relative;
+    z-index: 1002;
+  }
+
+  .nav-menu {
+    position: fixed !important;
+    top: 80px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: var(--branco) !important;
+    flex-direction: column !important;
+    padding: var(--spacing-lg) !important;
+    box-shadow: var(--shadow-base) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-20px) !important;
+    transition: all 0.3s ease !important;
+    z-index: 1001 !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+  }
+
+  .nav-menu.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Button improvements */
+  .nav-menu .btn {
+    width: 100% !important;
+    text-align: center !important;
+    margin: var(--spacing-sm) 0 !important;
+    display: block !important;
+  }
+
+  /* Card improvements */
+  .card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Grid improvements */
+  .grid,
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: var(--spacing-md) !important;
+  }
+
+  /* Stats grid mobile */
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--spacing-sm) !important;
+  }
+
+  /* Dashboard header mobile */
+  .dashboard-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    text-align: left !important;
+  }
+
+  .dashboard-header .d-flex {
+    flex-direction: column !important;
+    gap: var(--spacing-sm) !important;
+  }
+
+  /* Table mobile improvements */
+  .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 0 calc(-1 * var(--spacing-md)) !important;
+    padding: 0 var(--spacing-md) !important;
+  }
+
+  /* Form improvements */
+  .form-input,
+  .form-select {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Hero section mobile */
+  .hero {
+    padding: var(--spacing-lg) var(--spacing-md) !important;
+  }
+
+  .hero .d-flex {
+    flex-direction: column !important;
+    gap: var(--spacing-sm) !important;
+  }
+
+  .hero .btn {
+    width: 100% !important;
+    margin-bottom: var(--spacing-sm) !important;
+  }
+
+  /* Login card mobile */
+  .login-card {
+    margin: var(--spacing-md) !important;
+    max-width: calc(100vw - 2 * var(--spacing-md)) !important;
+    width: calc(100% - 2 * var(--spacing-md)) !important;
+  }
+
+  /* Prevent text overflow */
+  h1, h2, h3, h4, h5, h6, p, span, div {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Alert improvements */
+  .alert {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Button size adjustments */
+  .btn-sm {
+    padding: var(--spacing-xs) var(--spacing-sm) !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Small devices (phones in landscape) */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 var(--spacing-sm) !important;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem !important;
+  }
+
+  .stat-number {
+    font-size: 1.75rem !important;
+  }
+
+  .card {
+    padding: var(--spacing-sm) !important;
+  }
+
+  .table th,
+  .table td {
+    padding: var(--spacing-xs) !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Ensure no horizontal scrollbars */
+.overflow-fix {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Apply overflow fix to common containers */
+.main-layout,
+.main-content,
+.container,
+.card,
+.hero {
+  overflow-x: hidden;
+  max-width: 100%;
+}

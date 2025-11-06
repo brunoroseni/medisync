@@ -1,520 +1,442 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Configurações - MediSync</title>
-    <link rel="stylesheet" href="../assets/css/main.css" />
-  </head>
-  <body class="main-layout">
-    <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <nav class="nav">
-          <div class="logo">
-            <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
-          </div>
-          <div class="nav-menu">
-            <a href="../medico/dash-medico.html" class="nav-link">Dashboard</a>
-            <a href="../medico/consulta.html" class="nav-link">Consultas</a>
-            <a href="../medico/cad-paciente.html" class="nav-link"
-              >Cadastrar Paciente</a
-            >
-            <a href="usuarios.html" class="nav-link">Usuários</a>
-            <a
-              href="configuracoes.html"
-              class="nav-link"
-              style="background: var(--cinza-neutro)"
-              >Configurações</a
-            >
-            <button onclick="logout()" class="btn btn-danger">Sair</button>
-          </div>
-          <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            ☰
-          </button>
-        </nav>
-      </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="container">
-        <!-- Header -->
-        <div class="dashboard-header">
-          <div>
-            <h1>Configurações da Instituição</h1>
-            <p>Gerencie as configurações e preferências do seu tenant</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações - MediSync</title>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="main-layout">
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="../assets/img/logo-medisync.PNG" alt="MediSync Logo"
+            style="height: 40px; vertical-align: middle; margin-right: 8px;">
+          <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
+        </div>
+        <div class="nav-menu">
+          <a href="../medico/dash-medico.html" class="nav-link">Dashboard</a>
+          <a href="../medico/consulta.html" class="nav-link">Consultas</a>
+          <a href="../medico/cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
+          <a href="usuarios.html" class="nav-link">Usuários</a>
+          <a href="configuracoes.html" class="nav-link" style="background: var(--cinza-neutro)">Configurações</a>
+          <button onclick="logout()" class="btn btn-danger">Sair</button>
+        </div>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          ☰
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1>Configurações da Instituição</h1>
+          <p>Gerencie as configurações e preferências do seu tenant</p>
+        </div>
+        <button class="btn btn-primary" onclick="saveAllSettings()">
+          💾 Salvar Todas as Configurações
+        </button>
+      </div>
+
+      <div class="grid grid-2">
+        <!-- Informações da Instituição -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Dados da Instituição</h3>
           </div>
-          <button class="btn btn-primary" onclick="saveAllSettings()">
-            💾 Salvar Todas as Configurações
-          </button>
+
+          <form id="institutionForm">
+            <div class="form-group">
+              <label class="form-label">Nome da Instituição</label>
+              <input type="text" class="form-input" value="Clínica CardioSaúde" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">CNPJ</label>
+              <input type="text" class="form-input" value="12.345.678/0001-90" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Tipo de Instituição</label>
+              <select class="form-select" required>
+                <option value="clinica" selected>Clínica</option>
+                <option value="hospital">Hospital</option>
+                <option value="laboratorio">Laboratório</option>
+                <option value="consultorio">Consultório</option>
+                <option value="ubs">UBS</option>
+                <option value="outros">Outros</option>
+              </select>
+            </div>
+
+            <div class="grid grid-2" style="gap: var(--spacing-sm)">
+              <div class="form-group">
+                <label class="form-label">Telefone Principal</label>
+                <input type="tel" class="form-input" value="(11) 3333-3333" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Institucional</label>
+                <input type="email" class="form-input" value="contato@cardiosaude.com.br" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Endereço Completo</label>
+              <textarea class="form-input" rows="2">
+Rua das Clínicas, 123 - Centro - São Paulo/SP - CEP: 01234-567</textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Responsável Técnico</label>
+              <input type="text" class="form-input" value="Dr. Maria Santos - CRM/SP 123456" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Atualizar Dados
+            </button>
+          </form>
+        </div>
+
+        <!-- Configurações de Acesso -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Configurações de Segurança</h3>
+          </div>
+
+          <form id="securityForm">
+            <div class="form-group">
+              <h4>Política de Senhas</h4>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Exigir senha forte (8+ caracteres, maiúscula, minúscula,
+                  número)</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Forçar alteração de senha a cada 90 dias</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Autenticação de dois fatores (2FA)</span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Tempo de Sessão (minutos)</label>
+              <select class="form-select">
+                <option value="30">30 minutos</option>
+                <option value="60" selected>60 minutos</option>
+                <option value="120">2 horas</option>
+                <option value="240">4 horas</option>
+                <option value="480">8 horas</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <h4>Auditoria e Logs</h4>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Registrar todos os acessos aos prontuários</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Log de modificações em consultas</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Alertas de acesso suspeito</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Salvar Segurança
+            </button>
+          </form>
+        </div>
+
+        <!-- Configurações de Notificação -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Notificações</h3>
+          </div>
+
+          <form id="notificationForm">
+            <div class="form-group">
+              <h4>Notificações por Email</h4>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Novos usuários cadastrados</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Tentativas de acesso negado</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Backup realizado com sucesso</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Atualizações do sistema</span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email para Notificações Administrativas</label>
+              <input type="email" class="form-input" value="admin@cardiosaude.com.br" />
+            </div>
+
+            <div class="form-group">
+              <h4>Configurações de SMS</h4>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Lembrete de consultas por SMS</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Resultados de exames urgentes por SMS</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Salvar Notificações
+            </button>
+          </form>
+        </div>
+
+        <!-- Configurações de Integração -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Integrações</h3>
+          </div>
+
+          <form id="integrationForm">
+            <div class="form-group">
+              <h4>API Externa</h4>
+              <div class="alert" style="
+                    background: rgba(46, 155, 215, 0.1);
+                    border-left: 4px solid var(--azul-medio);
+                  ">
+                <strong>ℹ️ API Key:</strong> medisync_api_key_123abc...<br />
+                <button class="btn btn-secondary btn-sm mt-2">
+                  Regenerar Chave
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <h4>Sistemas Integrados</h4>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Sistema de Agendamento</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    margin-bottom: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Sistema de Laboratório</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Sistema de Imagem (PACS)</span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">URL de Callback</label>
+              <input type="url" class="form-input" placeholder="https://seu-sistema.com.br/callback" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Salvar Integrações
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Configurações Avançadas -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Configurações Avançadas</h3>
+        </div>
+
+        <div class="grid grid-3">
+          <div>
+            <h4>Backup e Recuperação</h4>
+            <div class="form-group">
+              <label class="form-label">Frequência de Backup</label>
+              <select class="form-select">
+                <option value="diario" selected>Diário</option>
+                <option value="semanal">Semanal</option>
+                <option value="mensal">Mensal</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Retenção de Backups</label>
+              <select class="form-select">
+                <option value="30" selected>30 dias</option>
+                <option value="90">90 dias</option>
+                <option value="365">1 ano</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary w-100">
+              Fazer Backup Agora
+            </button>
+          </div>
+
+          <div>
+            <h4>Performance</h4>
+            <div class="form-group">
+              <label class="form-label">Limite de Upload (MB)</label>
+              <input type="number" class="form-input" value="50" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Cache de Imagens</label>
+              <select class="form-select">
+                <option value="7" selected>7 dias</option>
+                <option value="14">14 dias</option>
+                <option value="30">30 dias</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary w-100">Limpar Cache</button>
+          </div>
+
+          <div>
+            <h4>Manutenção</h4>
+            <div class="form-group">
+              <label class="form-label">Modo Manutenção</label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Ativar modo manutenção</span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Última Atualização</label>
+              <input type="text" class="form-input" value="01/11/2024 - v2.1.3" readonly />
+            </div>
+            <button class="btn btn-secondary w-100">
+              Verificar Atualizações
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relatórios e Analytics -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Relatórios e Analytics</h3>
         </div>
 
         <div class="grid grid-2">
-          <!-- Informações da Instituição -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Dados da Instituição</h3>
+          <div>
+            <h4>Uso do Sistema</h4>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-number">1,234</div>
+                <div class="stat-label">Acessos este Mês</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">567</div>
+                <div class="stat-label">Consultas Registradas</div>
+              </div>
             </div>
-
-            <form id="institutionForm">
-              <div class="form-group">
-                <label class="form-label">Nome da Instituição</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  value="Clínica CardioSaúde"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">CNPJ</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  value="12.345.678/0001-90"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Tipo de Instituição</label>
-                <select class="form-select" required>
-                  <option value="clinica" selected>Clínica</option>
-                  <option value="hospital">Hospital</option>
-                  <option value="laboratorio">Laboratório</option>
-                  <option value="consultorio">Consultório</option>
-                  <option value="ubs">UBS</option>
-                  <option value="outros">Outros</option>
-                </select>
-              </div>
-
-              <div class="grid grid-2" style="gap: var(--spacing-sm)">
-                <div class="form-group">
-                  <label class="form-label">Telefone Principal</label>
-                  <input type="tel" class="form-input" value="(11) 3333-3333" />
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Email Institucional</label>
-                  <input
-                    type="email"
-                    class="form-input"
-                    value="contato@cardiosaude.com.br"
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Endereço Completo</label>
-                <textarea class="form-input" rows="2">
-Rua das Clínicas, 123 - Centro - São Paulo/SP - CEP: 01234-567</textarea
-                >
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Responsável Técnico</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  value="Dr. Maria Santos - CRM/SP 123456"
-                />
-              </div>
-
-              <button type="submit" class="btn btn-primary">
-                Atualizar Dados
-              </button>
-            </form>
+            <button class="btn btn-secondary w-100 mt-3">
+              Ver Relatório Completo
+            </button>
           </div>
 
-          <!-- Configurações de Acesso -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Configurações de Segurança</h3>
-            </div>
-
-            <form id="securityForm">
-              <div class="form-group">
-                <h4>Política de Senhas</h4>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span
-                    >Exigir senha forte (8+ caracteres, maiúscula, minúscula,
-                    número)</span
-                  >
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Forçar alteração de senha a cada 90 dias</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Autenticação de dois fatores (2FA)</span>
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Tempo de Sessão (minutos)</label>
-                <select class="form-select">
-                  <option value="30">30 minutos</option>
-                  <option value="60" selected>60 minutos</option>
-                  <option value="120">2 horas</option>
-                  <option value="240">4 horas</option>
-                  <option value="480">8 horas</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <h4>Auditoria e Logs</h4>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Registrar todos os acessos aos prontuários</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Log de modificações em consultas</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Alertas de acesso suspeito</span>
-                </label>
-              </div>
-
-              <button type="submit" class="btn btn-primary">
-                Salvar Segurança
-              </button>
-            </form>
-          </div>
-
-          <!-- Configurações de Notificação -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Notificações</h3>
-            </div>
-
-            <form id="notificationForm">
-              <div class="form-group">
-                <h4>Notificações por Email</h4>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Novos usuários cadastrados</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Tentativas de acesso negado</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Backup realizado com sucesso</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Atualizações do sistema</span>
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label"
-                  >Email para Notificações Administrativas</label
-                >
-                <input
-                  type="email"
-                  class="form-input"
-                  value="admin@cardiosaude.com.br"
-                />
-              </div>
-
-              <div class="form-group">
-                <h4>Configurações de SMS</h4>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Lembrete de consultas por SMS</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Resultados de exames urgentes por SMS</span>
-                </label>
-              </div>
-
-              <button type="submit" class="btn btn-primary">
-                Salvar Notificações
-              </button>
-            </form>
-          </div>
-
-          <!-- Configurações de Integração -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Integrações</h3>
-            </div>
-
-            <form id="integrationForm">
-              <div class="form-group">
-                <h4>API Externa</h4>
-                <div
-                  class="alert"
-                  style="
-                    background: rgba(46, 155, 215, 0.1);
-                    border-left: 4px solid var(--azul-medio);
-                  "
-                >
-                  <strong>ℹ️ API Key:</strong> medisync_api_key_123abc...<br />
-                  <button class="btn btn-secondary btn-sm mt-2">
-                    Regenerar Chave
-                  </button>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <h4>Sistemas Integrados</h4>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Sistema de Agendamento</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                    margin-bottom: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Sistema de Laboratório</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Sistema de Imagem (PACS)</span>
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">URL de Callback</label>
-                <input
-                  type="url"
-                  class="form-input"
-                  placeholder="https://seu-sistema.com.br/callback"
-                />
-              </div>
-
-              <button type="submit" class="btn btn-primary">
-                Salvar Integrações
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Configurações Avançadas -->
-        <div class="card mt-4">
-          <div class="card-header">
-            <h3 class="card-title">Configurações Avançadas</h3>
-          </div>
-
-          <div class="grid grid-3">
-            <div>
-              <h4>Backup e Recuperação</h4>
-              <div class="form-group">
-                <label class="form-label">Frequência de Backup</label>
-                <select class="form-select">
-                  <option value="diario" selected>Diário</option>
-                  <option value="semanal">Semanal</option>
-                  <option value="mensal">Mensal</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Retenção de Backups</label>
-                <select class="form-select">
-                  <option value="30" selected>30 dias</option>
-                  <option value="90">90 dias</option>
-                  <option value="365">1 ano</option>
-                </select>
-              </div>
-              <button class="btn btn-secondary w-100">
-                Fazer Backup Agora
-              </button>
-            </div>
-
-            <div>
-              <h4>Performance</h4>
-              <div class="form-group">
-                <label class="form-label">Limite de Upload (MB)</label>
-                <input type="number" class="form-input" value="50" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Cache de Imagens</label>
-                <select class="form-select">
-                  <option value="7" selected>7 dias</option>
-                  <option value="14">14 dias</option>
-                  <option value="30">30 dias</option>
-                </select>
-              </div>
-              <button class="btn btn-secondary w-100">Limpar Cache</button>
-            </div>
-
-            <div>
-              <h4>Manutenção</h4>
-              <div class="form-group">
-                <label class="form-label">Modo Manutenção</label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Ativar modo manutenção</span>
-                </label>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Última Atualização</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  value="01/11/2024 - v2.1.3"
-                  readonly
-                />
-              </div>
-              <button class="btn btn-secondary w-100">
-                Verificar Atualizações
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Relatórios e Analytics -->
-        <div class="card mt-4">
-          <div class="card-header">
-            <h3 class="card-title">Relatórios e Analytics</h3>
-          </div>
-
-          <div class="grid grid-2">
-            <div>
-              <h4>Uso do Sistema</h4>
-              <div class="stats-grid">
-                <div class="stat-card">
-                  <div class="stat-number">1,234</div>
-                  <div class="stat-label">Acessos este Mês</div>
-                </div>
-                <div class="stat-card">
-                  <div class="stat-number">567</div>
-                  <div class="stat-label">Consultas Registradas</div>
-                </div>
-              </div>
-              <button class="btn btn-secondary w-100 mt-3">
-                Ver Relatório Completo
-              </button>
-            </div>
-
-            <div>
-              <h4>Armazenamento</h4>
-              <div class="form-group">
-                <label class="form-label">Uso Atual</label>
-                <div
-                  class="progress-bar"
-                  style="
+          <div>
+            <h4>Armazenamento</h4>
+            <div class="form-group">
+              <label class="form-label">Uso Atual</label>
+              <div class="progress-bar" style="
                     background: var(--cinza-neutro);
                     height: 20px;
                     border-radius: var(--radius-sm);
                     position: relative;
                     overflow: hidden;
-                  "
-                >
-                  <div
-                    style="
+                  ">
+                <div style="
                       background: linear-gradient(
                         90deg,
                         var(--azul-medio),
@@ -522,10 +444,8 @@ Rua das Clínicas, 123 - Centro - São Paulo/SP - CEP: 01234-567</textarea
                       );
                       width: 65%;
                       height: 100%;
-                    "
-                  ></div>
-                  <div
-                    style="
+                    "></div>
+                <div style="
                       position: absolute;
                       top: 50%;
                       left: 50%;
@@ -533,132 +453,132 @@ Rua das Clínicas, 123 - Centro - São Paulo/SP - CEP: 01234-567</textarea
                       color: var(--branco);
                       font-weight: bold;
                       font-size: 0.8rem;
-                    "
-                  >
-                    6.5GB / 10GB (65%)
-                  </div>
+                    ">
+                  6.5GB / 10GB (65%)
                 </div>
               </div>
-              <div class="d-flex" style="gap: var(--spacing-sm)">
-                <button class="btn btn-secondary">Gerenciar Arquivos</button>
-                <button class="btn btn-primary">Expandir Plano</button>
-              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Ações Perigosas -->
-        <div class="card mt-4" style="border-left: 4px solid var(--rosa-vivo)">
-          <div class="card-header">
-            <h3 class="card-title" style="color: var(--rosa-vivo)">
-              ⚠️ Zona de Perigo
-            </h3>
-          </div>
-
-          <div class="alert alert-danger">
-            <strong>Atenção:</strong> As ações abaixo são irreversíveis e podem
-            causar perda de dados.
-          </div>
-
-          <div class="grid grid-2">
-            <div>
-              <h4>Resetar Configurações</h4>
-              <p class="text-muted">
-                Volta todas as configurações aos padrões de fábrica
-              </p>
-              <button class="btn btn-danger" onclick="confirmReset()">
-                Resetar Sistema
-              </button>
-            </div>
-            <div>
-              <h4>Excluir Dados</h4>
-              <p class="text-muted">
-                Remove todos os dados da instituição permanentemente
-              </p>
-              <button class="btn btn-danger" onclick="confirmDelete()">
-                Excluir Tudo
-              </button>
+            <div class="d-flex" style="gap: var(--spacing-sm)">
+              <button class="btn btn-secondary">Gerenciar Arquivos</button>
+              <button class="btn btn-primary">Expandir Plano</button>
             </div>
           </div>
         </div>
       </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 MediSync. Sistema médico profissional.</p>
+      <!-- Ações Perigosas -->
+      <div class="card mt-4" style="border-left: 4px solid var(--rosa-vivo)">
+        <div class="card-header">
+          <h3 class="card-title" style="color: var(--rosa-vivo)">
+            ⚠️ Zona de Perigo
+          </h3>
+        </div>
+
+        <div class="alert alert-danger">
+          <strong>Atenção:</strong> As ações abaixo são irreversíveis e podem
+          causar perda de dados.
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <h4>Resetar Configurações</h4>
+            <p class="text-muted">
+              Volta todas as configurações aos padrões de fábrica
+            </p>
+            <button class="btn btn-danger" onclick="confirmReset()">
+              Resetar Sistema
+            </button>
+          </div>
+          <div>
+            <h4>Excluir Dados</h4>
+            <p class="text-muted">
+              Remove todos os dados da instituição permanentemente
+            </p>
+            <button class="btn btn-danger" onclick="confirmDelete()">
+              Excluir Tudo
+            </button>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </main>
 
-    <script src="../assets/js/main.js"></script>
-    <script>
-      function logout() {
-        localStorage.clear();
-        window.location.href = "../index.html";
-      }
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 MediSync. Sistema médico profissional.</p>
+    </div>
+  </footer>
 
-      function saveAllSettings() {
-        alert("Todas as configurações foram salvas com sucesso!");
-      }
+  <script src="../assets/js/main.js"></script>
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = "../index.html";
+    }
 
-      function confirmReset() {
+    function saveAllSettings() {
+      alert("Todas as configurações foram salvas com sucesso!");
+    }
+
+    function confirmReset() {
+      if (
+        confirm(
+          "ATENÇÃO: Esta ação irá resetar todas as configurações. Tem certeza?"
+        )
+      ) {
         if (
-          confirm(
-            "ATENÇÃO: Esta ação irá resetar todas as configurações. Tem certeza?"
-          )
+          confirm("Esta é sua última chance. Confirma o reset do sistema?")
         ) {
-          if (
-            confirm("Esta é sua última chance. Confirma o reset do sistema?")
-          ) {
-            alert("Sistema resetado para configurações padrão.");
-          }
+          alert("Sistema resetado para configurações padrão.");
         }
       }
+    }
 
-      function confirmDelete() {
-        if (
-          confirm(
-            "PERIGO: Esta ação irá excluir TODOS os dados permanentemente. Tem certeza?"
-          )
-        ) {
-          const confirmation = prompt('Digite "EXCLUIR TUDO" para confirmar:');
-          if (confirmation === "EXCLUIR TUDO") {
-            alert("Processo de exclusão iniciado. Você será redirecionado.");
-          } else {
-            alert("Confirmação incorreta. Operação cancelada.");
-          }
+    function confirmDelete() {
+      if (
+        confirm(
+          "PERIGO: Esta ação irá excluir TODOS os dados permanentemente. Tem certeza?"
+        )
+      ) {
+        const confirmation = prompt('Digite "EXCLUIR TUDO" para confirmar:');
+        if (confirmation === "EXCLUIR TUDO") {
+          alert("Processo de exclusão iniciado. Você será redirecionado.");
+        } else {
+          alert("Confirmação incorreta. Operação cancelada.");
         }
       }
+    }
 
-      // Event listeners para os formulários
-      document
-        .getElementById("institutionForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Dados da instituição atualizados com sucesso!");
-        });
+    // Event listeners para os formulários
+    document
+      .getElementById("institutionForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Dados da instituição atualizados com sucesso!");
+      });
 
-      document
-        .getElementById("securityForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Configurações de segurança salvas com sucesso!");
-        });
+    document
+      .getElementById("securityForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Configurações de segurança salvas com sucesso!");
+      });
 
-      document
-        .getElementById("notificationForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Configurações de notificação salvas com sucesso!");
-        });
+    document
+      .getElementById("notificationForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Configurações de notificação salvas com sucesso!");
+      });
 
-      document
-        .getElementById("integrationForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Configurações de integração salvas com sucesso!");
-        });
-    </script>
-  </body>
+    document
+      .getElementById("integrationForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Configurações de integração salvas com sucesso!");
+      });
+  </script>
+</body>
+
 </html>

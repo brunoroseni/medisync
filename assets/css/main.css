@@ -23,3 +23,8 @@
    🪄 UTILITÁRIOS E HELPERS
    =========================================== */
 @import url("helpers.css");
+
+/* ===========================================
+   📱 MELHORIAS DE RESPONSIVIDADE
+   =========================================== */
+@import url("responsive-fixes.css");

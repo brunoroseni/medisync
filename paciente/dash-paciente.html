@@ -1,245 +1,233 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Paciente - MediSync</title>
-    <link rel="stylesheet" href="../assets/css/main.css" />
-  </head>
-  <body class="main-layout">
-    <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <nav class="nav">
-          <div class="logo">
-            <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
-          </div>
-          <div class="nav-menu">
-            <a href="dash-paciente.html" class="nav-link">Dashboard</a>
-            <a href="prontuario.html" class="nav-link">Meu Prontuário</a>
-            <a href="../perfil.html" class="nav-link">Perfil</a>
-            <button onclick="logout()" class="btn btn-danger">Sair</button>
-          </div>
-          <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            ☰
-          </button>
-        </nav>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Paciente - MediSync</title>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="main-layout">
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="../assets/img/logo-medisync.PNG" alt="MediSync Logo"
+            style="height: 40px; vertical-align: middle; margin-right: 8px;">
+          <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
+        </div>
+        <div class="nav-menu">
+          <a href="dash-paciente.html" class="nav-link">Dashboard</a>
+          <a href="prontuario.html" class="nav-link">Meu Prontuário</a>
+          <a href="../perfil.html" class="nav-link">Perfil</a>
+          <button onclick="logout()" class="btn btn-danger">Sair</button>
+        </div>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          ☰
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Dashboard Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1>Olá, <span id="userName">João Silva</span>!</h1>
+          <p>
+            Aqui você pode acompanhar seu histórico médico e próximas
+            consultas
+          </p>
+        </div>
+        <a href="prontuario.html" class="btn btn-primary">Ver Prontuário Completo</a>
       </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="container">
-        <!-- Dashboard Header -->
-        <div class="dashboard-header">
-          <div>
-            <h1>Olá, <span id="userName">João Silva</span>!</h1>
-            <p>
-              Aqui você pode acompanhar seu histórico médico e próximas
-              consultas
-            </p>
-          </div>
-          <a href="prontuario.html" class="btn btn-primary"
-            >Ver Prontuário Completo</a
-          >
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Consultas Realizadas</div>
         </div>
-
-        <!-- Stats Cards -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">12</div>
-            <div class="stat-label">Consultas Realizadas</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">8</div>
-            <div class="stat-label">Exames Realizados</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">2</div>
-            <div class="stat-label">Próximas Consultas</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">3</div>
-            <div class="stat-label">Medicamentos Ativos</div>
-          </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Exames Realizados</div>
         </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Próximas Consultas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Medicamentos Ativos</div>
+        </div>
+      </div>
 
-        <!-- Content Grid -->
-        <div class="grid grid-2">
-          <!-- Próximas Consultas -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Próximas Consultas</h3>
-            </div>
-            <div class="alert alert-success">
-              <strong>Cardiologia</strong><br />
-              Dr. Maria Santos<br />
-              📅 15/11/2024 às 14:30<br />
-              📍 Clínica CardioSaúde
-            </div>
-            <div
-              class="alert"
-              style="
+      <!-- Content Grid -->
+      <div class="grid grid-2">
+        <!-- Próximas Consultas -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Próximas Consultas</h3>
+          </div>
+          <div class="alert alert-success">
+            <strong>Cardiologia</strong><br />
+            Dr. Maria Santos<br />
+            📅 15/11/2024 às 14:30<br />
+            📍 Clínica CardioSaúde
+          </div>
+          <div class="alert" style="
                 background: rgba(46, 155, 215, 0.1);
                 border-left: 4px solid var(--azul-medio);
-              "
-            >
-              <strong>Oftalmologia</strong><br />
-              Dr. Pedro Lima<br />
-              📅 22/11/2024 às 09:00<br />
-              📍 Hospital São José
-            </div>
+              ">
+            <strong>Oftalmologia</strong><br />
+            Dr. Pedro Lima<br />
+            📅 22/11/2024 às 09:00<br />
+            📍 Hospital São José
           </div>
+        </div>
 
-          <!-- Últimos Exames -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Últimos Exames</h3>
-            </div>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Exame</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Hemograma Completo</td>
-                    <td>02/11/2024</td>
-                    <td><span class="text-success">✓ Disponível</span></td>
-                  </tr>
-                  <tr>
-                    <td>Eletrocardiograma</td>
-                    <td>28/10/2024</td>
-                    <td><span class="text-success">✓ Disponível</span></td>
-                  </tr>
-                  <tr>
-                    <td>Raio-X Tórax</td>
-                    <td>25/10/2024</td>
-                    <td><span class="text-primary">⏳ Processando</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <!-- Últimos Exames -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Últimos Exames</h3>
           </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Exame</th>
+                  <th>Data</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Hemograma Completo</td>
+                  <td>02/11/2024</td>
+                  <td><span class="text-success">✓ Disponível</span></td>
+                </tr>
+                <tr>
+                  <td>Eletrocardiograma</td>
+                  <td>28/10/2024</td>
+                  <td><span class="text-success">✓ Disponível</span></td>
+                </tr>
+                <tr>
+                  <td>Raio-X Tórax</td>
+                  <td>25/10/2024</td>
+                  <td><span class="text-primary">⏳ Processando</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-          <!-- Medicamentos Ativos -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Medicamentos em Uso</h3>
-            </div>
-            <div style="padding: var(--spacing-sm) 0">
-              <div
-                style="
+        <!-- Medicamentos Ativos -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Medicamentos em Uso</h3>
+          </div>
+          <div style="padding: var(--spacing-sm) 0">
+            <div style="
                   border-left: 4px solid var(--verde-agua);
                   padding-left: var(--spacing-md);
                   margin-bottom: var(--spacing-md);
-                "
-              >
-                <strong>Losartana 50mg</strong><br />
-                <span class="text-muted">1 comprimido pela manhã</span><br />
-                <small>Prescrito por Dr. Maria Santos</small>
-              </div>
-              <div
-                style="
+                ">
+              <strong>Losartana 50mg</strong><br />
+              <span class="text-muted">1 comprimido pela manhã</span><br />
+              <small>Prescrito por Dr. Maria Santos</small>
+            </div>
+            <div style="
                   border-left: 4px solid var(--azul-medio);
                   padding-left: var(--spacing-md);
                   margin-bottom: var(--spacing-md);
-                "
-              >
-                <strong>Sinvastatina 20mg</strong><br />
-                <span class="text-muted">1 comprimido à noite</span><br />
-                <small>Prescrito por Dr. Maria Santos</small>
-              </div>
-              <div
-                style="
+                ">
+              <strong>Sinvastatina 20mg</strong><br />
+              <span class="text-muted">1 comprimido à noite</span><br />
+              <small>Prescrito por Dr. Maria Santos</small>
+            </div>
+            <div style="
                   border-left: 4px solid var(--rosa-vivo);
                   padding-left: var(--spacing-md);
-                "
-              >
-                <strong>Omeprazol 20mg</strong><br />
-                <span class="text-muted">1 comprimido em jejum</span><br />
-                <small>Prescrito por Dr. Carlos Oliveira</small>
-              </div>
-            </div>
-          </div>
-
-          <!-- Histórico Recente -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Atividades Recentes</h3>
-            </div>
-            <div style="padding: var(--spacing-sm) 0">
-              <div
-                style="
-                  margin-bottom: var(--spacing-md);
-                  padding-bottom: var(--spacing-md);
-                  border-bottom: 1px solid var(--cinza-neutro);
-                "
-              >
-                <strong>Consulta Cardiológica</strong><br />
-                <span class="text-muted">Dr. Maria Santos - 01/11/2024</span
-                ><br />
-                <small>Consulta de rotina, paciente estável</small>
-              </div>
-              <div
-                style="
-                  margin-bottom: var(--spacing-md);
-                  padding-bottom: var(--spacing-md);
-                  border-bottom: 1px solid var(--cinza-neutro);
-                "
-              >
-                <strong>Resultado de Exame</strong><br />
-                <span class="text-muted">Hemograma - 02/11/2024</span><br />
-                <small>Resultados dentro da normalidade</small>
-              </div>
-              <div>
-                <strong>Consulta Oftalmológica</strong><br />
-                <span class="text-muted">Dr. Pedro Lima - 28/10/2024</span
-                ><br />
-                <small>Exame de vista, prescrição óculos</small>
-              </div>
+                ">
+              <strong>Omeprazol 20mg</strong><br />
+              <span class="text-muted">1 comprimido em jejum</span><br />
+              <small>Prescrito por Dr. Carlos Oliveira</small>
             </div>
           </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="card mt-4">
+        <!-- Histórico Recente -->
+        <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Ações Rápidas</h3>
+            <h3 class="card-title">Atividades Recentes</h3>
           </div>
-          <div class="grid grid-4">
-            <a href="prontuario.html" class="btn btn-primary">Ver Prontuário</a>
-            <a href="#" class="btn btn-secondary">Agendar Consulta</a>
-            <a href="#" class="btn btn-secondary">Solicitar Exame</a>
-            <a href="../perfil.html" class="btn btn-secondary">Editar Perfil</a>
+          <div style="padding: var(--spacing-sm) 0">
+            <div style="
+                  margin-bottom: var(--spacing-md);
+                  padding-bottom: var(--spacing-md);
+                  border-bottom: 1px solid var(--cinza-neutro);
+                ">
+              <strong>Consulta Cardiológica</strong><br />
+              <span class="text-muted">Dr. Maria Santos - 01/11/2024</span><br />
+              <small>Consulta de rotina, paciente estável</small>
+            </div>
+            <div style="
+                  margin-bottom: var(--spacing-md);
+                  padding-bottom: var(--spacing-md);
+                  border-bottom: 1px solid var(--cinza-neutro);
+                ">
+              <strong>Resultado de Exame</strong><br />
+              <span class="text-muted">Hemograma - 02/11/2024</span><br />
+              <small>Resultados dentro da normalidade</small>
+            </div>
+            <div>
+              <strong>Consulta Oftalmológica</strong><br />
+              <span class="text-muted">Dr. Pedro Lima - 28/10/2024</span><br />
+              <small>Exame de vista, prescrição óculos</small>
+            </div>
           </div>
         </div>
       </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 MediSync. Seus dados médicos seguros e organizados.</p>
+      <!-- Quick Actions -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Ações Rápidas</h3>
+        </div>
+        <div class="grid grid-4">
+          <a href="prontuario.html" class="btn btn-primary">Ver Prontuário</a>
+          <a href="#" class="btn btn-secondary">Agendar Consulta</a>
+          <a href="#" class="btn btn-secondary">Solicitar Exame</a>
+          <a href="../perfil.html" class="btn btn-secondary">Editar Perfil</a>
+        </div>
       </div>
-    </footer>
+    </div>
+  </main>
 
-    <script src="../assets/js/main.js"></script>
-    <script>
-      // Carregar nome do usuário
-      document.addEventListener("DOMContentLoaded", function () {
-        const userName = localStorage.getItem("userName") || "Paciente";
-        document.getElementById("userName").textContent = userName;
-      });
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 MediSync. Seus dados médicos seguros e organizados.</p>
+    </div>
+  </footer>
 
-      function logout() {
-        localStorage.clear();
-        window.location.href = "../index.html";
-      }
-    </script>
-  </body>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Carregar nome do usuário
+    document.addEventListener("DOMContentLoaded", function () {
+      const userName = localStorage.getItem("userName") || "Paciente";
+      document.getElementById("userName").textContent = userName;
+    });
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "../index.html";
+    }
+  </script>
+</body>
+
 </html>

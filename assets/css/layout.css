@@ -3,6 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .main-content {
@@ -115,21 +116,24 @@ footer {
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 
   .login-card {
     margin: var(--spacing-md);
     padding: var(--spacing-lg);
+    max-width: calc(100% - 2 * var(--spacing-md));
+    box-sizing: border-box;
   }
 
   .dashboard-header {
     flex-direction: column;
     gap: var(--spacing-md);
-    text-align: center;
+    text-align: left;
   }
 
   .hero {
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 
   .hero h1 {
@@ -143,5 +147,19 @@ footer {
   main {
     margin: var(--spacing-md);
     padding: var(--spacing-md);
+    max-width: calc(100% - 2 * var(--spacing-md));
+    box-sizing: border-box;
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Prevent any element from causing horizontal scroll */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }

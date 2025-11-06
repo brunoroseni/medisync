@@ -1,95 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Médico - MediSync</title>
-    <link rel="stylesheet" href="../assets/css/main.css" />
-  </head>
-  <body>
-    <div class="login-container">
-      <div class="login-card">
-        <div class="text-center mb-4">
-          <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
-          <h3>Acesso Médico/Profissional</h3>
-          <p>Entre na sua conta para acessar o sistema</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Médico - MediSync</title>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="text-center mb-4">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+          <img src="../assets/img/logo-medisync.PNG" alt="MediSync Logo" style="height: 40px; margin-right: 8px;">
+          <h2 style="color: var(--azul-escuro); margin: 0;">MediSync</h2>
+        </div>
+        <h3>Acesso Médico/Profissional</h3>
+        <p>Entre na sua conta para acessar o sistema</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label">CRM ou Email</label>
+          <input type="text" class="form-input" required placeholder="Digite seu CRM ou email" />
         </div>
 
-        <form id="loginForm">
-          <div class="form-group">
-            <label class="form-label">CRM ou Email</label>
-            <input
-              type="text"
-              class="form-input"
-              required
-              placeholder="Digite seu CRM ou email"
-            />
-          </div>
+        <div class="form-group">
+          <label class="form-label">Senha</label>
+          <input type="password" class="form-input" required placeholder="Digite sua senha" />
+        </div>
 
-          <div class="form-group">
-            <label class="form-label">Senha</label>
-            <input
-              type="password"
-              class="form-input"
-              required
-              placeholder="Digite sua senha"
-            />
-          </div>
+        <div class="form-group">
+          <label class="form-label">Instituição</label>
+          <select class="form-select" required>
+            <option value="">Selecione a instituição</option>
+            <option value="clinica-cardiosaude">Clínica CardioSaúde</option>
+            <option value="hospital-sao-jose">Hospital São José</option>
+            <option value="ubs-central">UBS Central</option>
+            <option value="lab-diagnostico">Laboratório Diagnóstico</option>
+          </select>
+        </div>
 
-          <div class="form-group">
-            <label class="form-label">Instituição</label>
-            <select class="form-select" required>
-              <option value="">Selecione a instituição</option>
-              <option value="clinica-cardiosaude">Clínica CardioSaúde</option>
-              <option value="hospital-sao-jose">Hospital São José</option>
-              <option value="ubs-central">UBS Central</option>
-              <option value="lab-diagnostico">Laboratório Diagnóstico</option>
-            </select>
-          </div>
+        <div class="form-group d-flex justify-between align-center">
+          <label style="display: flex; align-items: center; gap: var(--spacing-sm)">
+            <input type="checkbox" />
+            <span>Lembrar-me</span>
+          </label>
+          <a href="#" style="color: var(--azul-medio)">Esqueci minha senha</a>
+        </div>
 
-          <div class="form-group d-flex justify-between align-center">
-            <label
-              style="display: flex; align-items: center; gap: var(--spacing-sm)"
-            >
-              <input type="checkbox" />
-              <span>Lembrar-me</span>
-            </label>
-            <a href="#" style="color: var(--azul-medio)">Esqueci minha senha</a>
-          </div>
+        <button type="submit" class="btn btn-primary w-100 mb-3">
+          Entrar
+        </button>
 
-          <button type="submit" class="btn btn-primary w-100 mb-3">
-            Entrar
-          </button>
-
-          <div class="text-center">
-            <p>Não possui conta? Entre em contato com sua instituição</p>
-            <p>
-              <a href="../paciente/login.html" style="color: var(--verde-agua)"
-                >← Sou paciente</a
-              >
-            </p>
-            <p>
-              <a href="../index.html" style="color: var(--verde-agua)"
-                >← Voltar ao início</a
-              >
-            </p>
-          </div>
-        </form>
-      </div>
+        <div class="text-center">
+          <p>Não possui conta? Entre em contato com sua instituição</p>
+          <p>
+            <a href="../paciente/login.html" style="color: var(--verde-agua)">← Sou paciente</a>
+          </p>
+          <p>
+            <a href="../index.html" style="color: var(--verde-agua)">← Voltar ao início</a>
+          </p>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <script src="../assets/js/main.js"></script>
-    <script>
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          // Simular login
-          localStorage.setItem("userType", "medico");
-          localStorage.setItem("userName", "Dr. Maria Santos");
-          localStorage.setItem("userCRM", "CRM/SP 123456");
-          window.location.href = "dash-medico.html";
-        });
-    </script>
-  </body>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        // Simular login
+        localStorage.setItem("userType", "medico");
+        localStorage.setItem("userName", "Dr. Maria Santos");
+        localStorage.setItem("userCRM", "CRM/SP 123456");
+        window.location.href = "dash-medico.html";
+      });
+  </script>
+</body>
+
 </html>

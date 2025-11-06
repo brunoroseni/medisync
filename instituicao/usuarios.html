@@ -1,566 +1,484 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerenciar Usuários - MediSync</title>
-    <link rel="stylesheet" href="../assets/css/main.css" />
-  </head>
-  <body class="main-layout">
-    <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <nav class="nav">
-          <div class="logo">
-            <h2 style="color: var(--azul-escuro)">🏥 MediSync</h2>
-          </div>
-          <div class="nav-menu">
-            <a href="../medico/dash-medico.html" class="nav-link">Dashboard</a>
-            <a href="../medico/consulta.html" class="nav-link">Consultas</a>
-            <a href="../medico/cad-paciente.html" class="nav-link"
-              >Cadastrar Paciente</a
-            >
-            <a
-              href="usuarios.html"
-              class="nav-link"
-              style="background: var(--cinza-neutro)"
-              >Usuários</a
-            >
-            <a href="configuracoes.html" class="nav-link">Configurações</a>
-            <button onclick="logout()" class="btn btn-danger">Sair</button>
-          </div>
-          <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            ☰
-          </button>
-        </nav>
-      </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="container">
-        <!-- Header -->
-        <div class="dashboard-header">
-          <div>
-            <h1>Gerenciar Usuários</h1>
-            <p>Gerencie médicos e profissionais que podem acessar o sistema</p>
-          </div>
-          <button class="btn btn-primary" onclick="showAddUserForm()">
-            + Adicionar Usuário
-          </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciar Usuários - MediSync</title>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="main-layout">
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="../assets/img/logo-medisync.PNG" alt="MediSync Logo"
+            style="height: 40px; vertical-align: middle; margin-right: 8px;">
+          <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
         </div>
+        <div class="nav-menu">
+          <a href="../medico/dash-medico.html" class="nav-link">Dashboard</a>
+          <a href="../medico/consulta.html" class="nav-link">Consultas</a>
+          <a href="../medico/cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
+          <a href="usuarios.html" class="nav-link" style="background: var(--cinza-neutro)">Usuários</a>
+          <a href="configuracoes.html" class="nav-link">Configurações</a>
+          <button onclick="logout()" class="btn btn-danger">Sair</button>
+        </div>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          ☰
+        </button>
+      </nav>
+    </div>
+  </header>
 
-        <!-- Formulário de Novo Usuário (Inicialmente oculto) -->
-        <div id="addUserForm" class="card" style="display: none">
-          <div class="card-header">
-            <h3 class="card-title">Adicionar Novo Usuário</h3>
-            <button
-              style="
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1>Gerenciar Usuários</h1>
+          <p>Gerencie médicos e profissionais que podem acessar o sistema</p>
+        </div>
+        <button class="btn btn-primary" onclick="showAddUserForm()">
+          + Adicionar Usuário
+        </button>
+      </div>
+
+      <!-- Formulário de Novo Usuário (Inicialmente oculto) -->
+      <div id="addUserForm" class="card" style="display: none">
+        <div class="card-header">
+          <h3 class="card-title">Adicionar Novo Usuário</h3>
+          <button style="
                 float: right;
                 background: none;
                 border: none;
                 font-size: 1.5rem;
-              "
-              onclick="hideAddUserForm()"
-            >
-              ×
-            </button>
-          </div>
-
-          <form id="userForm">
-            <div class="grid grid-2">
-              <div class="form-group">
-                <label class="form-label">Nome Completo *</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  required
-                  placeholder="Nome completo do profissional"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email *</label>
-                <input
-                  type="email"
-                  class="form-input"
-                  required
-                  placeholder="email@exemplo.com"
-                />
-              </div>
-            </div>
-
-            <div class="grid grid-3">
-              <div class="form-group">
-                <label class="form-label">CRM/COREN *</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  required
-                  placeholder="CRM/SP 123456"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Especialidade</label>
-                <select class="form-select">
-                  <option value="">Selecione</option>
-                  <option value="cardiologia">Cardiologia</option>
-                  <option value="clinica-geral">Clínica Geral</option>
-                  <option value="oftalmologia">Oftalmologia</option>
-                  <option value="ortopedia">Ortopedia</option>
-                  <option value="ginecologia">Ginecologia</option>
-                  <option value="pediatria">Pediatria</option>
-                  <option value="enfermagem">Enfermagem</option>
-                  <option value="fisioterapia">Fisioterapia</option>
-                  <option value="psicologia">Psicologia</option>
-                  <option value="nutricao">Nutrição</option>
-                  <option value="outro">Outro</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Telefone</label>
-                <input
-                  type="tel"
-                  class="form-input"
-                  placeholder="(11) 99999-9999"
-                />
-              </div>
-            </div>
-
-            <div class="grid grid-2">
-              <div class="form-group">
-                <label class="form-label">Cargo/Função *</label>
-                <select class="form-select" required>
-                  <option value="">Selecione</option>
-                  <option value="medico">Médico</option>
-                  <option value="enfermeiro">Enfermeiro(a)</option>
-                  <option value="tecnico">Técnico(a)</option>
-                  <option value="recepcao">Recepção</option>
-                  <option value="admin">Administrador</option>
-                  <option value="gerente">Gerente</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Nível de Acesso *</label>
-                <select class="form-select" required>
-                  <option value="">Selecione</option>
-                  <option value="total">Acesso Total</option>
-                  <option value="consultas">Apenas Consultas</option>
-                  <option value="visualizacao">Apenas Visualização</option>
-                  <option value="limitado">Acesso Limitado</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Observações</label>
-              <textarea
-                class="form-input"
-                rows="2"
-                placeholder="Observações sobre o usuário..."
-              ></textarea>
-            </div>
-
-            <div class="form-group">
-              <h4>Permissões</h4>
-              <div class="grid grid-3" style="gap: var(--spacing-md)">
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Visualizar prontuários</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" checked />
-                  <span>Registrar consultas</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Cadastrar pacientes</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Gerenciar usuários</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Acessar relatórios</span>
-                </label>
-                <label
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: var(--spacing-sm);
-                  "
-                >
-                  <input type="checkbox" />
-                  <span>Configurações do sistema</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="d-flex justify-end" style="gap: var(--spacing-sm)">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="hideAddUserForm()"
-              >
-                Cancelar
-              </button>
-              <button type="submit" class="btn btn-primary">
-                Adicionar Usuário
-              </button>
-            </div>
-          </form>
+              " onclick="hideAddUserForm()">
+            ×
+          </button>
         </div>
 
-        <!-- Filtros e Busca -->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Filtrar Usuários</h3>
-          </div>
-
-          <div class="grid grid-4">
+        <form id="userForm">
+          <div class="grid grid-2">
             <div class="form-group">
-              <label class="form-label">Buscar</label>
-              <input type="text" class="form-input" placeholder="Nome ou CRM" />
+              <label class="form-label">Nome Completo *</label>
+              <input type="text" class="form-input" required placeholder="Nome completo do profissional" />
             </div>
             <div class="form-group">
-              <label class="form-label">Cargo</label>
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-input" required placeholder="email@exemplo.com" />
+            </div>
+          </div>
+
+          <div class="grid grid-3">
+            <div class="form-group">
+              <label class="form-label">CRM/COREN *</label>
+              <input type="text" class="form-input" required placeholder="CRM/SP 123456" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Especialidade</label>
               <select class="form-select">
-                <option value="">Todos</option>
+                <option value="">Selecione</option>
+                <option value="cardiologia">Cardiologia</option>
+                <option value="clinica-geral">Clínica Geral</option>
+                <option value="oftalmologia">Oftalmologia</option>
+                <option value="ortopedia">Ortopedia</option>
+                <option value="ginecologia">Ginecologia</option>
+                <option value="pediatria">Pediatria</option>
+                <option value="enfermagem">Enfermagem</option>
+                <option value="fisioterapia">Fisioterapia</option>
+                <option value="psicologia">Psicologia</option>
+                <option value="nutricao">Nutrição</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Telefone</label>
+              <input type="tel" class="form-input" placeholder="(11) 99999-9999" />
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">Cargo/Função *</label>
+              <select class="form-select" required>
+                <option value="">Selecione</option>
                 <option value="medico">Médico</option>
                 <option value="enfermeiro">Enfermeiro(a)</option>
                 <option value="tecnico">Técnico(a)</option>
                 <option value="recepcao">Recepção</option>
                 <option value="admin">Administrador</option>
+                <option value="gerente">Gerente</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Status</label>
-              <select class="form-select">
-                <option value="">Todos</option>
-                <option value="ativo">Ativo</option>
-                <option value="inativo">Inativo</option>
-                <option value="suspenso">Suspenso</option>
+              <label class="form-label">Nível de Acesso *</label>
+              <select class="form-select" required>
+                <option value="">Selecione</option>
+                <option value="total">Acesso Total</option>
+                <option value="consultas">Apenas Consultas</option>
+                <option value="visualizacao">Apenas Visualização</option>
+                <option value="limitado">Acesso Limitado</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="form-label">Ação</label>
-              <button class="btn btn-secondary w-100">🔍 Filtrar</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Observações</label>
+            <textarea class="form-input" rows="2" placeholder="Observações sobre o usuário..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <h4>Permissões</h4>
+            <div class="grid grid-3" style="gap: var(--spacing-md)">
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Visualizar prontuários</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" checked />
+                <span>Registrar consultas</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Cadastrar pacientes</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Gerenciar usuários</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Acessar relatórios</span>
+              </label>
+              <label style="
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                  ">
+                <input type="checkbox" />
+                <span>Configurações do sistema</span>
+              </label>
             </div>
           </div>
+
+          <div class="d-flex justify-end" style="gap: var(--spacing-sm)">
+            <button type="button" class="btn btn-secondary" onclick="hideAddUserForm()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Adicionar Usuário
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Filtros e Busca -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Filtrar Usuários</h3>
         </div>
 
-        <!-- Lista de Usuários -->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Usuários da Instituição</h3>
+        <div class="grid grid-4">
+          <div class="form-group">
+            <label class="form-label">Buscar</label>
+            <input type="text" class="form-input" placeholder="Nome ou CRM" />
           </div>
-
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>CRM/COREN</th>
-                  <th>Especialidade</th>
-                  <th>Cargo</th>
-                  <th>Último Acesso</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <strong>Dr. Maria Santos</strong><br />
-                    <small>maria.santos@email.com</small>
-                  </td>
-                  <td>CRM/SP 123456</td>
-                  <td>Cardiologia</td>
-                  <td>Médico</td>
-                  <td>05/11/2024 08:30</td>
-                  <td><span class="text-success">● Ativo</span></td>
-                  <td>
-                    <button
-                      class="btn btn-secondary btn-sm"
-                      onclick="editUser(1)"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      class="btn btn-danger btn-sm"
-                      onclick="suspendUser(1)"
-                    >
-                      Suspender
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Dr. Pedro Lima</strong><br />
-                    <small>pedro.lima@email.com</small>
-                  </td>
-                  <td>CRM/SP 789012</td>
-                  <td>Oftalmologia</td>
-                  <td>Médico</td>
-                  <td>04/11/2024 15:45</td>
-                  <td><span class="text-success">● Ativo</span></td>
-                  <td>
-                    <button
-                      class="btn btn-secondary btn-sm"
-                      onclick="editUser(2)"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      class="btn btn-danger btn-sm"
-                      onclick="suspendUser(2)"
-                    >
-                      Suspender
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Enf. Ana Costa</strong><br />
-                    <small>ana.costa@email.com</small>
-                  </td>
-                  <td>COREN/SP 345678</td>
-                  <td>Enfermagem</td>
-                  <td>Enfermeiro</td>
-                  <td>05/11/2024 07:15</td>
-                  <td><span class="text-success">● Ativo</span></td>
-                  <td>
-                    <button
-                      class="btn btn-secondary btn-sm"
-                      onclick="editUser(3)"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      class="btn btn-danger btn-sm"
-                      onclick="suspendUser(3)"
-                    >
-                      Suspender
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Carlos Oliveira</strong><br />
-                    <small>carlos.oliveira@email.com</small>
-                  </td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>Recepção</td>
-                  <td>03/11/2024 18:00</td>
-                  <td><span class="text-success">● Ativo</span></td>
-                  <td>
-                    <button
-                      class="btn btn-secondary btn-sm"
-                      onclick="editUser(4)"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      class="btn btn-danger btn-sm"
-                      onclick="suspendUser(4)"
-                    >
-                      Suspender
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Dr. Roberto Silva</strong><br />
-                    <small>roberto.silva@email.com</small>
-                  </td>
-                  <td>CRM/SP 456789</td>
-                  <td>Ortopedia</td>
-                  <td>Médico</td>
-                  <td>01/11/2024 12:30</td>
-                  <td><span class="text-danger">● Suspenso</span></td>
-                  <td>
-                    <button
-                      class="btn btn-secondary btn-sm"
-                      onclick="editUser(5)"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      class="btn btn-success btn-sm"
-                      onclick="activateUser(5)"
-                    >
-                      Ativar
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="form-group">
+            <label class="form-label">Cargo</label>
+            <select class="form-select">
+              <option value="">Todos</option>
+              <option value="medico">Médico</option>
+              <option value="enfermeiro">Enfermeiro(a)</option>
+              <option value="tecnico">Técnico(a)</option>
+              <option value="recepcao">Recepção</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-select">
+              <option value="">Todos</option>
+              <option value="ativo">Ativo</option>
+              <option value="inativo">Inativo</option>
+              <option value="suspenso">Suspenso</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ação</label>
+            <button class="btn btn-secondary w-100">🔍 Filtrar</button>
           </div>
         </div>
+      </div>
 
-        <!-- Estatísticas -->
-        <div class="card mt-4">
-          <div class="card-header">
-            <h3 class="card-title">Estatísticas de Usuários</h3>
-          </div>
-
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-number">12</div>
-              <div class="stat-label">Total de Usuários</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">8</div>
-              <div class="stat-label">Médicos</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">3</div>
-              <div class="stat-label">Enfermeiros</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">11</div>
-              <div class="stat-label">Usuários Ativos</div>
-            </div>
-          </div>
+      <!-- Lista de Usuários -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Usuários da Instituição</h3>
         </div>
 
-        <!-- Logs de Atividade -->
-        <div class="card mt-4">
-          <div class="card-header">
-            <h3 class="card-title">Atividades Recentes</h3>
-          </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CRM/COREN</th>
+                <th>Especialidade</th>
+                <th>Cargo</th>
+                <th>Último Acesso</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Dr. Maria Santos</strong><br />
+                  <small>maria.santos@email.com</small>
+                </td>
+                <td>CRM/SP 123456</td>
+                <td>Cardiologia</td>
+                <td>Médico</td>
+                <td>05/11/2024 08:30</td>
+                <td><span class="text-success">● Ativo</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" onclick="editUser(1)">
+                    Editar
+                  </button>
+                  <button class="btn btn-danger btn-sm" onclick="suspendUser(1)">
+                    Suspender
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Dr. Pedro Lima</strong><br />
+                  <small>pedro.lima@email.com</small>
+                </td>
+                <td>CRM/SP 789012</td>
+                <td>Oftalmologia</td>
+                <td>Médico</td>
+                <td>04/11/2024 15:45</td>
+                <td><span class="text-success">● Ativo</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" onclick="editUser(2)">
+                    Editar
+                  </button>
+                  <button class="btn btn-danger btn-sm" onclick="suspendUser(2)">
+                    Suspender
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Enf. Ana Costa</strong><br />
+                  <small>ana.costa@email.com</small>
+                </td>
+                <td>COREN/SP 345678</td>
+                <td>Enfermagem</td>
+                <td>Enfermeiro</td>
+                <td>05/11/2024 07:15</td>
+                <td><span class="text-success">● Ativo</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" onclick="editUser(3)">
+                    Editar
+                  </button>
+                  <button class="btn btn-danger btn-sm" onclick="suspendUser(3)">
+                    Suspender
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Carlos Oliveira</strong><br />
+                  <small>carlos.oliveira@email.com</small>
+                </td>
+                <td>-</td>
+                <td>-</td>
+                <td>Recepção</td>
+                <td>03/11/2024 18:00</td>
+                <td><span class="text-success">● Ativo</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" onclick="editUser(4)">
+                    Editar
+                  </button>
+                  <button class="btn btn-danger btn-sm" onclick="suspendUser(4)">
+                    Suspender
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Dr. Roberto Silva</strong><br />
+                  <small>roberto.silva@email.com</small>
+                </td>
+                <td>CRM/SP 456789</td>
+                <td>Ortopedia</td>
+                <td>Médico</td>
+                <td>01/11/2024 12:30</td>
+                <td><span class="text-danger">● Suspenso</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" onclick="editUser(5)">
+                    Editar
+                  </button>
+                  <button class="btn btn-success btn-sm" onclick="activateUser(5)">
+                    Ativar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-          <div style="max-height: 300px; overflow-y: auto">
-            <div
-              style="
+      <!-- Estatísticas -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Estatísticas de Usuários</h3>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Total de Usuários</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Médicos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Enfermeiros</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">11</div>
+            <div class="stat-label">Usuários Ativos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logs de Atividade -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Atividades Recentes</h3>
+        </div>
+
+        <div style="max-height: 300px; overflow-y: auto">
+          <div style="
                 border-left: 4px solid var(--verde-agua);
                 padding-left: var(--spacing-md);
                 margin-bottom: var(--spacing-md);
-              "
-            >
-              <strong>05/11/2024 08:30</strong> - Dr. Maria Santos fez login<br />
-              <small class="text-muted">IP: 192.168.1.100</small>
-            </div>
-            <div
-              style="
+              ">
+            <strong>05/11/2024 08:30</strong> - Dr. Maria Santos fez login<br />
+            <small class="text-muted">IP: 192.168.1.100</small>
+          </div>
+          <div style="
                 border-left: 4px solid var(--azul-medio);
                 padding-left: var(--spacing-md);
                 margin-bottom: var(--spacing-md);
-              "
-            >
-              <strong>05/11/2024 07:15</strong> - Enf. Ana Costa acessou
-              prontuário do paciente João Silva<br />
-              <small class="text-muted">Ação: Visualização</small>
-            </div>
-            <div
-              style="
+              ">
+            <strong>05/11/2024 07:15</strong> - Enf. Ana Costa acessou
+            prontuário do paciente João Silva<br />
+            <small class="text-muted">Ação: Visualização</small>
+          </div>
+          <div style="
                 border-left: 4px solid var(--rosa-vivo);
                 padding-left: var(--spacing-md);
                 margin-bottom: var(--spacing-md);
-              "
-            >
-              <strong>04/11/2024 16:20</strong> - Admin suspendeu usuário Dr.
-              Roberto Silva<br />
-              <small class="text-muted">Motivo: Violação de protocolo</small>
-            </div>
-            <div
-              style="
+              ">
+            <strong>04/11/2024 16:20</strong> - Admin suspendeu usuário Dr.
+            Roberto Silva<br />
+            <small class="text-muted">Motivo: Violação de protocolo</small>
+          </div>
+          <div style="
                 border-left: 4px solid var(--verde-claro);
                 padding-left: var(--spacing-md);
                 margin-bottom: var(--spacing-md);
-              "
-            >
-              <strong>04/11/2024 15:45</strong> - Dr. Pedro Lima registrou nova
-              consulta<br />
-              <small class="text-muted">Paciente: Maria Oliveira</small>
-            </div>
+              ">
+            <strong>04/11/2024 15:45</strong> - Dr. Pedro Lima registrou nova
+            consulta<br />
+            <small class="text-muted">Paciente: Maria Oliveira</small>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 MediSync. Sistema médico profissional.</p>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 MediSync. Sistema médico profissional.</p>
+    </div>
+  </footer>
 
-    <script src="../assets/js/main.js"></script>
-    <script>
-      function logout() {
-        localStorage.clear();
-        window.location.href = "../index.html";
-      }
+  <script src="../assets/js/main.js"></script>
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = "../index.html";
+    }
 
-      function showAddUserForm() {
-        document.getElementById("addUserForm").style.display = "block";
-        document
-          .getElementById("addUserForm")
-          .scrollIntoView({ behavior: "smooth" });
-      }
-
-      function hideAddUserForm() {
-        document.getElementById("addUserForm").style.display = "none";
-        document.getElementById("userForm").reset();
-      }
-
-      function editUser(id) {
-        alert(`Editando usuário ID: ${id}. Funcionalidade será implementada.`);
-      }
-
-      function suspendUser(id) {
-        if (confirm("Tem certeza que deseja suspender este usuário?")) {
-          alert(`Usuário ID ${id} foi suspenso.`);
-          // Aqui seria implementada a suspensão real
-        }
-      }
-
-      function activateUser(id) {
-        if (confirm("Tem certeza que deseja ativar este usuário?")) {
-          alert(`Usuário ID ${id} foi ativado.`);
-          // Aqui seria implementada a ativação real
-        }
-      }
-
+    function showAddUserForm() {
+      document.getElementById("addUserForm").style.display = "block";
       document
-        .getElementById("userForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Usuário adicionado com sucesso! Email de convite enviado.");
-          hideAddUserForm();
-        });
-    </script>
-  </body>
+        .getElementById("addUserForm")
+        .scrollIntoView({ behavior: "smooth" });
+    }
+
+    function hideAddUserForm() {
+      document.getElementById("addUserForm").style.display = "none";
+      document.getElementById("userForm").reset();
+    }
+
+    function editUser(id) {
+      alert(`Editando usuário ID: ${id}. Funcionalidade será implementada.`);
+    }
+
+    function suspendUser(id) {
+      if (confirm("Tem certeza que deseja suspender este usuário?")) {
+        alert(`Usuário ID ${id} foi suspenso.`);
+        // Aqui seria implementada a suspensão real
+      }
+    }
+
+    function activateUser(id) {
+      if (confirm("Tem certeza que deseja ativar este usuário?")) {
+        alert(`Usuário ID ${id} foi ativado.`);
+        // Aqui seria implementada a ativação real
+      }
+    }
+
+    document
+      .getElementById("userForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Usuário adicionado com sucesso! Email de convite enviado.");
+        hideAddUserForm();
+      });
+  </script>
+</body>
+
 </html>
