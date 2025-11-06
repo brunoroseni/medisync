@@ -37,7 +37,8 @@ function setupMobileNavigation() {
     return;
   }
 
-  const menuId = mobileToggle.getAttribute("aria-controls") || "primary-navigation";
+  const menuId =
+    mobileToggle.getAttribute("aria-controls") || "primary-navigation";
   if (!navMenu.id) {
     navMenu.id = menuId;
   }
@@ -76,7 +77,10 @@ function setupMobileNavigation() {
   });
 
   document.addEventListener("click", (event) => {
-    if (!navMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+    if (
+      !navMenu.contains(event.target) &&
+      !mobileToggle.contains(event.target)
+    ) {
       closeMenu();
     }
   });
@@ -242,101 +246,400 @@ function hideTooltip() {
 }
 
 // ==========================================
-// UTILITÁRIOS GERAIS
+// SISTEMA DE NOTIFICAÇÕES AVANÇADO
 // ==========================================
 
-// Formatar data para exibição brasileira
-function formatDateBR(dateString) {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("pt-BR");
+// Criar container de notificações se não existir
+function createToastContainer() {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    container.className = "toast-container";
+    document.body.appendChild(container);
+  }
+  return container;
 }
 
-// Formatar data e hora para exibição brasileira
-function formatDateTimeBR(dateString) {
-  const date = new Date(dateString);
-  return date.toLocaleString("pt-BR");
+// Sistema de notificações toast profissional
+function showToast(message, type = "info", duration = 4000) {
+  const container = createToastContainer();
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+
+  const icons = {
+    success: "✓",
+    error: "✕",
+    warning: "⚠",
+    info: "ℹ",
+  };
+
+  const titles = {
+    success: "Sucesso",
+    error: "Erro",
+    warning: "Atenção",
+    info: "Informação",
+  };
+
+  toast.innerHTML = `
+    <div class="toast-header">
+      <span class="toast-icon">${icons[type]}</span>
+      <span>${titles[type]}</span>
+      <button class="toast-close" onclick="closeToast(this)">×</button>
+    </div>
+    <div class="toast-body">${message}</div>
+  `;
+
+  container.appendChild(toast);
+
+  // Animar entrada
+  setTimeout(() => toast.classList.add("show"), 10);
+
+  // Auto-remover
+  setTimeout(() => {
+    closeToast(toast.querySelector(".toast-close"));
+  }, duration);
+
+  return toast;
 }
 
-// Validar CPF
-function validateCPF(cpf) {
-  cpf = cpf.replace(/[^\d]+/g, "");
-  if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
-
-  const cpfArray = cpf.split("").map(Number);
-
-  for (let t = 9; t < 11; t++) {
-    let d = 0;
-    for (let c = 0; c < t; c++) {
-      d += cpfArray[c] * (t + 1 - c);
+function closeToast(closeBtn) {
+  const toast = closeBtn.closest(".toast");
+  toast.classList.add("hide");
+  setTimeout(() => {
+    if (toast.parentNode) {
+      toast.parentNode.removeChild(toast);
     }
-    d = ((10 * d) % 11) % 10;
-    if (cpfArray[t] !== d) return false;
+  }, 300);
+}
+
+// Loading overlay profissional
+function showLoading(message = "Carregando...") {
+  const overlay = document.createElement("div");
+  overlay.id = "loading-overlay";
+  overlay.className = "loading-overlay";
+  overlay.innerHTML = `
+    <div style="text-align: center;">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">${message}</div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function hideLoading() {
+  const overlay = document.getElementById("loading-overlay");
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+// Estados de loading em botões
+function setButtonLoading(button, loading = true) {
+  if (loading) {
+    button.dataset.originalText = button.textContent;
+    button.classList.add("loading");
+    button.disabled = true;
+  } else {
+    button.classList.remove("loading");
+    button.disabled = false;
+    if (button.dataset.originalText) {
+      button.textContent = button.dataset.originalText;
+    }
+  }
+}
+
+// ==========================================
+// VALIDAÇÕES MÉDICAS AVANÇADAS
+// ==========================================
+
+// Validar CRM por estado
+function validateCRM(crm, estado) {
+  const crmRegex = new RegExp(`^CRM\\/${estado}\\s\\d{4,6}$`);
+  return crmRegex.test(crm);
+}
+
+// Validar COREN
+function validateCOREN(coren, estado) {
+  const corenRegex = new RegExp(`^COREN\\/${estado}\\s\\d{5,6}$`);
+  return corenRegex.test(coren);
+}
+
+// Validar medicamento (simulado)
+function validateMedicamento(nome) {
+  const medicamentosComuns = [
+    "Losartana",
+    "Sinvastatina",
+    "Metformina",
+    "Omeprazol",
+    "Dipirona",
+    "Paracetamol",
+    "Ibuprofeno",
+    "Captopril",
+    "Atenolol",
+    "Hidroclorotiazida",
+    "Amoxicilina",
+    "Azitromicina",
+  ];
+
+  return medicamentosComuns.some((med) =>
+    nome.toLowerCase().includes(med.toLowerCase())
+  );
+}
+
+// Validação de sinais vitais
+function validateVitalSigns(data) {
+  const errors = [];
+
+  if (data.pressao) {
+    const pa = data.pressao.match(/(\d+)x(\d+)/);
+    if (pa) {
+      const sistolica = parseInt(pa[1]);
+      const diastolica = parseInt(pa[2]);
+
+      if (sistolica < 70 || sistolica > 250) {
+        errors.push("Pressão sistólica fora do range normal (70-250 mmHg)");
+      }
+      if (diastolica < 40 || diastolica > 150) {
+        errors.push("Pressão diastólica fora do range normal (40-150 mmHg)");
+      }
+    }
   }
 
-  return true;
+  if (data.fc) {
+    const fc = parseInt(data.fc);
+    if (fc < 30 || fc > 220) {
+      errors.push("Frequência cardíaca fora do range normal (30-220 bpm)");
+    }
+  }
+
+  if (data.temperatura) {
+    const temp = parseFloat(data.temperatura);
+    if (temp < 32 || temp > 45) {
+      errors.push("Temperatura fora do range normal (32-45°C)");
+    }
+  }
+
+  return errors;
 }
 
-// Validar email
-function validateEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+// ==========================================
+// SISTEMA DE VALIDAÇÃO EM TEMPO REAL
+// ==========================================
+
+function setupRealTimeValidation() {
+  // Validação de CPF em tempo real
+  document.querySelectorAll('input[data-validate="cpf"]').forEach((input) => {
+    input.addEventListener("input", function (e) {
+      applyCPFMask(e.target);
+      validateField(e.target, () => validateCPF(e.target.value));
+    });
+  });
+
+  // Validação de email em tempo real
+  document.querySelectorAll('input[type="email"]').forEach((input) => {
+    input.addEventListener("blur", function (e) {
+      validateField(e.target, () => validateEmail(e.target.value));
+    });
+  });
+
+  // Validação de CRM
+  document.querySelectorAll('input[data-validate="crm"]').forEach((input) => {
+    input.addEventListener("blur", function (e) {
+      const estado =
+        document.querySelector('select[name="estado"]')?.value || "SP";
+      validateField(e.target, () => validateCRM(e.target.value, estado));
+    });
+  });
 }
 
-// Mostrar notificação
-function showNotification(message, type = "info") {
-  const notification = document.createElement("div");
-  notification.className = `notification notification-${type}`;
-  notification.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${
-              type === "success"
-                ? "var(--verde-agua)"
-                : type === "error"
-                ? "var(--rosa-vivo)"
-                : "var(--azul-medio)"
-            };
-            color: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 10000;
-            max-width: 400px;
-            animation: slideInRight 0.3s ease;
-        ">
-            ${message}
-        </div>
+function validateField(field, validator) {
+  const formGroup = field.closest(".form-group");
+  const existingError = formGroup.querySelector(".form-error");
+  const existingSuccess = formGroup.querySelector(".form-success");
+
+  // Remover estados anteriores
+  formGroup.classList.remove("error", "success");
+  if (existingError) existingError.remove();
+  if (existingSuccess) existingSuccess.remove();
+
+  if (field.value.trim() === "") return; // Não validar campos vazios
+
+  const isValid = validator();
+
+  if (isValid) {
+    formGroup.classList.add("success");
+    const successMsg = document.createElement("div");
+    successMsg.className = "form-success";
+    successMsg.innerHTML = "<span>✓</span> Válido";
+    field.parentNode.appendChild(successMsg);
+  } else {
+    formGroup.classList.add("error");
+    const errorMsg = document.createElement("div");
+    errorMsg.className = "form-error";
+    errorMsg.innerHTML = "<span>✕</span> Formato inválido";
+    field.parentNode.appendChild(errorMsg);
+  }
+}
+
+// ==========================================
+// SIMULAÇÃO DE CÓDIGOS CID-10
+// ==========================================
+
+const CID_10_COMMON = {
+  I10: "Hipertensão arterial sistêmica",
+  "E11.9": "Diabetes mellitus tipo 2 sem complicações",
+  "J44.1": "Doença pulmonar obstrutiva crônica com exacerbação aguda",
+  "I25.9": "Doença isquêmica crônica do coração",
+  "K21.9": "Doença do refluxo gastroesofágico sem esofagite",
+  "M79.3": "Fibromialgia",
+  "Z00.0": "Exame médico geral",
+  "H52.1": "Miopia",
+  "K59.0": "Constipação",
+  "R50.9": "Febre não especificada",
+};
+
+function searchCID10(query) {
+  return Object.entries(CID_10_COMMON)
+    .filter(
+      ([code, description]) =>
+        description.toLowerCase().includes(query.toLowerCase()) ||
+        code.includes(query.toUpperCase())
+    )
+    .slice(0, 5);
+}
+
+// ==========================================
+// ATUALIZAÇÃO DA INICIALIZAÇÃO
+// ==========================================
+
+// Função principal de inicialização
+function initializeMediSync() {
+  // Aplicar máscaras aos campos
+  applyMasks();
+
+  // Configurar navegação mobile
+  setupMobileNavigation();
+
+  // Configurar tooltips
+  setupTooltips();
+
+  // Verificar autenticação
+  checkAuthentication();
+
+  // Ajustar tabelas para visualização mobile
+  makeTablesResponsive();
+
+  // Configurar validação em tempo real
+  setupRealTimeValidation();
+
+  // Adicionar breadcrumbs
+  addBreadcrumbs();
+}
+
+// Adicionar breadcrumbs automaticamente
+function addBreadcrumbs() {
+  const path = window.location.pathname;
+  const breadcrumbContainer = document.querySelector(".breadcrumb");
+
+  if (breadcrumbContainer) return; // Já existe
+
+  let breadcrumbHTML = '<nav class="breadcrumb">';
+
+  if (path.includes("/medico/")) {
+    breadcrumbHTML += `
+      <div class="breadcrumb-item">
+        <a href="../index.html" class="breadcrumb-link">MediSync</a>
+      </div>
+      <div class="breadcrumb-item">
+        <span class="breadcrumb-current">Área Médica</span>
+      </div>
     `;
+  } else if (path.includes("/paciente/")) {
+    breadcrumbHTML += `
+      <div class="breadcrumb-item">
+        <a href="../index.html" class="breadcrumb-link">MediSync</a>
+      </div>
+      <div class="breadcrumb-item">
+        <span class="breadcrumb-current">Área do Paciente</span>
+      </div>
+    `;
+  } else if (path.includes("/instituicao/")) {
+    breadcrumbHTML += `
+      <div class="breadcrumb-item">
+        <a href="../index.html" class="breadcrumb-link">MediSync</a>
+      </div>
+      <div class="breadcrumb-item">
+        <span class="breadcrumb-current">Painel Institucional</span>
+      </div>
+    `;
+  } else if (path.includes("/saas/")) {
+    breadcrumbHTML += `
+      <div class="breadcrumb-item">
+        <a href="../index.html" class="breadcrumb-link">MediSync</a>
+      </div>
+      <div class="breadcrumb-item">
+        <span class="breadcrumb-current">Console SaaS</span>
+      </div>
+    `;
+  }
 
-  document.body.appendChild(notification);
+  breadcrumbHTML += "</nav>";
 
-  setTimeout(() => {
-    notification.remove();
-  }, 4000);
-}
-
-// Confirmar ação
-function confirmAction(message, callback) {
-  if (confirm(message)) {
-    callback();
+  const mainContent = document.querySelector(".main-content .container");
+  if (mainContent && breadcrumbHTML !== '<nav class="breadcrumb"></nav>') {
+    mainContent.insertAdjacentHTML("afterbegin", breadcrumbHTML);
   }
 }
 
-// Buscar CEP (simulado)
-function buscarCEP(cep, callback) {
-  // Simular busca de CEP
-  setTimeout(() => {
-    const mockData = {
-      logradouro: "Rua das Flores",
-      bairro: "Centro",
-      localidade: "São Paulo",
-      uf: "SP",
-    };
-    callback(mockData);
-  }, 500);
+// ==========================================
+// SIMULAÇÃO DE OPERAÇÕES ASSÍNCRONAS
+// ==========================================
+
+function simulateAsyncOperation(duration = 2000) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, duration);
+  });
 }
+
+// Exemplo de uso em formulários
+async function submitForm(
+  formData,
+  successMessage = "Operação realizada com sucesso!"
+) {
+  const submitBtn = document.querySelector('button[type="submit"]');
+
+  try {
+    setButtonLoading(submitBtn, true);
+    showLoading("Processando...");
+
+    await simulateAsyncOperation(1500);
+
+    hideLoading();
+    showToast(successMessage, "success");
+
+    return true;
+  } catch (error) {
+    hideLoading();
+    showToast("Erro ao processar operação. Tente novamente.", "error");
+    return false;
+  } finally {
+    setButtonLoading(submitBtn, false);
+  }
+}
+
+// ==========================================
+// MELHORIA DAS FUNÇÕES EXISTENTES
+// ==========================================
+
+// Atualizar função de notificação para usar o novo sistema
+function showNotification(message, type = "info") {
+  showToast(message, type);
+}
+
+// Manter compatibilidade com código existente
+window.showNotification = showNotification;
 
 // ==========================================
 // ANIMAÇÕES E EFEITOS

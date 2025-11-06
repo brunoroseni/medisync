@@ -1,384 +1,977 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultas - MediSync</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Consultas - MediSync</title>
-  <link rel="stylesheet" href="../assets/css/main.css" />
-</head>
-
-<body class="main-layout">
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <nav class="nav">
-        <div class="logo">
-          <img src="../assets/img/logo-medisync.PNG" alt="MediSync Logo"
-            style="height: 40px; vertical-align: middle; margin-right: 8px;">
-          <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
-        </div>
-        <div class="nav-menu" id="menu-consultas">
-          <a href="dash-medico.html" class="nav-link">Dashboard</a>
-          <a href="consulta.html" class="nav-link" style="background: var(--cinza-neutro)">Consultas</a>
-          <a href="cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
-          <a href="../instituicao/usuarios.html" class="nav-link">Usuários</a>
-          <button onclick="logout()" class="btn btn-danger">Sair</button>
-        </div>
-        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-consultas">
-          <span class="sr-only">Alternar menu</span>
-          <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
-        </button>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-    <div class="container">
-      <!-- Header -->
-      <div class="dashboard-header">
-        <div>
-          <h1>Gerenciar Consultas</h1>
-          <p>Registre novas consultas e acompanhe o histórico</p>
-        </div>
-        <button class="btn btn-primary" onclick="showNewConsultaForm()">
-          + Nova Consulta
-        </button>
+  <body class="main-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <img
+              src="../assets/img/logo-medisync.PNG"
+              alt="MediSync Logo"
+              style="height: 40px; vertical-align: middle; margin-right: 8px"
+            />
+            <h2
+              style="
+                color: var(--azul-escuro);
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+              "
+            >
+              MediSync
+            </h2>
+          </div>
+          <div class="nav-menu" id="menu-consultas">
+            <a href="dash-medico.html" class="nav-link">Dashboard</a>
+            <a
+              href="consulta.html"
+              class="nav-link"
+              style="background: var(--cinza-neutro)"
+              >Consultas</a
+            >
+            <a href="cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
+            <a href="#relatorios" class="nav-link">Relatórios</a>
+            <button onclick="logout()" class="btn btn-danger">Sair</button>
+          </div>
+          <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu-consultas"
+          >
+            <span class="sr-only">Alternar menu</span>
+            <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
+          </button>
+        </nav>
       </div>
+    </header>
 
-      <!-- Nova Consulta Form (Inicialmente oculto) -->
-      <div id="newConsultaForm" class="card" style="display: none">
-        <div class="card-header">
-          <h3 class="card-title">Nova Consulta</h3>
-          <button style="
-                float: right;
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-              " onclick="hideNewConsultaForm()">
-            ×
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Header -->
+        <div class="dashboard-header">
+          <div>
+            <h1>Gerenciar Consultas</h1>
+            <p>Registre novas consultas e acompanhe o histórico clínico</p>
+          </div>
+          <button class="btn btn-primary" onclick="showNewConsultaForm()">
+            <span class="material-symbols-rounded" aria-hidden="true">add</span>
+            Nova Consulta
           </button>
         </div>
 
-        <form id="consultaForm">
-          <div class="grid grid-2">
+        <!-- Nova Consulta Form (Wizard) -->
+        <div
+          id="newConsultaForm"
+          class="wizard-container fade-in"
+          style="display: none"
+        >
+          <div class="wizard-header">
+            <div class="wizard-steps">
+              <div class="wizard-step active" data-step="1">
+                <div class="wizard-step-number">1</div>
+                <div class="wizard-step-text">Dados Básicos</div>
+              </div>
+              <div class="wizard-step" data-step="2">
+                <div class="wizard-step-number">2</div>
+                <div class="wizard-step-text">Exame Clínico</div>
+              </div>
+              <div class="wizard-step" data-step="3">
+                <div class="wizard-step-number">3</div>
+                <div class="wizard-step-text">Diagnóstico</div>
+              </div>
+            </div>
+            <h3 style="margin: 0; font-size: 24px">Nova Consulta Médica</h3>
+            <button
+              style="
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                background: rgba(255, 255, 255, 0.2);
+                border: none;
+                color: white;
+                font-size: 20px;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background 0.2s;
+              "
+              onclick="hideNewConsultaForm()"
+              onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+              onmouseout="this.style.background='rgba(255,255,255,0.2)'"
+            >
+              ×
+            </button>
+          </div>
+
+          <form id="consultaForm">
+            <!-- Etapa 1: Dados Básicos -->
+            <div class="wizard-content" id="step-1">
+              <h4
+                style="
+                  margin-top: 0;
+                  color: var(--azul-escuro);
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                "
+              >
+                <span class="material-symbols-rounded">assignment</span>
+                Informações Básicas da Consulta
+              </h4>
+
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Buscar Paciente *</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="Digite nome ou CPF do paciente"
+                    onkeyup="searchPatients(this.value)"
+                    required
+                  />
+                  <div id="patientResults" class="mt-2"></div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Data e Hora da Consulta *</label>
+                  <input type="datetime-local" class="form-input" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Tipo de Consulta *</label>
+                <select class="form-select" required>
+                  <option value="">Selecione o tipo</option>
+                  <option value="primeira">Primeira consulta</option>
+                  <option value="retorno">Consulta de retorno</option>
+                  <option value="urgencia">Consulta de urgência</option>
+                  <option value="rotina">Consulta de rotina</option>
+                  <option value="pre-operatoria">
+                    Avaliação pré-operatória
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"
+                  >Motivo da Consulta / Queixa Principal *</label
+                >
+                <textarea
+                  class="form-input"
+                  rows="3"
+                  required
+                  placeholder="Ex: Dor torácica há 2 dias, palpitações, dispneia aos esforços..."
+                ></textarea>
+              </div>
+
+              <div class="medical-alert">
+                <span class="medical-alert-icon">💡</span>
+                <div class="medical-alert-content">
+                  <h4>Dica Clínica</h4>
+                  <p>
+                    Documente a queixa principal nas palavras do paciente e
+                    inclua o tempo de evolução dos sintomas.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Etapa 2: Exame Clínico -->
+            <div class="wizard-content" id="step-2" style="display: none">
+              <h4
+                style="
+                  margin-top: 0;
+                  color: var(--azul-escuro);
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                "
+              >
+                <span class="material-symbols-rounded">monitor_heart</span>
+                Exame Físico e Sinais Vitais
+              </h4>
+
+              <div
+                class="card"
+                style="background: #f8f9fa; margin-bottom: 24px"
+              >
+                <h5 style="margin: 0 0 16px 0; color: var(--azul-escuro)">
+                  Sinais Vitais
+                </h5>
+                <div class="grid grid-4">
+                  <div class="form-group">
+                    <label class="form-label">Pressão Arterial (mmHg)</label>
+                    <input
+                      type="text"
+                      class="form-input"
+                      placeholder="120x80"
+                      pattern="[0-9]{2,3}x[0-9]{2,3}"
+                      data-validate="pa"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">FC (bpm)</label>
+                    <input
+                      type="number"
+                      class="form-input"
+                      placeholder="72"
+                      min="30"
+                      max="220"
+                      data-validate="fc"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Temperatura (°C)</label>
+                    <input
+                      type="number"
+                      step="0.1"
+                      class="form-input"
+                      placeholder="36.5"
+                      min="32"
+                      max="45"
+                      data-validate="temp"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Sat. O₂ (%)</label>
+                    <input
+                      type="number"
+                      class="form-input"
+                      placeholder="98"
+                      min="70"
+                      max="100"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="card"
+                style="background: #f8f9fa; margin-bottom: 24px"
+              >
+                <h5 style="margin: 0 0 16px 0; color: var(--azul-escuro)">
+                  Dados Antropométricos
+                </h5>
+                <div class="grid grid-3">
+                  <div class="form-group">
+                    <label class="form-label">Peso (kg)</label>
+                    <input
+                      type="number"
+                      step="0.1"
+                      class="form-input"
+                      placeholder="70.5"
+                      onchange="calculateIMC()"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Altura (cm)</label>
+                    <input
+                      type="number"
+                      class="form-input"
+                      placeholder="175"
+                      onchange="calculateIMC()"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">IMC (kg/m²)</label>
+                    <input
+                      type="text"
+                      class="form-input"
+                      id="imcResult"
+                      placeholder="Calculado automaticamente"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">História da Doença Atual (HDA)</label>
+                <textarea
+                  class="form-input"
+                  rows="4"
+                  placeholder="Descreva a evolução dos sintomas, fatores de melhora/piora, sintomas associados, tratamentos já realizados..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Exame Físico por Aparelhos</label>
+                <textarea
+                  class="form-input"
+                  rows="4"
+                  placeholder="ACV: bulhas normofonéticas, ritmo regular, sem sopros&#10;AR: murmúrio vesicular universal, sem ruídos adventícios&#10;ABD: plano, flácido, indolor, ruídos hidroaéreos presentes&#10;Extremidades: sem edemas, pulsos palpáveis"
+                ></textarea>
+              </div>
+
+              <div class="medical-alert critical">
+                <span class="medical-alert-icon">⚠️</span>
+                <div class="medical-alert-content">
+                  <h4>Alerta de Segurança</h4>
+                  <p>
+                    Verifique sempre sinais vitais críticos. PA > 180x110 ou <
+                    90x60, FC > 120 ou < 50, Temp > 38.5°C requerem atenção
+                    especial.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Etapa 3: Diagnóstico e Conduta -->
+            <div class="wizard-content" id="step-3" style="display: none">
+              <h4
+                style="
+                  margin-top: 0;
+                  color: var(--azul-escuro);
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                "
+              >
+                <span class="material-symbols-rounded">medical_services</span>
+                Diagnóstico e Conduta Médica
+              </h4>
+
+              <div class="form-group">
+                <label class="form-label"
+                  >Hipóteses Diagnósticas (CID-10)</label
+                >
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Digite para buscar CID-10..."
+                  onkeyup="searchCID10Suggestions(this.value)"
+                  id="cidSearch"
+                />
+                <div id="cid10Results" style="margin-top: 8px"></div>
+                <div id="selectedDiagnoses" style="margin-top: 12px"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Prescrição Médica</label>
+                <textarea
+                  class="form-input"
+                  rows="6"
+                  placeholder="1. Losartana 50mg - VO - 1x/dia - pela manhã - 30 dias&#10;2. Dieta hipossódica&#10;3. Atividade física regular 30 min/dia&#10;4. Controle de peso&#10;5. Retorno em 30 dias com exames"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"
+                  >Exames Complementares Solicitados</label
+                >
+                <textarea
+                  class="form-input"
+                  rows="3"
+                  placeholder="• Hemograma completo&#10;• Glicemia de jejum&#10;• Ureia, creatinina&#10;• ECG de repouso"
+                ></textarea>
+              </div>
+
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Data de Retorno</label>
+                  <input type="date" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Urgência do Retorno</label>
+                  <select class="form-select">
+                    <option value="">Não especificado</option>
+                    <option value="alta">Alta - até 7 dias</option>
+                    <option value="media">Média - até 30 dias</option>
+                    <option value="baixa">Baixa - conforme necessário</option>
+                    <option value="sos">SOS (se necessário)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Orientações e Sinais de Alerta</label>
+                <textarea
+                  class="form-input"
+                  rows="3"
+                  placeholder="Orientações específicas ao paciente, sinais de alerta para retorno imediato, cuidados especiais..."
+                ></textarea>
+              </div>
+
+              <div class="medical-alert success">
+                <span class="medical-alert-icon">✅</span>
+                <div class="medical-alert-content">
+                  <h4>Checklist Final</h4>
+                  <p>
+                    Verifique se diagnóstico, prescrição e orientações estão
+                    completas antes de finalizar.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navegação do Wizard -->
+            <div class="wizard-actions">
+              <div>
+                <button
+                  type="button"
+                  id="prevBtn"
+                  class="btn btn-secondary"
+                  onclick="changeStep(-1)"
+                  style="display: none"
+                >
+                  ← Voltar
+                </button>
+              </div>
+              <div style="display: flex; gap: 12px">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  onclick="hideNewConsultaForm()"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  id="nextBtn"
+                  class="btn btn-primary"
+                  onclick="changeStep(1)"
+                >
+                  Próximo →
+                </button>
+                <button
+                  type="submit"
+                  id="submitBtn"
+                  class="btn btn-primary"
+                  style="display: none"
+                >
+                  <span class="material-symbols-rounded" aria-hidden="true"
+                    >check_circle</span
+                  >
+                  Finalizar Consulta
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Busca e Filtros -->
+        <div class="card" style="margin-top: 32px">
+          <div class="card-header">
+            <h3 class="card-title">Filtros de Consulta</h3>
+          </div>
+
+          <div class="grid grid-4 mb-4">
             <div class="form-group">
               <label class="form-label">Buscar Paciente</label>
-              <input type="text" class="form-input" placeholder="Digite nome ou CPF do paciente"
-                onkeyup="searchPatients(this.value)" />
-              <div id="patientResults" class="mt-2"></div>
+              <input type="text" class="form-input" placeholder="Nome ou CPF" />
             </div>
             <div class="form-group">
-              <label class="form-label">Data e Hora</label>
-              <input type="datetime-local" class="form-input" required />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Motivo da Consulta</label>
-            <input type="text" class="form-input" required placeholder="Ex: Dor no peito, consulta de rotina..." />
-          </div>
-
-          <div class="grid grid-2">
-            <div class="form-group">
-              <label class="form-label">Pressão Arterial</label>
-              <input type="text" class="form-input" placeholder="Ex: 120x80 mmHg" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Frequência Cardíaca</label>
-              <input type="text" class="form-input" placeholder="Ex: 72 bpm" />
-            </div>
-          </div>
-
-          <div class="grid grid-3">
-            <div class="form-group">
-              <label class="form-label">Peso (kg)</label>
-              <input type="number" class="form-input" placeholder="Ex: 70.5" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Altura (cm)</label>
-              <input type="number" class="form-input" placeholder="Ex: 175" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Temperatura (°C)</label>
-              <input type="number" step="0.1" class="form-input" placeholder="Ex: 36.5" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Anamnese (História Clínica)</label>
-            <textarea class="form-input" rows="4"
-              placeholder="Descreva os sintomas, histórico da doença atual..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Exame Físico</label>
-            <textarea class="form-input" rows="3" placeholder="Descreva os achados do exame físico..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Diagnóstico</label>
-            <textarea class="form-input" rows="2" placeholder="Diagnóstico principal e secundários..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Prescrição Médica</label>
-            <textarea class="form-input" rows="4" placeholder="Medicamentos, dosagens, orientações..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Exames Solicitados</label>
-            <textarea class="form-input" rows="3" placeholder="Liste os exames solicitados..."></textarea>
-          </div>
-
-          <div class="grid grid-2">
-            <div class="form-group">
-              <label class="form-label">Retorno</label>
+              <label class="form-label">Data Inicial</label>
               <input type="date" class="form-input" />
             </div>
             <div class="form-group">
-              <label class="form-label">Observações</label>
-              <input type="text" class="form-input" placeholder="Observações adicionais..." />
+              <label class="form-label">Data Final</label>
+              <input type="date" class="form-input" />
+            </div>
+            <div class="form-group d-flex align-end">
+              <button class="btn btn-secondary w-100">
+                <span class="material-symbols-rounded" aria-hidden="true"
+                  >search</span
+                >
+                Buscar
+              </button>
             </div>
           </div>
-
-          <div class="d-flex justify-end" style="gap: var(--spacing-sm)">
-            <button type="button" class="btn btn-secondary" onclick="hideNewConsultaForm()">
-              Cancelar
-            </button>
-            <button type="submit" class="btn btn-primary">
-              Salvar Consulta
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Busca e Filtros -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Histórico de Consultas</h3>
         </div>
 
-        <div class="grid grid-4 mb-4">
-          <div class="form-group">
-            <label class="form-label">Buscar Paciente</label>
-            <input type="text" class="form-input" placeholder="Nome ou CPF" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Data Inicial</label>
-            <input type="date" class="form-input" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Data Final</label>
-            <input type="date" class="form-input" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Filtrar</label>
-            <button class="btn btn-secondary w-100">
-              <span class="material-symbols-rounded" aria-hidden="true">search</span>
-              Buscar
+        <!-- Lista de Consultas -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Consultas Realizadas</h3>
+            <button class="btn btn-outline">
+              <span class="material-symbols-rounded" aria-hidden="true"
+                >download</span
+              >
+              Exportar
             </button>
           </div>
-        </div>
-      </div>
 
-      <!-- Lista de Consultas -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Consultas Realizadas</h3>
-        </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data/Hora</th>
+                  <th>Paciente</th>
+                  <th>Motivo</th>
+                  <th>Diagnóstico (CID-10)</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>06/11/2025 14:30</strong><br />
+                    <small class="text-muted">Hoje</small>
+                  </td>
+                  <td>
+                    <strong>João Silva</strong><br />
+                    <small class="text-muted">45 anos, M</small>
+                  </td>
+                  <td>Consulta de retorno cardiológico</td>
+                  <td>
+                    <strong>I10</strong> - Hipertensão arterial<br />
+                    <small class="text-success">Controlada</small>
+                  </td>
+                  <td><span class="badge badge--success">Finalizada</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">
+                      <span class="material-symbols-rounded" aria-hidden="true"
+                        >visibility</span
+                      >
+                      Ver
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                      <span class="material-symbols-rounded" aria-hidden="true"
+                        >print</span
+                      >
+                      Imprimir
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>05/11/2025 16:00</strong><br />
+                    <small class="text-muted">Ontem</small>
+                  </td>
+                  <td>
+                    <strong>Maria Santos</strong><br />
+                    <small class="text-muted">52 anos, F</small>
+                  </td>
+                  <td>Dor torácica atípica</td>
+                  <td>
+                    <strong>Z00.0</strong> - Exame médico geral<br />
+                    <small class="text-muted">Investigação</small>
+                  </td>
+                  <td>
+                    <span class="badge badge--warning">Em andamento</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">Ver</button>
+                    <button class="btn btn-primary btn-sm">Editar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>04/11/2025 09:30</strong><br />
+                    <small class="text-muted">2 dias atrás</small>
+                  </td>
+                  <td>
+                    <strong>Pedro Lima</strong><br />
+                    <small class="text-muted">38 anos, M</small>
+                  </td>
+                  <td>Check-up cardiológico</td>
+                  <td>
+                    <strong>Z00.0</strong> - Exame normal<br />
+                    <small class="text-success">Liberado</small>
+                  </td>
+                  <td><span class="badge badge--success">Finalizada</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">Ver</button>
+                    <button class="btn btn-outline btn-sm">Imprimir</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Data/Hora</th>
-                <th>Paciente</th>
-                <th>Motivo</th>
-                <th>Diagnóstico</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>01/11/2024 14:30</td>
-                <td>João Silva</td>
-                <td>Consulta de retorno</td>
-                <td>HAS controlada</td>
-                <td>
-                  <button class="btn btn-secondary btn-sm">
-                    Ver Detalhes
-                  </button>
-                  <button class="btn btn-primary btn-sm">Editar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>01/11/2024 13:00</td>
-                <td>Maria Santos</td>
-                <td>Dor no peito</td>
-                <td>Angina estável</td>
-                <td>
-                  <button class="btn btn-secondary btn-sm">
-                    Ver Detalhes
-                  </button>
-                  <button class="btn btn-primary btn-sm">Editar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>31/10/2024 16:00</td>
-                <td>Pedro Lima</td>
-                <td>Palpitações</td>
-                <td>Arritmia sinusal</td>
-                <td>
-                  <button class="btn btn-secondary btn-sm">
-                    Ver Detalhes
-                  </button>
-                  <button class="btn btn-primary btn-sm">Editar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>31/10/2024 14:30</td>
-                <td>Ana Costa</td>
-                <td>Check-up cardiológico</td>
-                <td>Exame normal</td>
-                <td>
-                  <button class="btn btn-secondary btn-sm">
-                    Ver Detalhes
-                  </button>
-                  <button class="btn btn-primary btn-sm">Editar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>30/10/2024 15:30</td>
-                <td>Carlos Oliveira</td>
-                <td>Hipertensão descontrolada</td>
-                <td>HAS grave</td>
-                <td>
-                  <button class="btn btn-secondary btn-sm">
-                    Ver Detalhes
-                  </button>
-                  <button class="btn btn-primary btn-sm">Editar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Paginação -->
-        <div class="d-flex justify-between align-center mt-4">
-          <p class="text-muted">Mostrando 5 de 25 consultas</p>
-          <div class="d-flex" style="gap: var(--spacing-sm)">
-            <button class="btn btn-secondary">« Anterior</button>
-            <button class="btn btn-primary">1</button>
-            <button class="btn btn-secondary">2</button>
-            <button class="btn btn-secondary">3</button>
-            <button class="btn btn-secondary">Próximo »</button>
+          <!-- Paginação melhorada -->
+          <div
+            class="d-flex justify-between align-center mt-4"
+            style="padding: 16px"
+          >
+            <p class="text-muted">Mostrando 3 de 28 consultas</p>
+            <div class="d-flex" style="gap: var(--spacing-xs)">
+              <button class="btn btn-outline btn-sm">« Anterior</button>
+              <button class="btn btn-primary btn-sm">1</button>
+              <button class="btn btn-outline btn-sm">2</button>
+              <button class="btn btn-outline btn-sm">3</button>
+              <button class="btn btn-outline btn-sm">Próximo »</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Estatísticas -->
-      <div class="card mt-4">
-        <div class="card-header">
-          <h3 class="card-title">Estatísticas do Mês</h3>
-        </div>
-
-        <div class="stats-grid">
+        <!-- Estatísticas aprimoradas -->
+        <div class="grid grid-4" style="margin-top: 32px">
           <div class="stat-card">
-            <div class="stat-number">89</div>
+            <div class="stat-number">28</div>
             <div class="stat-label">Consultas no Mês</div>
+            <div class="stat-trend">+12% vs mês anterior</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">67</div>
-            <div class="stat-label">Pacientes Diferentes</div>
+            <div class="stat-number">18</div>
+            <div class="stat-label">Pacientes Únicos</div>
+            <div class="stat-trend">+5% vs mês anterior</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">23</div>
+            <div class="stat-number">6</div>
             <div class="stat-label">Primeiras Consultas</div>
+            <div class="stat-trend">+2 novos pacientes</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">15</div>
+            <div class="stat-number">2</div>
             <div class="stat-label">Urgências</div>
+            <div class="stat-trend">Dentro do esperado</div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2024 MediSync. Sistema médico profissional.</p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 MediSync. Sistema médico profissional.</p>
+      </div>
+    </footer>
 
-  <script src="../assets/js/main.js"></script>
-  <script>
-    function logout() {
-      localStorage.clear();
-      window.location.href = "../index.html";
-    }
+    <script src="../assets/js/main.js"></script>
+    <script>
+      let currentStep = 1;
+      const totalSteps = 3;
+      let selectedDiagnoses = [];
 
-    function showNewConsultaForm() {
-      document.getElementById("newConsultaForm").style.display = "block";
-      document
-        .getElementById("newConsultaForm")
-        .scrollIntoView({ behavior: "smooth" });
-    }
+      // Controle do Wizard
+      function changeStep(direction) {
+        const newStep = currentStep + direction;
 
-    function hideNewConsultaForm() {
-      document.getElementById("newConsultaForm").style.display = "none";
-    }
+        if (newStep < 1 || newStep > totalSteps) return;
 
-    function searchPatients(query) {
-      const resultsDiv = document.getElementById("patientResults");
+        // Validar etapa atual antes de prosseguir
+        if (direction > 0 && !validateCurrentStep()) {
+          return;
+        }
 
-      if (query.length < 2) {
-        resultsDiv.innerHTML = "";
-        return;
+        // Esconder etapa atual
+        document.getElementById(`step-${currentStep}`).style.display = "none";
+        document
+          .querySelector(`[data-step="${currentStep}"]`)
+          .classList.remove("active");
+
+        // Marcar como completa se indo para frente
+        if (direction > 0) {
+          document
+            .querySelector(`[data-step="${currentStep}"]`)
+            .classList.add("completed");
+        }
+
+        // Mostrar nova etapa
+        currentStep = newStep;
+        document.getElementById(`step-${currentStep}`).style.display = "block";
+        document
+          .querySelector(`[data-step="${currentStep}"]`)
+          .classList.add("active");
+
+        // Atualizar botões
+        updateWizardButtons();
+
+        // Scroll suave para o topo do formulário
+        document
+          .getElementById("newConsultaForm")
+          .scrollIntoView({ behavior: "smooth" });
       }
 
-      // Simular busca de pacientes
-      const mockPatients = [
-        { id: 1, name: "João Silva", cpf: "123.456.789-00" },
-        { id: 2, name: "Maria Santos", cpf: "987.654.321-00" },
-        { id: 3, name: "Pedro Lima", cpf: "456.789.123-00" },
-      ];
+      function updateWizardButtons() {
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const submitBtn = document.getElementById("submitBtn");
 
-      const filtered = mockPatients.filter(
-        (p) =>
-          p.name.toLowerCase().includes(query.toLowerCase()) ||
-          p.cpf.includes(query)
-      );
+        prevBtn.style.display = currentStep === 1 ? "none" : "block";
+        nextBtn.style.display = currentStep === totalSteps ? "none" : "block";
+        submitBtn.style.display = currentStep === totalSteps ? "block" : "none";
+      }
 
-      let html = "";
-      filtered.forEach((patient) => {
-        html += `<div class="card" style="cursor: pointer; margin-bottom: 4px; padding: 8px;" onclick="selectPatient('${patient.name}', '${patient.cpf}')">
-                    <strong>${patient.name}</strong><br>
-                    <small>${patient.cpf}</small>
-                </div>`;
-      });
+      function validateCurrentStep() {
+        const currentStepDiv = document.getElementById(`step-${currentStep}`);
+        const requiredFields = currentStepDiv.querySelectorAll("[required]");
 
-      resultsDiv.innerHTML = html;
-    }
+        for (let field of requiredFields) {
+          if (!field.value.trim()) {
+            field.focus();
+            showToast(
+              `Campo "${field.previousElementSibling.textContent}" é obrigatório`,
+              "error"
+            );
+            return false;
+          }
+        }
 
-    function selectPatient(name, cpf) {
-      document.querySelector(
-        '#newConsultaForm input[placeholder*="Digite nome ou CPF"]'
-      ).value = `${name} - ${cpf}`;
-      document.getElementById("patientResults").innerHTML = "";
-    }
+        // Validações específicas por etapa
+        if (currentStep === 2) {
+          const pa = currentStepDiv.querySelector('[data-validate="pa"]').value;
+          const fc = currentStepDiv.querySelector('[data-validate="fc"]').value;
 
-    document
-      .getElementById("consultaForm")
-      .addEventListener("submit", function (e) {
-        e.preventDefault();
-        alert("Consulta registrada com sucesso!");
-        hideNewConsultaForm();
-        this.reset();
-      });
-  </script>
-</body>
+          if (pa && !pa.match(/^\d{2,3}x\d{2,3}$/)) {
+            showToast(
+              "Formato de pressão arterial inválido (ex: 120x80)",
+              "error"
+            );
+            return false;
+          }
 
+          if (fc && (fc < 30 || fc > 220)) {
+            showToast(
+              "Frequência cardíaca deve estar entre 30 e 220 bpm",
+              "error"
+            );
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      // Cálculo automático do IMC
+      function calculateIMC() {
+        const peso = parseFloat(
+          document.querySelector('input[placeholder="70.5"]').value
+        );
+        const altura = parseFloat(
+          document.querySelector('input[placeholder="175"]').value
+        );
+
+        if (peso && altura) {
+          const alturaM = altura / 100;
+          const imc = peso / (alturaM * alturaM);
+          const imcResult = document.getElementById("imcResult");
+
+          imcResult.value = imc.toFixed(1);
+
+          // Classificação do IMC
+          let classificacao = "";
+          if (imc < 18.5) classificacao = "(Abaixo do peso)";
+          else if (imc < 25) classificacao = "(Peso normal)";
+          else if (imc < 30) classificacao = "(Sobrepeso)";
+          else classificacao = "(Obesidade)";
+
+          imcResult.value = `${imc.toFixed(1)} ${classificacao}`;
+        }
+      }
+
+      // Busca de CID-10 aprimorada
+      function searchCID10Suggestions(query) {
+        const resultsDiv = document.getElementById("cid10Results");
+
+        if (query.length < 2) {
+          resultsDiv.innerHTML = "";
+          return;
+        }
+
+        const results = searchCID10(query);
+
+        let html = "";
+        results.forEach(([code, description]) => {
+          html += `
+          <div class="card" style="cursor: pointer; margin-bottom: 8px; padding: 12px; border: 1px solid var(--cinza-neutro);" 
+               onclick="selectDiagnosis('${code}', '${description}')">
+            <strong>${code}</strong> - ${description}
+          </div>
+        `;
+        });
+
+        resultsDiv.innerHTML = html;
+      }
+
+      function selectDiagnosis(code, description) {
+        const exists = selectedDiagnoses.find((d) => d.code === code);
+        if (exists) {
+          showToast("Diagnóstico já adicionado", "warning");
+          return;
+        }
+
+        selectedDiagnoses.push({ code, description });
+        updateSelectedDiagnoses();
+
+        document.getElementById("cidSearch").value = "";
+        document.getElementById("cid10Results").innerHTML = "";
+      }
+
+      function removeDiagnosis(code) {
+        selectedDiagnoses = selectedDiagnoses.filter((d) => d.code !== code);
+        updateSelectedDiagnoses();
+      }
+
+      function updateSelectedDiagnoses() {
+        const container = document.getElementById("selectedDiagnoses");
+
+        if (selectedDiagnoses.length === 0) {
+          container.innerHTML = "";
+          return;
+        }
+
+        let html =
+          '<h5 style="margin-bottom: 12px;">Diagnósticos Selecionados:</h5>';
+        selectedDiagnoses.forEach((diagnosis, index) => {
+          const isPrimary = index === 0;
+          html += `
+          <div class="card" style="margin-bottom: 8px; padding: 12px; background: ${
+            isPrimary ? "#e8f5e8" : "#f8f9fa"
+          };">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong>${diagnosis.code}</strong> - ${diagnosis.description}
+                ${
+                  isPrimary
+                    ? '<span style="color: var(--verde-agua); font-weight: bold;">(Principal)</span>'
+                    : ""
+                }
+              </div>
+              <button type="button" onclick="removeDiagnosis('${
+                diagnosis.code
+              }')" 
+                      style="background: none; border: none; color: var(--rosa-vivo); cursor: pointer;">×</button>
+            </div>
+          </div>
+        `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      function showNewConsultaForm() {
+        document.getElementById("newConsultaForm").style.display = "block";
+        document
+          .getElementById("newConsultaForm")
+          .scrollIntoView({ behavior: "smooth" });
+
+        // Reset wizard
+        currentStep = 1;
+        selectedDiagnoses = [];
+        updateWizardButtons();
+
+        // Mostrar apenas primeira etapa
+        for (let i = 1; i <= totalSteps; i++) {
+          document.getElementById(`step-${i}`).style.display =
+            i === 1 ? "block" : "none";
+          const stepElement = document.querySelector(`[data-step="${i}"]`);
+          stepElement.classList.remove("active", "completed");
+          if (i === 1) stepElement.classList.add("active");
+        }
+      }
+
+      function hideNewConsultaForm() {
+        document.getElementById("newConsultaForm").style.display = "none";
+      }
+
+      function searchPatients(query) {
+        const resultsDiv = document.getElementById("patientResults");
+
+        if (query.length < 2) {
+          resultsDiv.innerHTML = "";
+          return;
+        }
+
+        // Dados simulados com mais detalhes
+        const mockPatients = [
+          {
+            id: 1,
+            name: "João Silva",
+            cpf: "123.456.789-00",
+            age: 45,
+            lastVisit: "01/10/2025",
+          },
+          {
+            id: 2,
+            name: "Maria Santos",
+            cpf: "987.654.321-00",
+            age: 52,
+            lastVisit: "15/09/2025",
+          },
+          {
+            id: 3,
+            name: "Pedro Lima",
+            cpf: "456.789.123-00",
+            age: 38,
+            lastVisit: "20/10/2025",
+          },
+          {
+            id: 4,
+            name: "Ana Costa",
+            cpf: "789.123.456-00",
+            age: 29,
+            lastVisit: "Primeira consulta",
+          },
+        ];
+
+        const filtered = mockPatients.filter(
+          (p) =>
+            p.name.toLowerCase().includes(query.toLowerCase()) ||
+            p.cpf.includes(query)
+        );
+
+        let html = "";
+        filtered.forEach((patient) => {
+          html += `
+          <div class="card" style="cursor: pointer; margin-bottom: 8px; padding: 12px; border: 1px solid var(--cinza-neutro);" 
+               onclick="selectPatient('${patient.name}', '${patient.cpf}', ${patient.age})">
+            <div style="display: flex; justify-content: space-between;">
+              <div>
+                <strong>${patient.name}</strong><br>
+                <small>CPF: ${patient.cpf} | ${patient.age} anos</small>
+              </div>
+              <div style="text-align: right;">
+                <small class="text-muted">Última consulta:<br>${patient.lastVisit}</small>
+              </div>
+            </div>
+          </div>
+        `;
+        });
+
+        resultsDiv.innerHTML = html;
+      }
+
+      function selectPatient(name, cpf, age) {
+        document.querySelector(
+          '#step-1 input[placeholder*="Digite nome ou CPF"]'
+        ).value = `${name} - ${cpf}`;
+        document.getElementById("patientResults").innerHTML = "";
+
+        showToast(`Paciente ${name} selecionado`, "success");
+      }
+
+      function logout() {
+        localStorage.clear();
+        window.location.href = "../index.html";
+      }
+
+      // Submissão do formulário
+      document
+        .getElementById("consultaForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          if (!validateCurrentStep()) return;
+
+          const success = await submitForm(
+            new FormData(this),
+            "Consulta registrada com sucesso!"
+          );
+
+          if (success) {
+            hideNewConsultaForm();
+            this.reset();
+            selectedDiagnoses = [];
+
+            // Simular atualização da lista de consultas
+            setTimeout(() => {
+              showToast("Lista de consultas atualizada", "info");
+            }, 1000);
+          }
+        });
+    </script>
+  </body>
 </html>

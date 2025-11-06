@@ -28,3 +28,8 @@
    MELHORIAS DE RESPONSIVIDADE
    =========================================== */
 @import url("responsive-fixes.css");
+
+/* ===========================================
+   SISTEMA DE NOTIFICAÇÕES E MELHORIAS UX
+   =========================================== */
+@import url("notifications.css");
