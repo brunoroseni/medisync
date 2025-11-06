@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login SaaS - MediSync</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body class="auth-layout">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <img
+            src="../assets/img/logo-medisync.PNG"
+            alt="MediSync Logo"
+            class="auth-logo"
+          />
+          <h1>Console SaaS MediSync</h1>
+          <p>Acesso exclusivo para gestores da plataforma</p>
+        </div>
+
+        <form class="auth-form" id="form-login-saas">
+          <div class="form-group">
+            <label for="email" class="form-label">Email corporativo</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="admin@medisync.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Senha</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="remember" />
+              <span>Manter-me conectado neste dispositivo</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            Acessar Console SaaS
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>
+            <a href="#" class="link">Esqueci minha senha</a>
+          </p>
+          <div class="auth-divider"></div>
+          <p class="auth-note">
+            <strong>Acesso restrito:</strong> Este console é destinado
+            exclusivamente aos administradores da MediSync. Para acesso como
+            instituição contratante,
+            <a href="../instituicao/login.html" class="link">clique aqui</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("form-login-saas")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Simulação de login - em produção, implementar autenticação real
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          if (email && password) {
+            // Redirecionar para o dashboard SaaS
+            window.location.href = "dash-saas.html";
+          } else {
+            alert("Por favor, preencha todos os campos.");
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Painel Institucional - MediSync</title>
+    <title>Console SaaS - MediSync</title>
     <link rel="stylesheet" href="../assets/css/main.css" />
   </head>
 
@@ -19,24 +19,24 @@
             />
             <h2 style="color: var(--azul-escuro); margin: 0">MediSync</h2>
           </div>
-          <div class="nav-menu" id="menu-instituicao">
+          <div class="nav-menu" id="menu-saas">
             <a
-              href="dash-admin.html"
+              href="dash-saas.html"
               class="nav-link"
               style="background: var(--cinza-neutro)"
               >Dashboard</a
             >
-            <a href="usuarios.html" class="nav-link">Usuários</a>
-            <a href="configuracoes.html" class="nav-link">Configurações</a>
-            <a href="#relatorios" class="nav-link">Relatórios</a>
-            <a href="#integracao" class="nav-link">Integrações</a>
+            <a href="#tenants" class="nav-link">Tenants</a>
+            <a href="#financeiro" class="nav-link">Financeiro</a>
+            <a href="#compliance" class="nav-link">Compliance</a>
+            <a href="#analytics" class="nav-link">Analytics</a>
             <button onclick="logout()" class="btn btn-danger">Sair</button>
           </div>
           <button
             class="mobile-menu-toggle"
             type="button"
             aria-expanded="false"
-            aria-controls="menu-instituicao"
+            aria-controls="menu-saas"
           >
             <span class="sr-only">Alternar menu</span>
             <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
@@ -52,10 +52,10 @@
           style="margin-bottom: var(--spacing-xl)"
         >
           <div>
-            <h1>Painel Institucional</h1>
+            <h1>Console MediSync SaaS</h1>
             <p>
-              Gestão da sua instituição: usuários, configurações e relatórios
-              operacionais
+              Gestão global da plataforma: tenants, faturamento, compliance e
+              analytics da empresa
             </p>
           </div>
           <div class="d-flex" style="gap: var(--spacing-sm)">
@@ -63,33 +63,33 @@
               <span class="material-symbols-rounded" aria-hidden="true"
                 >add</span
               >
-              Novo usuário
+              Novo tenant
             </button>
             <button class="btn btn-secondary">
               <span class="material-symbols-rounded" aria-hidden="true"
                 >download</span
               >
-              Exportar relatório
+              Exportar dados
             </button>
           </div>
         </section>
 
         <section class="stats-grid" aria-label="Indicadores principais">
           <article class="stat-card">
-            <div class="stat-number">45</div>
-            <div class="stat-label">Usuários ativos</div>
+            <div class="stat-number">28</div>
+            <div class="stat-label">Tenants ativos</div>
           </article>
           <article class="stat-card">
-            <div class="stat-number">1.286</div>
-            <div class="stat-label">Pacientes cadastrados</div>
+            <div class="stat-number">112</div>
+            <div class="stat-label">Usuários aguardando aprovação</div>
           </article>
           <article class="stat-card">
-            <div class="stat-number">127</div>
-            <div class="stat-label">Consultas este mês</div>
+            <div class="stat-number">R$ 86k</div>
+            <div class="stat-label">MRR consolidado</div>
           </article>
           <article class="stat-card">
-            <div class="stat-number">98,5%</div>
-            <div class="stat-label">Taxa de adesão digital</div>
+            <div class="stat-number">99,8%</div>
+            <div class="stat-label">SLA de uptime (30 dias)</div>
           </article>
         </section>
 

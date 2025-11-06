@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão de Tenants - Console SaaS MediSync</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body class="main-layout">
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <img
+              src="../assets/img/logo-medisync.PNG"
+              alt="MediSync Logo"
+              style="height: 40px; vertical-align: middle; margin-right: 8px"
+            />
+            <h2 style="color: var(--azul-escuro); margin: 0">MediSync SaaS</h2>
+          </div>
+          <div class="nav-menu" id="menu-saas">
+            <a href="dash-saas.html" class="nav-link">Dashboard</a>
+            <a
+              href="tenants.html"
+              class="nav-link"
+              style="background: var(--cinza-neutro)"
+              >Tenants</a
+            >
+            <a href="#financeiro" class="nav-link">Financeiro</a>
+            <a href="#compliance" class="nav-link">Compliance</a>
+            <a href="#analytics" class="nav-link">Analytics</a>
+            <button onclick="logout()" class="btn btn-danger">Sair</button>
+          </div>
+          <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu-saas"
+          >
+            <span class="sr-only">Alternar menu</span>
+            <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <section
+          class="dashboard-header"
+          style="margin-bottom: var(--spacing-xl)"
+        >
+          <div>
+            <h1>Gestão de Tenants</h1>
+            <p>
+              Administre todas as instituições contratantes da plataforma
+              MediSync
+            </p>
+          </div>
+          <div class="d-flex" style="gap: var(--spacing-sm)">
+            <button class="btn btn-primary">
+              <span class="material-symbols-rounded" aria-hidden="true"
+                >add</span
+              >
+              Novo tenant
+            </button>
+            <button class="btn btn-secondary">
+              <span class="material-symbols-rounded" aria-hidden="true"
+                >download</span
+              >
+              Exportar lista
+            </button>
+          </div>
+        </section>
+
+        <!-- Filtros -->
+        <section class="card" style="margin-bottom: var(--spacing-xl)">
+          <div class="card-header">
+            <h3 class="card-title">Filtros</h3>
+          </div>
+          <div class="grid grid-4" style="gap: var(--spacing-md)">
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option value="">Todos</option>
+                <option value="ativo">Ativo</option>
+                <option value="trial">Trial</option>
+                <option value="suspenso">Suspenso</option>
+                <option value="cancelado">Cancelado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Plano</label>
+              <select class="form-select">
+                <option value="">Todos</option>
+                <option value="basico">Básico</option>
+                <option value="profissional">Profissional</option>
+                <option value="enterprise">Enterprise</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Buscar</label>
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Nome ou CNPJ"
+              />
+            </div>
+            <div class="form-group d-flex align-end">
+              <button class="btn btn-outline">Filtrar</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Lista de Tenants -->
+        <section class="card">
+          <div class="card-header">
+            <h3 class="card-title icon-inline">
+              <span class="material-symbols-rounded" aria-hidden="true"
+                >business</span
+              >
+              Tenants Cadastrados (28)
+            </h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Instituição</th>
+                  <th>CNPJ</th>
+                  <th>Plano</th>
+                  <th>Status</th>
+                  <th>Usuários</th>
+                  <th>MRR</th>
+                  <th>Criado em</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>CardioSaúde Holding</strong>
+                    <br /><small>fernanda.azevedo@cardiosaude.com</small>
+                  </td>
+                  <td>12.345.678/0001-55</td>
+                  <td>
+                    <span class="badge badge--warning">Profissional</span>
+                  </td>
+                  <td><span class="text-success">Ativo</span></td>
+                  <td>286/300</td>
+                  <td>R$ 8.450</td>
+                  <td>05/10/2025</td>
+                  <td class="d-flex" style="gap: var(--spacing-xs)">
+                    <button class="btn btn-secondary btn-sm">
+                      <span class="material-symbols-rounded" aria-hidden="true"
+                        >visibility</span
+                      >
+                      Ver
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                      <span class="material-symbols-rounded" aria-hidden="true"
+                        >edit</span
+                      >
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Rede Viva Saúde</strong>
+                    <br /><small>admin@rede-viva.com</small>
+                  </td>
+                  <td>98.765.432/0001-12</td>
+                  <td><span class="badge badge--success">Enterprise</span></td>
+                  <td><span class="text-success">Ativo</span></td>
+                  <td>145/∞</td>
+                  <td>R$ 12.900</td>
+                  <td>15/09/2025</td>
+                  <td class="d-flex" style="gap: var(--spacing-xs)">
+                    <button class="btn btn-secondary btn-sm">Ver</button>
+                    <button class="btn btn-outline btn-sm">Editar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Laboratórios Integrados</strong>
+                    <br /><small>ti@labintegrados.com.br</small>
+                  </td>
+                  <td>11.222.333/0001-99</td>
+                  <td><span class="badge badge--info">Básico</span></td>
+                  <td><span class="text-warning">Trial</span></td>
+                  <td>12/100</td>
+                  <td>R$ 0</td>
+                  <td>01/11/2025</td>
+                  <td class="d-flex" style="gap: var(--spacing-xs)">
+                    <button class="btn btn-secondary btn-sm">Ver</button>
+                    <button class="btn btn-primary btn-sm">Converter</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Clínica Bem Estar</strong>
+                    <br /><small>contato@clinicabemestar.com</small>
+                  </td>
+                  <td>55.666.777/0001-88</td>
+                  <td>
+                    <span class="badge badge--warning">Profissional</span>
+                  </td>
+                  <td><span class="text-danger">Suspenso</span></td>
+                  <td>89/500</td>
+                  <td>R$ 3.200</td>
+                  <td>20/08/2025</td>
+                  <td class="d-flex" style="gap: var(--spacing-xs)">
+                    <button class="btn btn-secondary btn-sm">Ver</button>
+                    <button class="btn btn-success btn-sm">Reativar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Estatísticas por Plano -->
+        <section
+          class="grid grid-3"
+          style="margin-top: var(--spacing-xl); gap: var(--spacing-lg)"
+        >
+          <article class="card">
+            <div class="card-header">
+              <h4 class="card-title icon-inline">
+                <span class="material-symbols-rounded" aria-hidden="true"
+                  >workspace_premium</span
+                >
+                Distribuição por Plano
+              </h4>
+            </div>
+            <ul class="card__list">
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded">circle</span></span
+                >
+                <span
+                  >Enterprise: <strong>8 tenants</strong> (R$ 103.2k MRR)</span
+                >
+              </li>
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded">circle</span></span
+                >
+                <span
+                  >Profissional: <strong>15 tenants</strong> (R$ 126.7k
+                  MRR)</span
+                >
+              </li>
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded">circle</span></span
+                >
+                <span>Básico: <strong>5 tenants</strong> (R$ 15.4k MRR)</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h4 class="card-title icon-inline">
+                <span class="material-symbols-rounded" aria-hidden="true"
+                  >trending_up</span
+                >
+                Crescimento
+              </h4>
+            </div>
+            <ul class="card__list">
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded"
+                    >add_circle</span
+                  ></span
+                >
+                <span>Novos tenants (30d): <strong>4</strong></span>
+              </li>
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded">autorenew</span></span
+                >
+                <span>Conversões trial: <strong>85%</strong></span>
+              </li>
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded">cancel</span></span
+                >
+                <span>Churn rate: <strong>2.1%</strong></span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h4 class="card-title icon-inline">
+                <span class="material-symbols-rounded" aria-hidden="true"
+                  >support_agent</span
+                >
+                Suporte
+              </h4>
+            </div>
+            <ul class="card__list">
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded">help</span></span
+                >
+                <span>Tickets abertos: <strong>12</strong></span>
+              </li>
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded">schedule</span></span
+                >
+                <span>Tempo médio resposta: <strong>2.4h</strong></span>
+              </li>
+              <li>
+                <span class="card__list-icon"
+                  ><span class="material-symbols-rounded"
+                    >sentiment_satisfied</span
+                  ></span
+                >
+                <span>Satisfação: <strong>4.7/5.0</strong></span>
+              </li>
+            </ul>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 MediSync. Console SaaS demonstrativo.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,7 +1,37 @@
-Contexto atual - 05/11/2025
+Contexto atual - 06/11/2025
 
-- A plataforma MediSync possui três perfis principais de acesso: paciente, profissional de saúde (médico) e instituição contratante (clínica, hospital ou laboratório).
-- O painel recentemente criado deve representar a visão da instituição que contratou o serviço e não um "admin" técnico ou do tenant.
-- A navegação e copy futuras precisam refletir essa persona (gestores da instituição contratante) ao invés de um administrador interno do MediSync.
-- Arquivos relevantes para esse fluxo no momento: instituicao/login.html, instituicao/dash-admin.html, instituicao/usuarios.html e instituicao/configuracoes.html.
-- Próxima etapa sugerida: revisar textos/rotas para reforçar a ideia de "painel da instituição" e alinhar funcionalidades às necessidades do cliente contratante.
+- A plataforma MediSync possui QUATRO ambientes distintos e bem definidos:
+
+  1. AMBIENTE PACIENTE (/paciente/):
+     - Dashboard personalizado para pacientes
+     - Acesso ao prontuário eletrônico próprio
+     - Visualização de consultas e exames
+     - Arquivos: dash-paciente.html, prontuario.html, login.html
+
+  2. AMBIENTE MÉDICO (/medico/):
+     - Dashboard para profissionais de saúde
+     - Gestão de consultas e cadastro de pacientes
+     - Acesso aos prontuários dos pacientes
+     - Arquivos: dash-medico.html, consulta.html, cad-paciente.html, login.html
+
+  3. AMBIENTE INSTITUIÇÃO CONTRATANTE (/instituicao/):
+     - Painel institucional para gestores da clínica/hospital/laboratório
+     - Gestão de usuários da própria instituição
+     - Configurações e relatórios operacionais
+     - Métricas específicas da instituição (pacientes, consultas, adesão)
+     - Arquivos: dash-admin.html, usuarios.html, configuracoes.html, login.html
+
+  4. AMBIENTE SAAS - EMPRESA MEDISYNC (/saas/):
+     - Console exclusivo para administradores da MediSync (empresa dona do SaaS)
+     - Gestão global de todos os tenants (instituições contratantes)
+     - Faturamento consolidado, compliance e analytics da plataforma
+     - Aprovações de credenciais profissionais entre tenants
+     - Arquivos: dash-saas.html, tenants.html, login.html
+
+- SEPARAÇÃO CLARA DE RESPONSABILIDADES:
+  * Instituição Contratante: gere SUA própria operação (usuários, pacientes, configurações)
+  * Empresa MediSync: gere a PLATAFORMA como um todo (todos os tenants, faturamento global, compliance)
+
+- A navegação e copy de cada ambiente refletem claramente seu público-alvo e responsabilidades específicas.
+
+- Próxima etapa: implementar funcionalidades específicas para cada ambiente conforme suas necessidades distintas.
