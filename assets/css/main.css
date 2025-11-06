@@ -1,30 +1,30 @@
 /* ===========================================
-   🌈 BASE E VARIÁVEIS
+   BASE E VARIÁVEIS
    =========================================== */
 @import url("variaveis.css");
 @import url("reset.css");
 
 /* ===========================================
-   🌍 ESTILOS GLOBAIS
+   ESTILOS GLOBAIS
    =========================================== */
 @import url("global.css");
 
 /* ===========================================
-   🧱 ESTRUTURA DE LAYOUT
+   ESTRUTURA DE LAYOUT
    =========================================== */
 @import url("layout.css");
 
 /* ===========================================
-   📦 COMPONENTES REUTILIZÁVEIS
+   COMPONENTES REUTILIZÁVEIS
    =========================================== */
 @import url("components.css");
 
 /* ===========================================
-   🪄 UTILITÁRIOS E HELPERS
+   UTILITÁRIOS E HELPERS
    =========================================== */
 @import url("helpers.css");
 
 /* ===========================================
-   📱 MELHORIAS DE RESPONSIVIDADE
+   MELHORIAS DE RESPONSIVIDADE
    =========================================== */
 @import url("responsive-fixes.css");

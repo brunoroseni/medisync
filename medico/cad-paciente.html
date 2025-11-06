@@ -18,15 +18,16 @@
             style="height: 40px; vertical-align: middle; margin-right: 8px;">
           <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="menu-cadastro">
           <a href="dash-medico.html" class="nav-link">Dashboard</a>
           <a href="consulta.html" class="nav-link">Consultas</a>
           <a href="cad-paciente.html" class="nav-link" style="background: var(--cinza-neutro)">Cadastrar Paciente</a>
           <a href="../instituicao/usuarios.html" class="nav-link">Usuários</a>
           <button onclick="logout()" class="btn btn-danger">Sair</button>
         </div>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-          ☰
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-cadastro">
+          <span class="sr-only">Alternar menu</span>
+          <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -268,9 +269,10 @@
                 background: rgba(46, 155, 215, 0.1);
                 border-left: 4px solid var(--azul-medio);
               ">
-            <strong>ℹ️ Informação:</strong> Uma senha temporária será gerada
-            automaticamente e enviada por email para o paciente. O paciente
-            deverá alterar a senha no primeiro acesso.
+            <strong class="icon-inline"><span class="material-symbols-rounded" aria-hidden="true">info</span>
+              Informação:</strong>
+            Uma senha temporária será gerada automaticamente e enviada por
+            email para o paciente. O paciente deverá alterar a senha no primeiro acesso.
           </div>
 
           <div class="form-group">
@@ -353,11 +355,11 @@
         const loadingAlert = document.createElement("div");
         loadingAlert.className = "alert alert-success";
         loadingAlert.innerHTML = `
-                <strong>✓ Paciente cadastrado com sucesso!</strong><br>
-                • Email de boas-vindas enviado<br>
-                • Senha temporária: temp123456<br>
-                • O paciente deve alterar a senha no primeiro acesso
-            `;
+        <strong class="icon-inline"><span class="material-symbols-rounded" aria-hidden="true">check_circle</span> Paciente cadastrado com sucesso!</strong><br>
+        • Email de boas-vindas enviado<br>
+        • Senha temporária: temp123456<br>
+        • O paciente deve alterar a senha no primeiro acesso
+      `;
 
         this.insertBefore(loadingAlert, this.firstChild);
         loadingAlert.scrollIntoView({ behavior: "smooth" });

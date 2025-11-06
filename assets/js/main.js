@@ -1,5 +1,5 @@
 // ==========================================
-// 🏥 MEDISYNC - JAVASCRIPT PRINCIPAL
+// MEDISYNC - JAVASCRIPT PRINCIPAL
 // ==========================================
 
 // Inicialização quando o DOM está carregado
@@ -26,7 +26,7 @@ function initializeMediSync() {
 }
 
 // ==========================================
-// 📱 NAVEGAÇÃO MOBILE
+// NAVEGAÇÃO MOBILE
 // ==========================================
 
 function setupMobileNavigation() {
@@ -96,7 +96,7 @@ function setupMobileNavigation() {
 }
 
 // ==========================================
-// 🔧 MÁSCARAS DE CAMPOS
+// MÁSCARAS DE CAMPOS
 // ==========================================
 
 function applyMasks() {
@@ -156,7 +156,7 @@ function applyPhoneMask(input) {
 }
 
 // ==========================================
-// 🔐 AUTENTICAÇÃO E SESSÃO
+// AUTENTICAÇÃO E SESSÃO
 // ==========================================
 
 function checkAuthentication() {
@@ -199,7 +199,7 @@ function logout() {
 }
 
 // ==========================================
-// 💡 TOOLTIPS E HELPERS
+// TOOLTIPS E HELPERS
 // ==========================================
 
 function setupTooltips() {
@@ -242,7 +242,7 @@ function hideTooltip() {
 }
 
 // ==========================================
-// 📊 UTILITÁRIOS GERAIS
+// UTILITÁRIOS GERAIS
 // ==========================================
 
 // Formatar data para exibição brasileira
@@ -339,7 +339,7 @@ function buscarCEP(cep, callback) {
 }
 
 // ==========================================
-// 🎨 ANIMAÇÕES E EFEITOS
+// ANIMAÇÕES E EFEITOS
 // ==========================================
 
 // Adicionar CSS para animações
@@ -391,7 +391,7 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ==========================================
-// 📱 RESPONSIVIDADE ADICIONAL
+// RESPONSIVIDADE ADICIONAL
 // ==========================================
 
 // Ajustar tabelas para mobile
@@ -413,7 +413,7 @@ window.addEventListener("resize", function () {
 });
 
 // ==========================================
-// 🔄 EXPORT PARA USO GLOBAL
+// EXPORT PARA USO GLOBAL
 // ==========================================
 
 // Tornar funções disponíveis globalmente
@@ -429,4 +429,4 @@ window.MediSync = {
   makeTablesResponsive,
 };
 
-console.log("🏥 MediSync JavaScript carregado com sucesso!");
+console.log("MediSync JavaScript carregado com sucesso!");

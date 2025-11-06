@@ -18,7 +18,7 @@
             style="height: 40px; vertical-align: middle; margin-right: 8px;">
           <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="menu-usuarios">
           <a href="../medico/dash-medico.html" class="nav-link">Dashboard</a>
           <a href="../medico/consulta.html" class="nav-link">Consultas</a>
           <a href="../medico/cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
@@ -26,8 +26,9 @@
           <a href="configuracoes.html" class="nav-link">Configurações</a>
           <button onclick="logout()" class="btn btn-danger">Sair</button>
         </div>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-          ☰
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-usuarios">
+          <span class="sr-only">Alternar menu</span>
+          <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -229,7 +230,10 @@
           </div>
           <div class="form-group">
             <label class="form-label">Ação</label>
-            <button class="btn btn-secondary w-100">🔍 Filtrar</button>
+            <button class="btn btn-secondary w-100">
+              <span class="material-symbols-rounded" aria-hidden="true">filter_alt</span>
+              Filtrar
+            </button>
           </div>
         </div>
       </div>

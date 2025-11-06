@@ -18,14 +18,15 @@
             style="height: 40px; vertical-align: middle; margin-right: 8px;">
           <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="menu-paciente">
           <a href="dash-paciente.html" class="nav-link">Dashboard</a>
           <a href="prontuario.html" class="nav-link">Meu Prontuário</a>
           <a href="../perfil.html" class="nav-link">Perfil</a>
           <button onclick="logout()" class="btn btn-danger">Sair</button>
         </div>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-          ☰
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-paciente">
+          <span class="sr-only">Alternar menu</span>
+          <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -74,19 +75,29 @@
             <h3 class="card-title">Próximas Consultas</h3>
           </div>
           <div class="alert alert-success">
-            <strong>Cardiologia</strong><br />
+            <strong class="icon-inline">
+              <span class="material-symbols-rounded" aria-hidden="true">monitor_heart</span>
+              Cardiologia
+            </strong><br />
             Dr. Maria Santos<br />
-            📅 15/11/2024 às 14:30<br />
-            📍 Clínica CardioSaúde
+            <span class="icon-inline"><span class="material-symbols-rounded" aria-hidden="true">calendar_today</span>
+              15/11/2024 às 14:30</span><br />
+            <span class="icon-inline"><span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+              Clínica CardioSaúde</span>
           </div>
           <div class="alert" style="
                 background: rgba(46, 155, 215, 0.1);
                 border-left: 4px solid var(--azul-medio);
               ">
-            <strong>Oftalmologia</strong><br />
+            <strong class="icon-inline">
+              <span class="material-symbols-rounded" aria-hidden="true">visibility</span>
+              Oftalmologia
+            </strong><br />
             Dr. Pedro Lima<br />
-            📅 22/11/2024 às 09:00<br />
-            📍 Hospital São José
+            <span class="icon-inline"><span class="material-symbols-rounded" aria-hidden="true">calendar_today</span>
+              22/11/2024 às 09:00</span><br />
+            <span class="icon-inline"><span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+              Hospital São José</span>
           </div>
         </div>
 
@@ -108,17 +119,20 @@
                 <tr>
                   <td>Hemograma Completo</td>
                   <td>02/11/2024</td>
-                  <td><span class="text-success">✓ Disponível</span></td>
+                  <td><span class="text-success icon-inline"><span class="material-symbols-rounded"
+                        aria-hidden="true">check_circle</span> Disponível</span></td>
                 </tr>
                 <tr>
                   <td>Eletrocardiograma</td>
                   <td>28/10/2024</td>
-                  <td><span class="text-success">✓ Disponível</span></td>
+                  <td><span class="text-success icon-inline"><span class="material-symbols-rounded"
+                        aria-hidden="true">check_circle</span> Disponível</span></td>
                 </tr>
                 <tr>
                   <td>Raio-X Tórax</td>
                   <td>25/10/2024</td>
-                  <td><span class="text-primary">⏳ Processando</span></td>
+                  <td><span class="text-primary icon-inline"><span class="material-symbols-rounded"
+                        aria-hidden="true">pending</span> Processando</span></td>
                 </tr>
               </tbody>
             </table>

@@ -18,7 +18,7 @@
             style="height: 40px; vertical-align: middle; margin-right: 8px;">
           <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="menu-configuracoes">
           <a href="../medico/dash-medico.html" class="nav-link">Dashboard</a>
           <a href="../medico/consulta.html" class="nav-link">Consultas</a>
           <a href="../medico/cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
@@ -26,8 +26,9 @@
           <a href="configuracoes.html" class="nav-link" style="background: var(--cinza-neutro)">Configurações</a>
           <button onclick="logout()" class="btn btn-danger">Sair</button>
         </div>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-          ☰
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-configuracoes">
+          <span class="sr-only">Alternar menu</span>
+          <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -43,7 +44,8 @@
           <p>Gerencie as configurações e preferências do seu tenant</p>
         </div>
         <button class="btn btn-primary" onclick="saveAllSettings()">
-          💾 Salvar Todas as Configurações
+          <span class="material-symbols-rounded" aria-hidden="true">save</span>
+          Salvar Todas as Configurações
         </button>
       </div>
 
@@ -281,7 +283,9 @@ Rua das Clínicas, 123 - Centro - São Paulo/SP - CEP: 01234-567</textarea>
                     background: rgba(46, 155, 215, 0.1);
                     border-left: 4px solid var(--azul-medio);
                   ">
-                <strong>ℹ️ API Key:</strong> medisync_api_key_123abc...<br />
+                <strong class="icon-inline"><span class="material-symbols-rounded" aria-hidden="true">info</span> API
+                  Key:</strong>
+                medisync_api_key_123abc...<br />
                 <button class="btn btn-secondary btn-sm mt-2">
                   Regenerar Chave
                 </button>
@@ -469,8 +473,9 @@ Rua das Clínicas, 123 - Centro - São Paulo/SP - CEP: 01234-567</textarea>
       <!-- Ações Perigosas -->
       <div class="card mt-4" style="border-left: 4px solid var(--rosa-vivo)">
         <div class="card-header">
-          <h3 class="card-title" style="color: var(--rosa-vivo)">
-            ⚠️ Zona de Perigo
+          <h3 class="card-title icon-inline" style="color: var(--rosa-vivo)">
+            <span class="material-symbols-rounded" aria-hidden="true">warning</span>
+            Zona de Perigo
           </h3>
         </div>
 

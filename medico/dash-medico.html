@@ -18,15 +18,16 @@
             style="height: 40px; vertical-align: middle; margin-right: 8px;">
           <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="menu-medico">
           <a href="dash-medico.html" class="nav-link" style="background: var(--cinza-neutro)">Dashboard</a>
           <a href="consulta.html" class="nav-link">Consultas</a>
           <a href="cad-paciente.html" class="nav-link">Cadastrar Paciente</a>
           <a href="../instituicao/usuarios.html" class="nav-link">Usuários</a>
           <button onclick="logout()" class="btn btn-danger">Sair</button>
         </div>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-          ☰
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-medico">
+          <span class="sr-only">Alternar menu</span>
+          <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -179,7 +180,11 @@
           </div>
           <div>
             <div class="alert alert-danger">
-              <strong>🔴 Urgente - Eletrocardiograma</strong><br />
+              <strong class="icon-inline">
+                <span class="material-symbols-rounded status-icon status-icon--danger"
+                  aria-hidden="true">priority_high</span>
+                Urgente - Eletrocardiograma
+              </strong><br />
               Paciente: Pedro Santos<br />
               Solicitado em: 03/11/2024<br />
               <button class="btn btn-primary btn-sm mt-2">
@@ -190,7 +195,11 @@
                   background: rgba(255, 165, 0, 0.1);
                   border-left: 4px solid orange;
                 ">
-              <strong>🟡 Ecocardiograma</strong><br />
+              <strong class="icon-inline">
+                <span class="material-symbols-rounded status-icon status-icon--warning"
+                  aria-hidden="true">schedule</span>
+                Ecocardiograma
+              </strong><br />
               Paciente: Ana Costa<br />
               Solicitado em: 02/11/2024<br />
               <button class="btn btn-secondary btn-sm mt-2">
@@ -198,7 +207,11 @@
               </button>
             </div>
             <div class="alert alert-success">
-              <strong>🟢 Teste Ergométrico</strong><br />
+              <strong class="icon-inline">
+                <span class="material-symbols-rounded status-icon status-icon--success"
+                  aria-hidden="true">check_circle</span>
+                Teste Ergométrico
+              </strong><br />
               Paciente: Carlos Lima<br />
               Solicitado em: 01/11/2024<br />
               <button class="btn btn-secondary btn-sm mt-2">
@@ -249,15 +262,22 @@
         </div>
         <div class="grid grid-3">
           <div class="alert alert-success">
-            <strong>📅 Congressos</strong><br />
+            <strong>
+              <span class="material-symbols-rounded" aria-hidden="true">event</span>
+              Congressos
+            </strong><br />
             Congresso Brasileiro de Cardiologia<br />
-            📍 São Paulo - 15 a 18/11/2024
+            <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+            São Paulo - 15 a 18/11/2024
           </div>
           <div class="alert" style="
                 background: rgba(46, 155, 215, 0.1);
                 border-left: 4px solid var(--azul-medio);
               ">
-            <strong>🔄 Atualizações</strong><br />
+            <strong>
+              <span class="material-symbols-rounded" aria-hidden="true">sync</span>
+              Atualizações
+            </strong><br />
             Nova versão do sistema disponível<br />
             Melhorias na interface de exames
           </div>
@@ -265,7 +285,10 @@
                 background: rgba(255, 165, 0, 0.1);
                 border-left: 4px solid orange;
               ">
-            <strong>⚠️ Manutenção</strong><br />
+            <strong>
+              <span class="material-symbols-rounded" aria-hidden="true">warning</span>
+              Manutenção
+            </strong><br />
             Sistema em manutenção<br />
             Domingo 10/11 das 02h às 06h
           </div>

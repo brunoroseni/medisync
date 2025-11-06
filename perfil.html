@@ -18,14 +18,15 @@
             style="height: 40px; vertical-align: middle; margin-right: 8px;">
           <h2 style="color: var(--azul-escuro); display: inline-block; vertical-align: middle; margin: 0;">MediSync</h2>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="menu-paciente">
           <a href="paciente/dash-paciente.html" class="nav-link">Dashboard</a>
           <a href="paciente/prontuario.html" class="nav-link">Prontuário</a>
           <a href="perfil.html" class="nav-link" style="background: var(--cinza-neutro)">Perfil</a>
           <button onclick="logout()" class="btn btn-danger">Sair</button>
         </div>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-          ☰
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-paciente">
+          <span class="sr-only">Alternar menu</span>
+          <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -41,7 +42,8 @@
           <p>Gerencie suas informações pessoais e preferências</p>
         </div>
         <button class="btn btn-primary" onclick="editProfile()">
-          ✏️ Editar Perfil
+          <span class="material-symbols-rounded" aria-hidden="true">edit</span>
+          Editar Perfil
         </button>
       </div>
 
@@ -379,7 +381,7 @@ Hipertenso controlado com medicação</textarea>
 
       document.getElementById("editButtons").classList.add("d-none");
       document.querySelector(".dashboard-header button").textContent =
-        "✏️ Editar Perfil";
+        '<span class="material-symbols-rounded" aria-hidden="true">edit</span> Editar Perfil';
       isEditing = false;
     }
 

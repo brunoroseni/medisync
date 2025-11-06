@@ -179,10 +179,13 @@
 
 .footer {
   background-color: var(--azul-escuro);
-  color: var(--branco);
   padding: var(--spacing-md);
   text-align: center;
   box-shadow: var(--shadow-base);
+}
+
+.footer p {
+  color: var(--branco);
 }
 
 /* Responsive Design */

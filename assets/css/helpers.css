@@ -1,6 +1,6 @@
 /* ===========================================
-   🧰 UTILITÁRIOS GERAIS
-   =========================================== */
+  UTILITÁRIOS GERAIS
+  =========================================== */
 
 /* Texto */
 .text-left {
@@ -23,6 +23,30 @@
 }
 .fw-bold {
   font-weight: 700;
+}
+
+.icon-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.status-icon {
+  font-size: 1.25rem;
+  font-variation-settings: "FILL" 1;
+  line-height: 1;
+}
+
+.status-icon--danger {
+  color: var(--rosa-vivo);
+}
+
+.status-icon--warning {
+  color: #f29900;
+}
+
+.status-icon--success {
+  color: var(--verde-agua);
 }
 
 /* Acessibilidade */
